@@ -61,5 +61,5 @@ GRANT DBA TO SA
 SET SCHEMA PUBLIC
 INSERT INTO TTRIPS VALUES(29,'2016-02-19 08:20:10.000000',4,'2016-02-18 08:20:10.000000','Buen rollo4','address10','Oviedo','country10','state10',43.34343E0,-6.53434E0,'zipcode10','2016-02-19 08:20:10.000000','address11','Madrid','country11','state11',43.34343E0,-6.53434E0,'zipcode11',50.0E0,5,0,306)
 INSERT INTO TTRIPS VALUES(30,'2016-02-19 08:20:10.000000',4,'2016-02-18 08:20:10.000000','Buen rollo5','address12','Barcelona','country12','state12',43.34343E0,-6.53434E0,'zipcode12','2016-02-19 08:20:10.000000','address13','Valencia','country13','state13',43.34343E0,-6.53434E0,'zipcode13',50.0E0,5,0,307)
-INSERT INTO TUSERS VALUES(306,'user1@mail.com','user1','Fernando','user1',0,'Alvarez')
+INSERT INTO TUSERS VALUES(306,'user98@mail.com','user1','Fernando','user1',0,'Alvarez')
 INSERT INTO TUSERS VALUES(307,'user2@mail.com','user2','Luisa','user2',0,'Perez')

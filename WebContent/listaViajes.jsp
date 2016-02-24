@@ -1,13 +1,17 @@
-<%@ page contentType="text/html" pageEncoding="UTF-8"%>
+<%@ page contentType="text/html" pageEncoding="UTF-8" import="uo.sdi.dao.TripDAO"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ include file="comprobarNavegacion.jsp" %>
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<!DOCTYPE>
 <html>
 <head>
 <title>ShareMyTrip - Listado de viajes</title>
+<link rel="stylesheet" href="css/bootstrap.min.css">
+<meta name="viewport" content="width=device-width, initial-scale=1">
 </head>
 <body>
-	<table border="1" align="center">
+
+<h1 class="text-center"> Estos son nuestros viajes </h1>
+	<table class="table table-bordered">
 			<tr>
 				<th>ID viaje</th>
 				<th>Origen</th>
@@ -23,5 +27,8 @@
 			</tr>
 		</c:forEach>
 	</table>
+	<a id="login" class="text-right" href="listarViajes">
+		<h2>Atrás</h2>
+	</a>
 </body>
 </html>
