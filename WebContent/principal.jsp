@@ -36,5 +36,13 @@
 		href="listarViajesUsuario">
 		<h1>Ver viaje User</h1>
 	</a>
+
+	<h1 class="text-center">
+		<a id="registrarViaje" href="registrarViaje">
+			Registrar </a>
+	</h1>
+
+
+
 </body>
 </html>

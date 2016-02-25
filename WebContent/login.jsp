@@ -40,7 +40,7 @@
 
 			<!-- Button -->
 			<div class="form-group">
-				<label class="col-md-4 control-label" for="enviat">Enviar</label>
+				<label class="col-md-4 control-label" for="enviar">Enviar</label>
 				<div class="col-md-4">
 					<button id="enviar" name="enviar" class="btn btn-primary">Enviar</button>
 				</div>
@@ -49,9 +49,10 @@
 		</fieldset>
 	</form>
 
-	<a id="listarViajes" class="text-center" href="listarViajes">
-		<h1>Vea nuestros viajes</h1>
-	</a>
+	<h1 class="text-center">
+		<a id="listarViajes" href="listarViajes"> Vea nuestros viajes </a>
+	</h1>
+
 	
 
 
