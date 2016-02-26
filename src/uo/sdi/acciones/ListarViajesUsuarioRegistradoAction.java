@@ -18,6 +18,7 @@ public class ListarViajesUsuarioRegistradoAction implements Accion {
 			String queryString = request.getQueryString();
 			User user = (User) request.getSession().getAttribute("user");
 
+
 			
 			Long id = Long.parseLong(queryString.split("=")[1]);
 			Trip trip = PersistenceFactory.newTripDao().findById(id);

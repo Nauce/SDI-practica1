@@ -9,6 +9,7 @@ public class TripDto {
 	private String origen;
 	private String destino;
 	private int plazasLibres;
+
 	private int plazasMaximas;
 	private String promotor;
 	private Map<String, Double> infoPasajeros;
@@ -83,6 +84,7 @@ public class TripDto {
 
 	public void setInfoPasajeros(Map<String, Double> infoPasajeros) {
 		this.infoPasajeros = infoPasajeros;
+
 	}
 
 }
