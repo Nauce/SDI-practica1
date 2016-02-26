@@ -104,14 +104,22 @@ public class Controlador extends javax.servlet.http.HttpServlet {
 		Map<String, Accion> mapaPublico = new HashMap<String, Accion>();
 		mapaPublico.put("validarse", new ValidarseAction());
 		mapaPublico.put("listarViajes", new ListarViajesAction());
+		mapaPublico.put("listarViajesUsuario",
+				new ListarViajesUsuarioRegistradoAction());
 
+	
 		mapaDeAcciones.put("PUBLICO", mapaPublico);
 
 		Map<String, Accion> mapaRegistrado = new HashMap<String, Accion>();
 		mapaRegistrado.put("modificarDatos", new ModificarDatosAction());
+
+		mapaRegistrado.put("registrarViaje", new RegistrarViajeAction());
+		
+		mapaRegistrado.put("listarViajes", new ListarViajesAction());
+
 		mapaRegistrado.put("listarViajesUsuario",
 				new ListarViajesUsuarioRegistradoAction());
-		mapaRegistrado.put("registrarViaje", new RegistrarViajeAction());
+
 
 		mapaDeAcciones.put("REGISTRADO", mapaRegistrado);
 	}
@@ -131,8 +139,12 @@ public class Controlador extends javax.servlet.http.HttpServlet {
 		resJSP.put("EXITO", "/listaViajes.jsp");
 		opcionResJSP.put("listarViajes", resJSP);
 
-		// listarPorUsuario--Esto mas adelante será privado
+		resJSP = new HashMap<String, String>();
+		resJSP.put("EXITO", "/listaViajesUsuario.jsp");
+		opcionResJSP.put("listarViajesUsuario", resJSP);
 
+
+		
 		mapaDeNavegacion.put("PUBLICO", opcionResJSP);
 
 		// Crear mapas auxiliares vacíos
@@ -157,6 +169,11 @@ public class Controlador extends javax.servlet.http.HttpServlet {
 
 		resJSP.put("EXITO", "/principal.jsp");
 		opcionResJSP.put("registrarViaje", resJSP);
+		
+		
+		resJSP = new HashMap<String, String>();
+		resJSP.put("EXITO", "/listaViajes.jsp");
+		opcionResJSP.put("listarViajes", resJSP);
 
 		mapaDeNavegacion.put("REGISTRADO", opcionResJSP);
 	}

@@ -32,14 +32,14 @@
 		</tr>
 	</table>
 	<br /> Es Vd el usuario número: ${contador}
-	<a id="listarViajesUsuario" class="text-center"
-		href="listarViajesUsuario">
+	<a id="listarViajes" class="text-center"
+		href="listarViajes">
 		<h1>Ver viaje User</h1>
 	</a>
 
 	<h1 class="text-center">
 		<a id="registrarViaje" href="registrarViaje">
-			Registrar </a>
+		Registrar </a>
 	</h1>
 
 

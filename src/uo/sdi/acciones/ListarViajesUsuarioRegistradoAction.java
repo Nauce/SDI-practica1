@@ -1,18 +1,11 @@
 package uo.sdi.acciones;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
-
-import uo.sdi.dao.DAOAssembler;
-import uo.sdi.dao.TripDAO;
+import uo.sdi.dto.DTOAssembler;
 import uo.sdi.model.Trip;
 import uo.sdi.model.User;
 import uo.sdi.persistence.PersistenceFactory;
-import uo.sdi.persistence.TripDao;
 import alb.util.log.Log;
 
 public class ListarViajesUsuarioRegistradoAction implements Accion {
@@ -21,27 +14,19 @@ public class ListarViajesUsuarioRegistradoAction implements Accion {
 	public String execute(HttpServletRequest request,
 			HttpServletResponse response) {
 
-		List<Trip> viajes;
-		List<TripDAO> tripDao;
-
 		try {
-			viajes = PersistenceFactory.newTripDao().findAll();
-			tripDao = new ArrayList<TripDAO>();
-			for (Trip trip : viajes) {
+			String queryString = request.getQueryString();
+			User user = (User) request.getSession().getAttribute("user");
 
-				tripDao.add(DAOAssembler.generateTripDao(
-						trip,
-						PersistenceFactory.newUserDao().findById(
-								trip.getPromoterId())));
+			
+			Long id = Long.parseLong(queryString.split("=")[1]);
+			Trip trip = PersistenceFactory.newTripDao().findById(id);
+			request.setAttribute("viaje",
+					DTOAssembler.generateTripDto(trip, user));
 
-			}
-
-			HttpSession session = request.getSession();
-			request.setAttribute("listaViajesUsuario", tripDao);
-			Log.debug("Obtenida lista de viajes conteniendo [%d] viajes",
-					viajes.size());
 		} catch (Exception e) {
 			Log.error("Algo ha ocurrido obteniendo lista de viajes");
+			return "ERROR";
 		}
 		return "EXITO";
 	}

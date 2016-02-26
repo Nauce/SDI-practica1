@@ -15,11 +15,14 @@
 <link
 	href="http://pingendo.github.io/pingendo-bootstrap/themes/default/bootstrap.css"
 	rel="stylesheet" type="text/css">
+
+
+
 </head>
 <body>
 
 
-	<form  method="post" action="registrarViaje">
+	<form method="post" action="registrarViaje">
 		<div class="section">
 			<div class="container">
 				<div class="row">
@@ -39,32 +42,38 @@
 
 						<div class="form-group">
 							<label class="control-label" for="exampleInputtext1">Calle<br></label><input
-								class="form-control" id="calleOrigen" name="calleOrigen" type="text">
+								class="form-control" id="calleOrigen" name="calleOrigen"
+								type="text">
 						</div>
 						<div class="form-group">
 							<label class="control-label" for="exampleInputtext1">Ciudad<br></label><input
-								class="form-control"  id="ciudadOrigen" name="ciudadOrigen"  type="text">
+								class="form-control" id="ciudadOrigen" name="ciudadOrigen"
+								type="text">
 						</div>
 
 						<div class="form-group">
 							<label class="control-label" for="exampleInputtext1">Provincia<br></label><input
-								class="form-control"  id="privinciaOrigen" name="provinciaOrigen"  type="text">
+								class="form-control" id="privinciaOrigen" name="provinciaOrigen"
+								type="text">
 						</div>
 						<div class="form-group">
 							<label class="control-label" for="exampleInputtext1">País<br></label><input
-								class="form-control"  id="paisOrigen" name="paisOrigen"  type="text">
+								class="form-control" id="paisOrigen" name="paisOrigen"
+								type="text">
 						</div>
 
 						<div class="form-group">
 							<label class="control-label" for="exampleInputtext1">Código
 								Postal<br>
-							</label><input class="form-control"  id="codigoPostalOrigen" name="codigoPostalOrigen"  type="text">
+							</label><input class="form-control" id="codigoPostalOrigen"
+								name="codigoPostalOrigen" type="text">
 						</div>
 						<div class="form-group">
 							<label class="control-label" for="exampleInputtext1">Coordenadas
 								GPS<br>
-							</label><input class="form-control"  id="coordenadasOrigen" name="coordenadasOrigen" 
-								type="text" placeholder="Formato 'LAT'&'LON'">
+							</label><input class="form-control" id="coordenadasOrigen"
+								name="coordenadasOrigen" type="text"
+								placeholder="Formato 'LAT'&'LON'">
 						</div>
 					</div>
 					<div class="col-md-6">
@@ -72,94 +81,111 @@
 
 						<div class="form-group">
 							<label class="control-label" for="exampleInputtext1">Calle<br></label><input
-								class="form-control" id="calleDestino" name="calleDestino" type="text">
+								class="form-control" id="calleDestino" name="calleDestino"
+								type="text">
 						</div>
 						<div class="form-group">
 							<label class="control-label" for="exampleInputtext1">Ciudad<br></label><input
-								class="form-control"  id="ciudadDestino" name="ciudadDestino"  type="text">
+								class="form-control" id="ciudadDestino" name="ciudadDestino"
+								type="text">
 						</div>
 
 						<div class="form-group">
 							<label class="control-label" for="exampleInputtext1">Provincia<br></label><input
-								class="form-control"  id="privinciaDestino" name="provinciaDestino"  type="text">
+								class="form-control" id="privinciaDestino"
+								name="provinciaDestino" type="text">
 						</div>
 						<div class="form-group">
 							<label class="control-label" for="exampleInputtext1">País<br></label><input
-								class="form-control"  id="paisDestino" name="paisDestino"  type="text">
+								class="form-control" id="paisDestino" name="paisDestino"
+								type="text">
 						</div>
 
 						<div class="form-group">
 							<label class="control-label" for="exampleInputtext1">Código
 								Postal<br>
-							</label><input class="form-control"  id="codigoPostalDestino" name="codigoPostalDestino"  type="text">
+							</label><input class="form-control" id="codigoPostalDestino"
+								name="codigoPostalDestino" type="text">
 						</div>
 						<div class="form-group">
 							<label class="control-label" for="exampleInputtext1">Coordenadas
 								GPS<br>
-							</label><input class="form-control"  id="coordenadasDestino" name="coordenadasDestino" 
-								type="text" placeholder="Formato 'LAT'&'LON' ">
+							</label><input class="form-control" id="coordenadasDestino"
+								name="coordenadasDestino" type="text"
+								placeholder="Formato 'LAT'&'LON' ">
 						</div>
 					</div>
 
-					
+
 				</div>
+				<p>En caso de que el navegador no soporte la etiqueta de html5
+					(input type ="date") y sucedaneos, el formato de entrada para las
+					fechas será yyyy-mm-dd</p>
 				<div class="row">
 					<div class="form-group">
 						<label class="control-label" for="exampleInputtext1">Fecha
 							de Salida<br>
-						</label><input class="form-control" id="fechaSalida" name="fechaSalida"  type="date">
+						</label><input class="form-control" id="fechaSalida" name="fechaSalida"
+							type="date">
 					</div>
 					<div class="form-group">
 						<label class="control-label" for="exampleInputtext1">Hora
 							de Salida<br>
-						</label><input class="form-control" id="horaSalida" name="horaSalida" 
-							type="text">
+						</label><input class="form-control" id="horaSalida" name="horaSalida"
+							placeholder="formato hh:mm" type="text">
 					</div>
 
 
 					<div class="form-group">
 						<label class="control-label" for="exampleInputtext1">Fecha
 							de llegada estimada<br>
-						</label><input class="form-control" id="fechaLlegada" name="fechaLlegada"  type="date">
+						</label><input class="form-control" id="fechaLlegada" name="fechaLlegada"
+							type="date">
 					</div>
 					<div class="form-group">
 						<label class="control-label" for="exampleInputtext1">Fecha
 							límite de inscripción<br>
-						</label><input class="form-control" id="fechaLimiteInscripcion" name="fechaLimiteInscripcion"
-							type="date">
+						</label><input class="form-control" id="fechaLimiteInscripcion"
+							name="fechaLimiteInscripcion" type="date">
 					</div>
 
 					<div class="form-group">
 						<label class="control-label" for="exampleInputtext1">Coste
 							estimado<br>
-						</label><input class="form-control" id="costeEstimado" name="costeEstimado" type="text">
+						</label><input class="form-control" id="costeEstimado"
+							name="costeEstimado" type="text">
 					</div>
 					<div class="form-group">
 						<label class="control-label" for="exampleInputtext1">Plazas
 							máximas<br>
-						</label><input class="form-control" id="plazasMaximas" name="plazasMaximas"
-							type="text">
+						</label><input class="form-control" id="plazasMaximas"
+							name="plazasMaximas" type="text">
 					</div>
 
 					<div class="form-group">
 						<label class="control-label" for="exampleInputtext1">Plazas
 							disponibles<br>
-						</label><input class="form-control"  id="plazasDisponibles" name="plazasDisponibles" type="text">
+						</label><input class="form-control" id="plazasDisponibles"
+							name="plazasDisponibles" type="text">
 					</div>
 					<div class="form-group">
 						<label class="control-label" for="exampleInputtext1">Comentarios
 							oportunos<br>
-						</label><input class="form-control"  id="comentarios" name="comentarios"
+						</label><input class="form-control" id="comentarios" name="comentarios"
 							type="text">
 					</div>
 				</div>
 				<div class="row">
 					<div class="col-md-12">
-						<button id="enviar" name="enviar"  class="btn btn-primary">Enviar</button>
+						<button id="enviar" name="enviar" class="btn btn-primary">Enviar</button>
 					</div>
 				</div>
 			</div>
 		</div>
 	</form>
+	
+	<h2>
+		<a id="login" class="text-right" href="principal"> Atrás </a>
+	</h2>
 </body>
 </html>

@@ -9,34 +9,82 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 </head>
 <body>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script type="text/javascript"
+	src="http://cdnjs.cloudflare.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+<script type="text/javascript"
+	src="http://netdna.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
+<link
+	href="http://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.3.0/css/font-awesome.min.css"
+	rel="stylesheet" type="text/css">
+<link
+	href="http://pingendo.github.io/pingendo-bootstrap/themes/default/bootstrap.css"
+	rel="stylesheet" type="text/css">
+</head>
+<body>
 
-	<h1 class="text-center">Estos son nuestros viajes</h1>
-	<table class="table table-bordered">
-		<tr>
-			<th>ID viaje</th>
-			<th>Origen</th>
-			<th>Destino</th>
-			<th>Plazas libres</th>
-			<th>Promotor</th>
-			<th>Puntuación Promotor</th>
-			<th>Comentarios Promotor</th>
-			<th>Participantes</th>
-		</tr>
 
-		<c:forEach var="entry" items="${listaViajesUsuario}" varStatus="i">
-			<tr id="item_${i.index}">
-				<td><a href="mostrarViaje?id=${entry.id}">${entry.id}</a></td>
-				<td>${entry.origen}</td>
-				<td>${entry.destino}</td>
-				<td>${entry.plazasLibres}</td>
-				<td>${entry.promotor}</td>
-				<td>${entry.puntuacionPromotor}</td>
-				<td>${entry.comentariosPromotor}</td>
-				<td>${entry.participantes}</td>
-			</tr>
-		</c:forEach>
-	</table>
+	<div class="section">
+		<div class="container">
+			<div class="row">
+				<div class="col-md-4">
+					<h2>Datos del viaje</h2>
 
-	<a id="login" class="text-right" href="principal"> <h2>Atrás</h2></a>
+					<ul>
+						<li>
+							<h3>ID del viaje : ${viaje.id}</h3>
+						</li>
+
+						<li>
+							<h3>Ciudad de Origen : ${viaje.origen}</h3>
+						</li>
+						<li>
+							<h3>Ciudad de Destino : ${viaje.destino}</h3>
+						</li>
+
+						<li>
+							<h3>Plazas libres : ${viaje.plazasLibres}</h3>
+						</li>
+						<li>
+							<h3>Plazas Maximas : ${viaje.plazasMaximas}</h3>
+						</li>
+						<li>
+							<h3>Promotor: ${viaje.promotor}</h3>
+						</li>
+
+
+					</ul>
+				</div>
+				<div class="col-md-8">
+					<table class="table">
+						<thead>
+							<tr>
+
+								<th>Usuario</th>
+								<th>Rating</th>
+
+							</tr>
+						</thead>
+						<tbody>
+							<c:forEach var="entry" items="${viajes.infoPasajeros.entrySet}"
+								varStatus="i">
+								<tr id="item_${i.index}">
+									<td>${entry.destination.city}</td>
+									<td>${entry.availablePax}</td>
+								</tr>
+							</c:forEach>
+						</tbody>
+					</table>
+				</div>
+			</div>
+		</div>
+	</div>
+</body>
+</html>
+
+
 </body>
 </html>
