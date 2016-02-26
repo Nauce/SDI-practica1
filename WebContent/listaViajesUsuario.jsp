@@ -69,11 +69,10 @@
 							</tr>
 						</thead>
 						<tbody>
-							<c:forEach var="entry" items="${viajes.infoPasajeros.entrySet}"
-								varStatus="i">
-								<tr id="item_${i.index}">
-									<td>${entry.destination.city}</td>
-									<td>${entry.availablePax}</td>
+							<c:forEach var="entry" items="${viaje.infoPasajeros}">
+								<tr>
+									<td>${entry.key}</td>
+									<td>${entry.value}</td>
 								</tr>
 							</c:forEach>
 						</tbody>
