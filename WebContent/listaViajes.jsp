@@ -1,6 +1,7 @@
-<%@ page contentType="text/html" pageEncoding="UTF-8" import="uo.sdi.dao.TripDAO"%>
+<%@ page contentType="text/html" pageEncoding="UTF-8"
+	import="uo.sdi.dao.TripDAO"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
-<%@ include file="comprobarNavegacion.jsp" %>
+<%@ include file="comprobarNavegacion.jsp"%>
 <!DOCTYPE>
 <html>
 <head>
@@ -10,14 +11,14 @@
 </head>
 <body>
 
-<h1 class="text-center"> Estos son nuestros viajes </h1>
+	<h1 class="text-center">Estos son nuestros viajes</h1>
 	<table class="table table-bordered">
-			<tr>
-				<th>ID viaje</th>
-				<th>Origen</th>
-				<th>Destino</th>
-				<th>Plazas libres</th>
-			</tr>
+		<tr>
+			<th>ID viaje</th>
+			<th>Origen</th>
+			<th>Destino</th>
+			<th>Plazas libres</th>
+		</tr>
 		<c:forEach var="entry" items="${listaViajes}" varStatus="i">
 			<tr id="item_${i.index}">
 				<td><a href="mostrarViaje?id=${entry.id}">${entry.id}</a></td>
@@ -27,8 +28,8 @@
 			</tr>
 		</c:forEach>
 	</table>
-	<a id="login" class="text-right" href="listarViajes">
-		<h2>Atrás</h2>
-	</a>
+	<h2>
+		<a id="login" class="text-right" href="listarViajes"> Atrás </a>
+	</h2>
 </body>
 </html>
