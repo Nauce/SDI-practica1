@@ -1,5 +1,5 @@
 <%@ page contentType="text/html" pageEncoding="UTF-8"
-	import="uo.sdi.dao.TripDAO"%>
+	import="uo.sdi.dto.TripDto"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ include file="comprobarNavegacion.jsp"%>
 <!DOCTYPE>

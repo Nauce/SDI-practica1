@@ -7,8 +7,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import uo.sdi.dao.DAOAssembler;
-import uo.sdi.dao.TripDAO;
+import uo.sdi.dto.DATOAssembler;
+import uo.sdi.dto.TripDto;
 import uo.sdi.model.Trip;
 import uo.sdi.model.User;
 import uo.sdi.persistence.PersistenceFactory;
@@ -22,14 +22,14 @@ public class ListarViajesUsuarioRegistradoAction implements Accion {
 			HttpServletResponse response) {
 
 		List<Trip> viajes;
-		List<TripDAO> tripDao;
+		List<TripDto> tripDao;
 
 		try {
 			viajes = PersistenceFactory.newTripDao().findAll();
-			tripDao = new ArrayList<TripDAO>();
+			tripDao = new ArrayList<TripDto>();
 			for (Trip trip : viajes) {
 
-				tripDao.add(DAOAssembler.generateTripDao(
+				tripDao.add(DATOAssembler.generateTripDto(
 						trip,
 						PersistenceFactory.newUserDao().findById(
 								trip.getPromoterId())));
