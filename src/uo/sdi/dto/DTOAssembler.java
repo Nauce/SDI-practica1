@@ -14,13 +14,15 @@ public class DTOAssembler {
 
 	public static TripDto generateTripDto(Trip trip, User user) {
 
+		User promotor = PersistenceFactory.newUserDao().findById(
+				trip.getPromoterId());
 		TripDto tdao = new TripDto(trip.getId(), trip.getDeparture().getCity(),
 				trip.getDestination().getCity(), trip.getAvailablePax(),
-				user.getName());
+				promotor.getName());
 		tdao.setPlazasMaximas(trip.getMaxPax());
 
 		List<User> users = findUserBySeat(trip.getId());
-		users.add(user);
+		users.add(promotor);
 		tdao.setInfoPasajeros(getInfoViaje(trip.getId(), users));
 
 		return tdao;
