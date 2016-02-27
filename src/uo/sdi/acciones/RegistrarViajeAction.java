@@ -38,6 +38,7 @@ public class RegistrarViajeAction implements Accion {
 			String coordenadasDestino = request
 					.getParameter("coordenadasDestino");
 			String fechaSalida = request.getParameter("fechaSalida");
+			String horaSalida = request.getParameter("horaSalida");
 			String fechaLlegada = request.getParameter("fechaLlegada");
 			String fechaLimiteInscripcion = request
 					.getParameter("fechaLimiteInscripcion");
@@ -47,8 +48,10 @@ public class RegistrarViajeAction implements Accion {
 					.getParameter("plazasDisponibles");
 			String comentarios = request.getParameter("comentarios");
 
-			System.out.println(costeEstimado + "perres");
-			System.out.println(fechaSalida);
+			String[] horaYMinuto = horaSalida.split(":");
+
+			fechaSalida = fechaSalida + "-" + horaYMinuto[0] + "-"
+					+ horaYMinuto[1];
 
 			String[] coorOriString = coordenadasOrigen.split("&");
 			double latOr = Double.parseDouble(coorOriString[0]);
@@ -95,7 +98,7 @@ public class RegistrarViajeAction implements Accion {
 
 				nuevoViaje.setId(getLastId(PersistenceFactory.newTripDao()
 						.findAll()));
-				PersistenceFactory.newTripDao().update(nuevoViaje);
+				PersistenceFactory.newTripDao().save(nuevoViaje);
 				return "EXITO";
 
 			} catch (NumberFormatException e) {

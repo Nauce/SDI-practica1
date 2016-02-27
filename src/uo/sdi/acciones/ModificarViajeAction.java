@@ -48,8 +48,11 @@ public class ModificarViajeAction implements Accion {
 					.getParameter("plazasDisponibles");
 			String comentarios = request.getParameter("comentarios");
 
-			System.out.println(costeEstimado + "perres");
-			System.out.println(fechaSalida);
+			String horaSalida = request.getParameter("horaSalida");
+			String[] horaYMinuto = horaSalida.split(":");
+
+			fechaSalida = fechaSalida + "-" + horaYMinuto[0] + "-"
+					+ horaYMinuto[1];
 
 			String[] coorOriString = coordenadasOrigen.split("&");
 			double latOr = Double.parseDouble(coorOriString[0]);
@@ -94,14 +97,12 @@ public class ModificarViajeAction implements Accion {
 
 				request.setAttribute("viaje", nuevoViaje);
 				PersistenceFactory.newTripDao().update(nuevoViaje);
-				
-				
+
 				Long id = ((User) request.getSession().getAttribute("user"))
 						.getId();
 
 				List<Trip> viajes = findTripsByUserSession(id);
 				request.setAttribute("viajesOfertados", viajes);
-				
 
 				return "EXITO";
 
@@ -124,14 +125,15 @@ public class ModificarViajeAction implements Accion {
 	public String toString() {
 		return getClass().getName();
 	}
-	
+
 	private List<Trip> findTripsByUserSession(Long userId) {
 
 		List<Trip> trips = new ArrayList<Trip>();
 
 		for (Trip trip : PersistenceFactory.newTripDao().findAll()) {
 
-			if (trip.getPromoterId().equals(userId) && !trip.getStatus().equals(TripStatus.CANCELLED)) {
+			if (trip.getPromoterId().equals(userId)
+					&& !trip.getStatus().equals(TripStatus.CANCELLED)) {
 				trips.add(trip);
 			}
 

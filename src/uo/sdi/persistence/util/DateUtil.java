@@ -10,15 +10,23 @@ public class DateUtil {
 
 	public static Date fromString(String string) {
 		String dateString[] = string.split("-");
-		
+
 		Calendar c = Calendar.getInstance();
 		c.set(Calendar.DAY_OF_MONTH, Integer.parseInt(dateString[2]));
 		c.set(Calendar.MONTH, Integer.parseInt(dateString[1]) - 1); // base 0
 		c.set(Calendar.YEAR, Integer.parseInt(dateString[0]));
-		c.set(Calendar.HOUR_OF_DAY, 0);
-		c.set(Calendar.MINUTE, 0);
-		c.set(Calendar.SECOND, 0);
-		c.set(Calendar.MILLISECOND, 0);
+		if (dateString.length > 3) {
+			c.set(Calendar.HOUR_OF_DAY, Integer.parseInt(dateString[3]));
+			c.set(Calendar.MINUTE, Integer.parseInt(dateString[4]));
+			c.set(Calendar.SECOND, 0);
+			c.set(Calendar.MILLISECOND, 0);
+		} else {
+			c.set(Calendar.HOUR_OF_DAY, 0);
+			c.set(Calendar.MINUTE, 0);
+			c.set(Calendar.SECOND, 0);
+			c.set(Calendar.MILLISECOND, 0);
+
+		}
 
 		return c.getTime();
 	}
@@ -51,7 +59,7 @@ public class DateUtil {
 	public static boolean sameMonth(Date date, Date date2) {
 		Calendar c1 = Calendar.getInstance();
 		Calendar c2 = Calendar.getInstance();
-		
+
 		c1.setTime(date);
 		c2.setTime(date2);
 
@@ -70,11 +78,12 @@ public class DateUtil {
 	}
 
 	/**
-	 * Truncs a date by setting hh:mm:ss to 00:00:00. 
-	 * For example for date "12/02/2012 13:24:34" returns "12/02/2012 00:00:00.000"
-	 * It is useful for comparing dates in the same day. 
+	 * Truncs a date by setting hh:mm:ss to 00:00:00. For example for date
+	 * "12/02/2012 13:24:34" returns "12/02/2012 00:00:00.000" It is useful for
+	 * comparing dates in the same day.
+	 * 
 	 * @param date
-	 * @return 
+	 * @return
 	 */
 	public static Date trunc(Date date) {
 		Calendar c = Calendar.getInstance();
@@ -93,7 +102,7 @@ public class DateUtil {
 	}
 
 	public static String stringStamp() {
-		return new SimpleDateFormat("yyyy.MM.dd.hh.mm.ss").format( new Date() );
+		return new SimpleDateFormat("yyyy.MM.dd.hh.mm.ss").format(new Date());
 	}
 
 	public static Integer month(Date date) {
@@ -103,13 +112,13 @@ public class DateUtil {
 	}
 
 	public static Date yesterday() {
-		return addDays( trunc(new Date()), -1);
+		return addDays(trunc(new Date()), -1);
 	}
 
 	public static Date today() {
-		return trunc( new Date() );
+		return trunc(new Date());
 	}
-	
+
 	public static Date rndDateFrom(Date baseDate, int dias) {
 		return addDays(baseDate, rnd(0, dias));
 	}
@@ -119,6 +128,7 @@ public class DateUtil {
 	}
 
 	private static Random rnd = new Random();
+
 	private static int rnd(int min, int max) {
 		return rnd.nextInt(max - min) + min;
 	}

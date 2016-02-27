@@ -67,14 +67,15 @@
 							<label class="control-label" for="exampleInputtext1">Código
 								Postal<br>
 							</label><input class="form-control" id="codigoPostalOrigen"
-								name="codigoPostalOrigen" type="text" required>
+								name="codigoPostalOrigen" type="text" pattern="[0-9]{5}"
+								required>
 						</div>
 						<div class="form-group">
 							<label class="control-label" for="exampleInputtext1">Coordenadas
 								GPS<br>
 							</label><input class="form-control" id="coordenadasOrigen"
 								name="coordenadasOrigen" type="text"
-								placeholder="Formato 'LAT'&'LON'">
+								placeholder="Formato 'LAT'&'LON'" pattern="[0-9]+&[0-9]+">
 						</div>
 					</div>
 					<div class="col-md-6">
@@ -106,14 +107,15 @@
 							<label class="control-label" for="exampleInputtext1">Código
 								Postal<br>
 							</label><input class="form-control" id="codigoPostalDestino"
-								name="codigoPostalDestino" type="text" required>
+								name="codigoPostalDestino" type="text" pattern="[0-9]{5}"
+								required>
 						</div>
 						<div class="form-group">
 							<label class="control-label" for="exampleInputtext1">Coordenadas
 								GPS<br>
 							</label><input class="form-control" id="coordenadasDestino"
 								name="coordenadasDestino" type="text"
-								placeholder="Formato 'LAT'&'LON' ">
+								placeholder="Formato 'LAT'&'LON' " pattern="[0-9]+&[0-9]+">
 						</div>
 					</div>
 
@@ -133,7 +135,8 @@
 						<label class="control-label" for="exampleInputtext1">Hora
 							de Salida<br>
 						</label><input class="form-control" id="horaSalida" name="horaSalida"
-							placeholder="formato hh:mm" type="text" required>
+							placeholder="formato hh:mm" type="text"
+							pattern="[0-9]{2}:[0-9]{2}" required>
 					</div>
 
 
@@ -154,25 +157,26 @@
 						<label class="control-label" for="exampleInputtext1">Coste
 							estimado<br>
 						</label><input class="form-control" id="costeEstimado"
-							name="costeEstimado" type="text" required>
+							name="costeEstimado" type="number" min="0" max="1000" required>
 					</div>
 					<div class="form-group">
 						<label class="control-label" for="exampleInputtext1">Plazas
 							máximas<br>
 						</label><input class="form-control" id="plazasMaximas"
-							name="plazasMaximas" type="text" required>
+							name="plazasMaximas" type="number" min="1" max="5" required>
 					</div>
 
 					<div class="form-group">
 						<label class="control-label" for="exampleInputtext1">Plazas
 							disponibles<br>
 						</label><input class="form-control" id="plazasDisponibles"
-							name="plazasDisponibles" type="text" required>
+							name="plazasDisponibles" type="number" min="1" max="5" required>
 					</div>
 					<div class="form-group">
 						<label class="control-label" for="exampleInputtext1">Comentarios
 							oportunos<br>
-						</label><textarea  class="form-control" id="comentarios" name="comentarios"
+						</label>
+						<textarea class="form-control" id="comentarios" name="comentarios"
 							type="text" required> </textarea>
 					</div>
 				</div>
