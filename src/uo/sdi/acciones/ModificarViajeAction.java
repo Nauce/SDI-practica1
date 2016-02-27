@@ -1,5 +1,6 @@
 package uo.sdi.acciones;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
@@ -13,7 +14,7 @@ import uo.sdi.model.Waypoint;
 import uo.sdi.persistence.PersistenceFactory;
 import uo.sdi.persistence.util.DateUtil;
 
-public class RegistrarViajeAction implements Accion {
+public class ModificarViajeAction implements Accion {
 
 	@Override
 	public String execute(HttpServletRequest request,
@@ -71,11 +72,9 @@ public class RegistrarViajeAction implements Accion {
 
 			try {
 
-				Trip nuevoViaje = new Trip();
-
-				nuevoViaje.setPromoterId(usuario.getId());
-
-				nuevoViaje.setPromoterId(usuario.getId());
+				Trip nuevoViaje = PersistenceFactory.newTripDao().findById(
+						(Long) Long.parseLong(request.getQueryString().split(
+								"=")[1]));
 
 				nuevoViaje.setArrivalDate(DateUtil.fromString(fechaLlegada));
 				nuevoViaje.setClosingDate(DateUtil
@@ -93,9 +92,17 @@ public class RegistrarViajeAction implements Accion {
 						ciudadDestino, provinciaDestino, paisDestino,
 						codigoDestino, new Waypoint(latDest, lonDest)));
 
-				nuevoViaje.setId(getLastId(PersistenceFactory.newTripDao()
-						.findAll()));
+				request.setAttribute("viaje", nuevoViaje);
 				PersistenceFactory.newTripDao().update(nuevoViaje);
+				
+				
+				Long id = ((User) request.getSession().getAttribute("user"))
+						.getId();
+
+				List<Trip> viajes = findTripsByUserSession(id);
+				request.setAttribute("viajesOfertados", viajes);
+				
+
 				return "EXITO";
 
 			} catch (NumberFormatException e) {
@@ -105,6 +112,11 @@ public class RegistrarViajeAction implements Accion {
 
 		}
 
+		request.setAttribute(
+				"viaje",
+				PersistenceFactory.newTripDao().findById(
+						(Long) Long.parseLong(request.getQueryString().split(
+								"=")[1])));
 		return resultado;
 	}
 
@@ -112,20 +124,20 @@ public class RegistrarViajeAction implements Accion {
 	public String toString() {
 		return getClass().getName();
 	}
+	
+	private List<Trip> findTripsByUserSession(Long userId) {
 
-	private long getLastId(List<Trip> viajes) {
+		List<Trip> trips = new ArrayList<Trip>();
 
-		long last = 0;
+		for (Trip trip : PersistenceFactory.newTripDao().findAll()) {
 
-		for (Trip trip : viajes) {
-
-			if (trip.getId() > last) {
-				last = trip.getId();
+			if (trip.getPromoterId().equals(userId)) {
+				trips.add(trip);
 			}
 
 		}
-
-		return last + 1;
+		return trips;
 
 	}
+
 }
