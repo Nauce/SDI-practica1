@@ -1,12 +1,19 @@
 package uo.sdi.dto;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class InfoViajeDto {
 
-	public InfoViajeDto(String usuario, String comentario, String rating) {
+	private String usuario;
+
+	private List<String> comentarios;
+
+	private Double rating;
+	
+	public InfoViajeDto() {
 		super();
-		this.usuario = usuario;
-		this.comentario = comentario;
-		this.rating = rating;
+		this.setComentarios(new  ArrayList<String>());
 	}
 
 	public String getUsuario() {
@@ -17,26 +24,24 @@ public class InfoViajeDto {
 		this.usuario = usuario;
 	}
 
-	public String getComentario() {
-		return comentario;
-	}
+	
 
-	public void setComentario(String comentario) {
-		this.comentario = comentario;
-	}
-
-	public String getRating() {
+	public Double getRating() {
 		return rating;
 	}
 
-	public void setRating(String rating) {
+	public void setRating(Double rating) {
 		this.rating = rating;
 	}
 
-	private String usuario;
+	public List<String> getComentarios() {
+		return comentarios;
+	}
 
-	private String comentario;
+	public void setComentarios(List<String> comentarios) {
+		this.comentarios = comentarios;
+	}
 
-	private String rating;
+
 
 }

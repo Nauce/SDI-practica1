@@ -60,24 +60,24 @@
 					</ul>
 				</div>
 				<div class="col-md-8">
-					<table class="table">
-						<thead>
-							<tr>
 
-								<th>Usuario</th>
-								<th>Rating</th>
+					<ul>
+						<c:forEach var="entry" items="${viaje.infoPasajeros}" varStatus="i">
+							<h3><li>${entry.value.usuario} (Rating : ${entry.value.rating })</li></h3>
+							<h4>Comentarios acerca del usuario</h4>
+							<ul>
+							
+								<c:forEach var="comentario" items="${entry.value.comentarios}">
 
-							</tr>
-						</thead>
-						<tbody>
-							<c:forEach var="entry" items="${viaje.infoPasajeros}">
-								<tr>
-									<td>${entry.key}</td>
-									<td>${entry.value}</td>
-								</tr>
-							</c:forEach>
-						</tbody>
-					</table>
+									<li>${comentario }</li>
+
+								</c:forEach>
+							</ul>
+
+						</c:forEach>
+					</ul>
+
+
 				</div>
 			</div>
 		</div>

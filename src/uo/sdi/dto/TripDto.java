@@ -12,7 +12,8 @@ public class TripDto {
 
 	private int plazasMaximas;
 	private String promotor;
-	private Map<String, Double> infoPasajeros;
+	private Map<String, InfoViajeDto> infoPasajeros;
+	
 
 	public TripDto(long id, String origen, String destino, int plazasLibres,
 			String promotor) {
@@ -22,7 +23,7 @@ public class TripDto {
 		this.destino = destino;
 		this.plazasLibres = plazasLibres;
 		this.promotor = promotor;
-		this.setInfoPasajeros(new HashMap<String, Double>());
+		this.setInfoPasajeros(new HashMap<String, InfoViajeDto>());
 	}
 
 	public long getId() {
@@ -78,13 +79,15 @@ public class TripDto {
 		this.id = id;
 	}
 
-	public Map<String, Double> getInfoPasajeros() {
+	public Map<String, InfoViajeDto> getInfoPasajeros() {
 		return infoPasajeros;
 	}
 
-	public void setInfoPasajeros(Map<String, Double> infoPasajeros) {
+	public void setInfoPasajeros(Map<String, InfoViajeDto> infoPasajeros) {
 		this.infoPasajeros = infoPasajeros;
 
 	}
+
+	
 
 }

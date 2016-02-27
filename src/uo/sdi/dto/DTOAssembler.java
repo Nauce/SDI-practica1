@@ -29,29 +29,31 @@ public class DTOAssembler {
 
 	}
 
-	private static Map<String, Double> getInfoViaje(Long idViaje,
+	private static Map<String, InfoViajeDto> getInfoViaje(Long idViaje,
 			List<User> usuarios) {
 
-		Map<String, Double> usuarioComentario = new HashMap<String, Double>();
+		Map<String, InfoViajeDto> usuarioComentario = new HashMap<String, InfoViajeDto>();
 		List<Rating> ratings = PersistenceFactory.newRatingDao().findAll();
 
 		for (User usuario : usuarios) {
 			int contador = 0;
 			double media = 0;
-
+			InfoViajeDto infodto = new InfoViajeDto();
 			for (Rating rating : ratings) {
 
 				if (rating.getSeatAboutUserId().equals(usuario.getId())) {
 
 					contador++;
 					media += rating.getValue();
+					infodto.getComentarios().add(rating.getComment());
 
 				}
 
 			}
 			media = media / contador;
-
-			usuarioComentario.put(usuario.getName(), media);
+			infodto.setRating(media);
+			infodto.setUsuario(usuario.getName());
+			usuarioComentario.put(usuario.getName(), infodto);
 
 		}
 		return usuarioComentario;
