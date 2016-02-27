@@ -24,13 +24,12 @@
 
 
 	<form method="post" action="modificarViaje?id=${viaje.id}">
-		<div class="section">
+				<div class="section">
 			<div class="container">
 				<div class="row">
 					<div class="col-md-12">
 						<h1>
-							Inserte los nuevos datos de su viaje ${viaje.departure.city} -
-							${viaje.destination.city} <br>
+							Inserte los datos de su proximo viaje ofertado<br>
 						</h1>
 					</div>
 				</div>
@@ -43,32 +42,32 @@
 						<h1>Punto de origen</h1>
 
 						<div class="form-group">
-							<label class="control-label" for="exampleInputtext1">Calle<br></label><input
+							<label class="control-label" for="exampleInputtext1" >Calle<br></label><input
 								class="form-control" id="calleOrigen" name="calleOrigen"
-								type="text">
+								type="text" required>
 						</div>
 						<div class="form-group">
 							<label class="control-label" for="exampleInputtext1">Ciudad<br></label><input
 								class="form-control" id="ciudadOrigen" name="ciudadOrigen"
-								type="text">
+								type="text" required>
 						</div>
 
 						<div class="form-group">
 							<label class="control-label" for="exampleInputtext1">Provincia<br></label><input
 								class="form-control" id="privinciaOrigen" name="provinciaOrigen"
-								type="text">
+								type="text" required>
 						</div>
 						<div class="form-group">
 							<label class="control-label" for="exampleInputtext1">País<br></label><input
 								class="form-control" id="paisOrigen" name="paisOrigen"
-								type="text">
+								type="text" required>
 						</div>
 
 						<div class="form-group">
 							<label class="control-label" for="exampleInputtext1">Código
 								Postal<br>
 							</label><input class="form-control" id="codigoPostalOrigen"
-								name="codigoPostalOrigen" type="text">
+								name="codigoPostalOrigen" type="text" required>
 						</div>
 						<div class="form-group">
 							<label class="control-label" for="exampleInputtext1">Coordenadas
@@ -84,30 +83,30 @@
 						<div class="form-group">
 							<label class="control-label" for="exampleInputtext1">Calle<br></label><input
 								class="form-control" id="calleDestino" name="calleDestino"
-								type="text">
+								type="text" required>
 						</div>
 						<div class="form-group">
 							<label class="control-label" for="exampleInputtext1">Ciudad<br></label><input
 								class="form-control" id="ciudadDestino" name="ciudadDestino"
-								type="text">
+								type="text" required>
 						</div>
 
 						<div class="form-group">
 							<label class="control-label" for="exampleInputtext1">Provincia<br></label><input
 								class="form-control" id="privinciaDestino"
-								name="provinciaDestino" type="text">
+								name="provinciaDestino" type="text" required>
 						</div>
 						<div class="form-group">
 							<label class="control-label" for="exampleInputtext1">País<br></label><input
 								class="form-control" id="paisDestino" name="paisDestino"
-								type="text">
+								type="text" required>
 						</div>
 
 						<div class="form-group">
 							<label class="control-label" for="exampleInputtext1">Código
 								Postal<br>
 							</label><input class="form-control" id="codigoPostalDestino"
-								name="codigoPostalDestino" type="text">
+								name="codigoPostalDestino" type="text" required>
 						</div>
 						<div class="form-group">
 							<label class="control-label" for="exampleInputtext1">Coordenadas
@@ -128,13 +127,13 @@
 						<label class="control-label" for="exampleInputtext1">Fecha
 							de Salida<br>
 						</label><input class="form-control" id="fechaSalida" name="fechaSalida"
-							type="date">
+							type="date" required>
 					</div>
 					<div class="form-group">
 						<label class="control-label" for="exampleInputtext1">Hora
 							de Salida<br>
 						</label><input class="form-control" id="horaSalida" name="horaSalida"
-							placeholder="formato hh:mm" type="text">
+							placeholder="formato hh:mm" type="text" required>
 					</div>
 
 
@@ -142,39 +141,39 @@
 						<label class="control-label" for="exampleInputtext1">Fecha
 							de llegada estimada<br>
 						</label><input class="form-control" id="fechaLlegada" name="fechaLlegada"
-							type="date">
+							type="date" required>
 					</div>
 					<div class="form-group">
 						<label class="control-label" for="exampleInputtext1">Fecha
 							límite de inscripción<br>
 						</label><input class="form-control" id="fechaLimiteInscripcion"
-							name="fechaLimiteInscripcion" type="date">
+							name="fechaLimiteInscripcion" type="date" required>
 					</div>
 
 					<div class="form-group">
 						<label class="control-label" for="exampleInputtext1">Coste
 							estimado<br>
 						</label><input class="form-control" id="costeEstimado"
-							name="costeEstimado" type="text">
+							name="costeEstimado" type="text" required>
 					</div>
 					<div class="form-group">
 						<label class="control-label" for="exampleInputtext1">Plazas
 							máximas<br>
 						</label><input class="form-control" id="plazasMaximas"
-							name="plazasMaximas" type="text">
+							name="plazasMaximas" type="text" required>
 					</div>
 
 					<div class="form-group">
 						<label class="control-label" for="exampleInputtext1">Plazas
 							disponibles<br>
 						</label><input class="form-control" id="plazasDisponibles"
-							name="plazasDisponibles" type="text">
+							name="plazasDisponibles" type="text" required>
 					</div>
 					<div class="form-group">
 						<label class="control-label" for="exampleInputtext1">Comentarios
 							oportunos<br>
-						</label><input class="form-control" id="comentarios" name="comentarios"
-							type="text">
+						</label><textarea class="form-control" id="comentarios" name="comentarios"
+							type="text" required></textarea>
 					</div>
 				</div>
 				<div class="row">
