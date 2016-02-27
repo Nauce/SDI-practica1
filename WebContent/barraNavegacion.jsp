@@ -52,7 +52,7 @@
 										<li><a href="#">Cerrar sesión</a></li>
 									</ul></li>
 								<li class=""><a href="listarViajes">Viajes ofertados</a></li>
-								<li><a href="#">Mis viajes</a></li>
+								<li><a href="listarViajesOfertados">Mis viajes</a></li>
 								<li><a href="registrarViaje">Crear viaje</a></li>
 							</ul>
 						</div>
