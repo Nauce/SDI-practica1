@@ -2,9 +2,12 @@ package uo.sdi.acciones;
 
 import java.util.ArrayList;
 import java.util.List;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+
 import uo.sdi.model.Trip;
+import uo.sdi.model.TripStatus;
 import uo.sdi.model.User;
 import uo.sdi.persistence.PersistenceFactory;
 import uo.sdi.persistence.TripDao;
@@ -22,7 +25,9 @@ public class BorrarViajeAction implements Accion {
 
 			Long id = Long.parseLong(request.getQueryString().split("=")[1]);
 			TripDao tdao = PersistenceFactory.newTripDao();
-			tdao.delete(id);
+			Trip trip = PersistenceFactory.newTripDao().findById(id);
+			trip.setStatus(TripStatus.CANCELLED);
+			tdao.update(trip);
 			Long idUser = ((User) request.getSession().getAttribute("user"))
 					.getId();
 
@@ -46,7 +51,7 @@ public class BorrarViajeAction implements Accion {
 
 		for (Trip trip : PersistenceFactory.newTripDao().findAll()) {
 
-			if (trip.getPromoterId().equals(userId)) {
+			if (trip.getPromoterId().equals(userId) && !trip.getStatus().equals(TripStatus.CANCELLED)) {
 				trips.add(trip);
 			}
 
@@ -54,5 +59,4 @@ public class BorrarViajeAction implements Accion {
 		return trips;
 
 	}
-
 }

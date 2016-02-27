@@ -131,7 +131,7 @@ public class ModificarViajeAction implements Accion {
 
 		for (Trip trip : PersistenceFactory.newTripDao().findAll()) {
 
-			if (trip.getPromoterId().equals(userId)) {
+			if (trip.getPromoterId().equals(userId) && !trip.getStatus().equals(TripStatus.CANCELLED)) {
 				trips.add(trip);
 			}
 
