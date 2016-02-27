@@ -25,7 +25,7 @@
 					<div class="row">
 						<div class="col-md-12">
 							<ul class="nav nav-pills">
-								<li class="active"><a href="login">Iniciar sesión</a></li>
+								<li class="active"><a href="login.jsp">Iniciar sesión</a></li>
 								<li class=""><a href="listarViajes">Viajes ofertados</a></li>
 							</ul>
 						</div>
@@ -47,7 +47,7 @@
 									aria-expanded="false"> ${sessionScope.user.login} <i
 										class="fa fa-caret-down"></i></a>
 									<ul class="dropdown-menu">
-										<li><a href="modificarDatosPersonales">Modificar datos personales</a></li>
+										<li><a href="modificarDatosPersonales.jsp">Modificar datos personales</a></li>
 										<li class="divider"></li>
 										<li><a href="#">Cerrar sesión</a></li>
 									</ul></li>

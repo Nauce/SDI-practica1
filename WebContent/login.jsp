@@ -60,7 +60,7 @@
 						<div class="text-center well well-sm">
 							<p class="text-muted">
 								¿Eres nuevo en ShareMyTrip?&nbsp; <a id="registrarse"
-									href="registrarse">Regístrate</a>
+									href="registrarse.jsp">Regístrate</a>
 							</p>
 						</div>
 					</div>
