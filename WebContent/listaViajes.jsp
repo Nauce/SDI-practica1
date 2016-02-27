@@ -2,6 +2,7 @@
 	import="uo.sdi.dto.TripDto"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ include file="comprobarNavegacion.jsp"%>
+<%@ include file="barraNavegacion.jsp"%>
 <!DOCTYPE>
 <html>
 <head>

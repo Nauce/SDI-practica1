@@ -9,12 +9,15 @@ import uo.sdi.persistence.PersistenceFactory;
 import uo.sdi.persistence.UserDao;
 import alb.util.log.Log;
 
-public class IniciarSesionAction implements Accion {
+public class LoginAction implements Accion {
 
 	@Override
 	public String execute(HttpServletRequest request,
 			HttpServletResponse response) {
 
+		if (request.getSession().getAttribute("registrarseAction") != null)
+			request.getSession().invalidate();
+		
 		String resultado = "EXITO";
 		String nombreUsuario = request.getParameter("nombreUsuario");
 		String contrasenya = request.getParameter("contrasenya");
@@ -36,13 +39,20 @@ public class IniciarSesionAction implements Accion {
 				resultado = "FRACASO";
 				request.setAttribute("error", "error");
 			}
-		} else if (!nombreUsuario.equals(session.getAttribute("user"))) {
-			Log.info(
-					"Se ha intentado iniciar sesi贸n como [%s] teniendo la sesi贸n iniciada como [%s]",
-					nombreUsuario,
+		} 
+//		else if (!nombreUsuario.equals(session.getAttribute("user"))) {
+//			Log.info(
+//					"Se ha intentado iniciar sesi贸n como [%s] teniendo la sesi贸n iniciada como [%s]",
+//					nombreUsuario,
+//					((User) session.getAttribute("user")).getLogin());
+//			session.invalidate();
+//			resultado = "FRACASO";
+//		} 
+		else {
+			Log.info("El usuario [%s] ha intentado acceder a la p醙ina de inicio de sesi髇."
+					+ " Fue redirigido a la p醙ina principal",
 					((User) session.getAttribute("user")).getLogin());
-			session.invalidate();
-			resultado = "FRACASO";
+			resultado = "EXITO";
 		}
 		return resultado;
 	}

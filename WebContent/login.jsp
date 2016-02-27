@@ -1,5 +1,6 @@
 <%@ page contentType="text/html" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ include file="barraNavegacion.jsp"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -11,7 +12,7 @@
 
 <body>
 
-		<form class="form-controll" method="post" action="iniciarSesion">
+	<form class="form-controll" method="post" action="login">
 		<div class="section">
 			<div class="container">
 				<div class="row">
@@ -20,6 +21,17 @@
 							<h1>Iniciar sesión</h1>
 						</div>
 						<form role="form">
+
+							<c:if test="${sessionScope.registrarseAction != null}">
+								<div class="alert alert-success">
+									<p>
+										<strong>Tu cuenta ha sido creada con éxito con el
+											nombre de usuario <i>${registrarseAction}</i> <br>
+										<br>
+										</strong> Inicie sesión para empezar a crear y compartir tus viajes
+									</p>
+								</div>
+							</c:if>
 
 							<c:if test="${error != null}">
 								<div class="alert alert-danger">
@@ -62,7 +74,7 @@
 		<a id="listarViajes" href="listarViajes"> Vea nuestros viajes </a>
 	</h1>
 
-	
+
 
 
 </body>

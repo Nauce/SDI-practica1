@@ -1,5 +1,6 @@
 <%@ page contentType="text/html" pageEncoding="UTF-8"%>
 <%@ include file="comprobarNavegacion.jsp"%>
+<%@ include file="barraNavegacion.jsp"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
 <html>
 <head>
@@ -183,7 +184,7 @@
 			</div>
 		</div>
 	</form>
-	
+
 	<h2>
 		<a id="login" class="text-right" href="principal"> Atrás </a>
 	</h2>

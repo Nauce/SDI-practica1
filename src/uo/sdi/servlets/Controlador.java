@@ -57,7 +57,7 @@ public class Controlador extends javax.servlet.http.HttpServlet {
 
 			Log.error("Se ha producido alguna excepción no manejada [%s]", e);
 
-			jspSiguiente = "/iniciarSesion.jsp";
+			jspSiguiente = "/login.jsp";
 		}
 
 		RequestDispatcher dispatcher = getServletContext()
@@ -102,7 +102,7 @@ public class Controlador extends javax.servlet.http.HttpServlet {
 		mapaDeAcciones = new HashMap<String, Map<String, Accion>>();
 
 		Map<String, Accion> mapaPublico = new HashMap<String, Accion>();
-		mapaPublico.put("iniciarSesion", new IniciarSesionAction());
+		mapaPublico.put("login", new LoginAction());
 		mapaPublico.put("registrarse", new RegistrarseAction());
 		mapaPublico.put("listarViajes", new ListarViajesAction());
 		mapaPublico.put("listarViajesUsuario",
@@ -113,14 +113,17 @@ public class Controlador extends javax.servlet.http.HttpServlet {
 
 		Map<String, Accion> mapaRegistrado = new HashMap<String, Accion>();
 		mapaRegistrado.put("modificarDatos", new ModificarDatosAction());
-
+		mapaRegistrado.put("modificarDatosPersonales", new ModificarDatosPersonalesAction());
 		mapaRegistrado.put("registrarViaje", new RegistrarViajeAction());
-		
 		mapaRegistrado.put("listarViajes", new ListarViajesAction());
-
 		mapaRegistrado.put("listarViajesUsuario",
 				new ListarViajesUsuarioRegistradoAction());
-
+		//REVISAR: necesario para redirigir al usuario registrado a la principal
+		//cuando intenta acceder a login de nuevo
+		mapaRegistrado.put("login", new LoginAction());
+		//REVISAR: necesario para redirigir al usuario registrado a la principal
+		//cuando intenta acceder a login de nuevo
+		mapaRegistrado.put("registrarse", new RegistrarseAction());
 
 		mapaDeAcciones.put("REGISTRADO", mapaRegistrado);
 	}
@@ -134,8 +137,8 @@ public class Controlador extends javax.servlet.http.HttpServlet {
 		Map<String, String> resJSP = new HashMap<String, String>();
 
 		// Mapa de navegación del público
-		resJSP.put("FRACASO", "/iniciarSesion.jsp");
-		opcionResJSP.put("iniciarSesion", resJSP);
+		resJSP.put("FRACASO", "/login.jsp");
+		opcionResJSP.put("login", resJSP);
 		resJSP = new HashMap<String, String>();
 		resJSP.put("FRACASO", "/registrarse.jsp");
 		opcionResJSP.put("registrarse", resJSP);
@@ -146,8 +149,6 @@ public class Controlador extends javax.servlet.http.HttpServlet {
 		resJSP.put("EXITO", "/listaViajesUsuario.jsp");
 		opcionResJSP.put("listarViajesUsuario", resJSP);
 
-
-		
 		mapaDeNavegacion.put("PUBLICO", opcionResJSP);
 
 		// Crear mapas auxiliares vacíos
@@ -156,7 +157,15 @@ public class Controlador extends javax.servlet.http.HttpServlet {
 
 		// Mapa de navegación de usuarios registrados
 		resJSP.put("EXITO", "/principal.jsp");
-		opcionResJSP.put("iniciarSesion", resJSP);
+		opcionResJSP.put("login", resJSP);
+		
+		resJSP = new HashMap<String, String>();
+		resJSP.put("EXITO", "/login.jsp");
+		opcionResJSP.put("registrarse", resJSP);
+		
+		resJSP = new HashMap<String, String>();
+		resJSP.put("FRACASO", "/modificarDatosPersonales.jsp");
+		opcionResJSP.put("modificarDatosPersonales", resJSP);
 
 		resJSP = new HashMap<String, String>();
 		resJSP.put("EXITO", "/principal.jsp");
@@ -165,14 +174,10 @@ public class Controlador extends javax.servlet.http.HttpServlet {
 		resJSP = new HashMap<String, String>();
 		resJSP.put("EXITO", "/listaViajesUsuario.jsp");
 		opcionResJSP.put("listarViajesUsuario", resJSP);
+		
 		resJSP = new HashMap<String, String>();
-
 		resJSP.put("FRACASO", "/registrarViaje.jsp");
 		opcionResJSP.put("registrarViaje", resJSP);
-
-		resJSP.put("EXITO", "/principal.jsp");
-		opcionResJSP.put("registrarViaje", resJSP);
-		
 		
 		resJSP = new HashMap<String, String>();
 		resJSP.put("EXITO", "/listaViajes.jsp");
