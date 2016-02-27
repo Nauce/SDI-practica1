@@ -9,7 +9,7 @@ import uo.sdi.persistence.PersistenceFactory;
 import uo.sdi.persistence.UserDao;
 import alb.util.log.Log;
 
-public class ValidarseAction implements Accion {
+public class IniciarSesionAction implements Accion {
 
 	@Override
 	public String execute(HttpServletRequest request,
@@ -34,6 +34,7 @@ public class ValidarseAction implements Accion {
 				session.invalidate();
 				Log.info("El usuario [%s] no está registrado", nombreUsuario);
 				resultado = "FRACASO";
+				request.setAttribute("error", "error");
 			}
 		} else if (!nombreUsuario.equals(session.getAttribute("user"))) {
 			Log.info(

@@ -1,0 +1,86 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<%@ include file="comprobarNavegacion.jsp"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<title>ShareMyTrip - Registrarse</title>
+<link rel="stylesheet" href="css/bootstrap.min.css">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+</head>
+<body>
+
+<form class="form-controll" method="post" action="registrarse">
+
+	<div class="section">
+      <div class="container">
+        <div class="row">
+          <div class="col-md-12">
+            <div class="page-header">
+              <h1>Únete a ShareMyTrip
+                <small>
+                  <br>
+                  <br>La mejor forma de compartir tu vehículo y gastos de viaje</small>
+              </h1>
+            </div>
+            <form role="form">
+            
+            	<c:if test="${error != null}">
+                                <div class="alert alert-danger">
+                                    <p>Error en el formulario</p>
+                                </div>
+                            </c:if>
+            
+              <div class="form-group has-feedback">
+                <label class="control-label" for="nombreUsuario">Nombre de usuario</label>
+                <input class="form-control" id="nombreUsuario" name="nombreUsuario"
+                type="text">
+              </div>
+              
+              <div class="form-group">
+                <label class="control-label" for="nombre">Nombre
+                  <br>
+                </label>
+                <input class="form-control" id="nombre" name="nombre" type="text">
+              </div>
+              
+              <div class="form-group">
+                <label class="control-label" for="apellidos">Apellidos
+                  <br>
+                </label>
+                <input class="form-control" id="apellidos" name="apellidos" type="text">
+              </div>
+              
+              <div class="form-group">
+                <label class="control-label" for="email">Email
+                  <br>
+                </label>
+                <input class="form-control" id="email" name="email" type="email">
+              </div>
+              
+              <div class="form-group">
+                <label class="control-label" for="contrasenya">Contraseña
+                  <br>
+                </label>
+                <input class="form-control" id="contrasenya" name="contrasenya" type="password">
+              </div>
+              <div class="form-group">
+                <label class="control-label" for="confirmaContrasenya">Confirma tu contraseña
+                  <br>
+                </label>
+                <input class="form-control" id="confirmaContrasenya" name="confirmaContrasenya" type="password">
+              </div>
+            </form>
+            <form role="form">
+              <button type="submit" class="btn btn-block btn-primary">Crear&nbsp;cuenta</button>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+    </form>
+
+</body>
+</html>

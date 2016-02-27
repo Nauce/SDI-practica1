@@ -57,7 +57,7 @@ public class Controlador extends javax.servlet.http.HttpServlet {
 
 			Log.error("Se ha producido alguna excepción no manejada [%s]", e);
 
-			jspSiguiente = "/login.jsp";
+			jspSiguiente = "/iniciarSesion.jsp";
 		}
 
 		RequestDispatcher dispatcher = getServletContext()
@@ -102,7 +102,8 @@ public class Controlador extends javax.servlet.http.HttpServlet {
 		mapaDeAcciones = new HashMap<String, Map<String, Accion>>();
 
 		Map<String, Accion> mapaPublico = new HashMap<String, Accion>();
-		mapaPublico.put("validarse", new ValidarseAction());
+		mapaPublico.put("iniciarSesion", new IniciarSesionAction());
+		mapaPublico.put("registrarse", new RegistrarseAction());
 		mapaPublico.put("listarViajes", new ListarViajesAction());
 		mapaPublico.put("listarViajesUsuario",
 				new ListarViajesUsuarioRegistradoAction());
@@ -133,12 +134,14 @@ public class Controlador extends javax.servlet.http.HttpServlet {
 		Map<String, String> resJSP = new HashMap<String, String>();
 
 		// Mapa de navegación del público
-		resJSP.put("FRACASO", "/login.jsp");
-		opcionResJSP.put("validarse", resJSP);
+		resJSP.put("FRACASO", "/iniciarSesion.jsp");
+		opcionResJSP.put("iniciarSesion", resJSP);
+		resJSP = new HashMap<String, String>();
+		resJSP.put("FRACASO", "/registrarse.jsp");
+		opcionResJSP.put("registrarse", resJSP);
 		resJSP = new HashMap<String, String>();
 		resJSP.put("EXITO", "/listaViajes.jsp");
 		opcionResJSP.put("listarViajes", resJSP);
-
 		resJSP = new HashMap<String, String>();
 		resJSP.put("EXITO", "/listaViajesUsuario.jsp");
 		opcionResJSP.put("listarViajesUsuario", resJSP);
@@ -153,7 +156,7 @@ public class Controlador extends javax.servlet.http.HttpServlet {
 
 		// Mapa de navegación de usuarios registrados
 		resJSP.put("EXITO", "/principal.jsp");
-		opcionResJSP.put("validarse", resJSP);
+		opcionResJSP.put("iniciarSesion", resJSP);
 
 		resJSP = new HashMap<String, String>();
 		resJSP.put("EXITO", "/principal.jsp");
