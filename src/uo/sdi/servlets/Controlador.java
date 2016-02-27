@@ -108,13 +108,13 @@ public class Controlador extends javax.servlet.http.HttpServlet {
 		mapaPublico.put("listarViajesUsuario",
 				new ListarViajesUsuarioRegistradoAction());
 
-	
 		mapaDeAcciones.put("PUBLICO", mapaPublico);
 
 		Map<String, Accion> mapaRegistrado = new HashMap<String, Accion>();
 		mapaRegistrado.put("modificarDatos", new ModificarDatosAction());
 		mapaRegistrado.put("modificarDatosPersonales", new ModificarDatosPersonalesAction());
 		mapaRegistrado.put("registrarViaje", new RegistrarViajeAction());
+<<<<<<< HEAD
 		mapaRegistrado.put("listarViajes", new ListarViajesAction());
 		mapaRegistrado.put("listarViajesUsuario",
 				new ListarViajesUsuarioRegistradoAction());
@@ -124,6 +124,20 @@ public class Controlador extends javax.servlet.http.HttpServlet {
 		//REVISAR: necesario para redirigir al usuario registrado a la principal
 		//cuando intenta acceder a login de nuevo
 		mapaRegistrado.put("registrarse", new RegistrarseAction());
+=======
+
+		mapaRegistrado.put("listarViajes", new ListarViajesAction());
+
+		mapaRegistrado.put("listarViajesOfertados",
+				new ListarViajesOfertadosAction());
+
+		mapaRegistrado.put("borrarViaje", new BorrarViajeAction());
+
+		mapaRegistrado.put("listarViajesUsuario",
+				new ListarViajesUsuarioRegistradoAction());
+
+		mapaRegistrado.put("modificarViaje", new ModificarViajeAction());
+>>>>>>> fc1df2ca27262cccc8b21050a22ba66548958912
 
 		mapaDeAcciones.put("REGISTRADO", mapaRegistrado);
 	}
@@ -172,13 +186,39 @@ public class Controlador extends javax.servlet.http.HttpServlet {
 		opcionResJSP.put("modificarDatos", resJSP);
 
 		resJSP = new HashMap<String, String>();
+		resJSP.put("EXITO", "/misViajesOfertados.jsp");
+		opcionResJSP.put("listarViajesOfertados", resJSP);
+
+		resJSP = new HashMap<String, String>();
+		resJSP.put("FRACASO", "/modificarViaje.jsp");
+		opcionResJSP.put("modificarViaje", resJSP);
+
+		resJSP.put("EXITO", "/misViajesOfertados.jsp");
+		opcionResJSP.put("modificarViaje", resJSP);
+
+		resJSP = new HashMap<String, String>();
 		resJSP.put("EXITO", "/listaViajesUsuario.jsp");
 		opcionResJSP.put("listarViajesUsuario", resJSP);
+<<<<<<< HEAD
 		
 		resJSP = new HashMap<String, String>();
 		resJSP.put("FRACASO", "/registrarViaje.jsp");
 		opcionResJSP.put("registrarViaje", resJSP);
 		
+=======
+
+		resJSP = new HashMap<String, String>();
+		resJSP.put("EXITO", "/misViajesOfertados.jsp");
+		opcionResJSP.put("borrarViaje", resJSP);
+
+		resJSP = new HashMap<String, String>();
+		resJSP.put("FRACASO", "/registrarViaje.jsp");
+		opcionResJSP.put("registrarViaje", resJSP);
+
+		resJSP.put("EXITO", "/principal.jsp");
+		opcionResJSP.put("registrarViaje", resJSP);
+
+>>>>>>> fc1df2ca27262cccc8b21050a22ba66548958912
 		resJSP = new HashMap<String, String>();
 		resJSP.put("EXITO", "/listaViajes.jsp");
 		opcionResJSP.put("listarViajes", resJSP);

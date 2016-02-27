@@ -20,6 +20,11 @@
 		<a id="registrarViaje" href="registrarViaje">
 		Registrar </a>
 	</h1>
+	
+	<h1 class="text-center">
+		<a id="listarViajesOfertados" href="listarViajesOfertados">
+		Mis viajes Ofertados </a>
+	</h1>
 
 
 
