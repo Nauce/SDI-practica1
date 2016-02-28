@@ -11,7 +11,6 @@
 
 <body>
 	<form class="form-controll" method="post" action="login">
-		<div class="section">
 			<div class="container">
 				<div class="row">
 					<div class="col-md-12">
@@ -52,23 +51,20 @@
 					
 					</div>
 				</div>
-				<div class="row">
-					<div class="col-md-12">
+				</div>
+				<div style="margin-top:16px"></div>
+				<div class="container">
 						<div class="text-center well well-sm">
-							<p class="text-muted"><br>
-								¿Eres nuevo en ShareMyTrip?&nbsp; <a id="registrarse"
+							<p class="text-muted">¿Eres nuevo en ShareMyTrip?&nbsp;<a id="registrarse"
 									href="registrarse.jsp">Regístrate</a>
 							</p>
 						</div>
-					</div>
 				</div>
-			</div>
-		</div>
 
 	</form>
 
 	<h1 class="text-center">
-		<a id="listarViajes" href="listarViajes"> Vea nuestros viajes </a>
+		<a id="listarViajes" href="listarViajes">Ver viajes ofertados</a>
 	</h1>
 
 

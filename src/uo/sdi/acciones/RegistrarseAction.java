@@ -51,6 +51,7 @@ public class RegistrarseAction implements Accion {
 		}
 		
 		if (resultado.equals("FRACASO")) {
+			sb.insert(0, "<strong>Tu cuenta no ha sido creada</strong><b><b>");
 			sb.replace(sb.length() - 8, sb.length(), "");
 			request.setAttribute("errores", sb.toString());
 			request.setAttribute("nombreUsuario", nombreUsuario);

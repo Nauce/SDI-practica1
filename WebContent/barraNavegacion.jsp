@@ -18,7 +18,7 @@
 				<nav class="navbar navbar-default">
 					<div class="container-fluid">
 						<div class="navbar-header">
-							<a class="navbar-brand" href="#">ShareMyTrip</a>
+							<a class="navbar-brand" href="principal.jsp">ShareMyTrip</a>
 						</div>
 						<ul class="nav navbar-nav">
 							<li><a href="listarViajes">Viajes ofertados</a></li>
@@ -40,7 +40,7 @@
 				<nav class="navbar navbar-default">
 					<div class="container-fluid">
 						<div class="navbar-header">
-							<a class="navbar-brand" href="#">ShareMyTrip</a>
+							<a class="navbar-brand" href="principal.jsp">ShareMyTrip</a>
 						</div>
 						<ul class="nav navbar-nav">
 							<li><a href="listarViajes">Viajes ofertados</a></li>
