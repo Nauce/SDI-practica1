@@ -24,8 +24,8 @@ public class DTOAssembler {
 		TripDto tdao = new TripDto(trip);
 		tdao.setPromotor(PersistenceFactory.newUserDao()
 				.findById(trip.getPromoterId()).getName());
-		Map<User, SeatStatus> usersAndStatus = findUsersAndStatusSeatBySeat(trip.getId());
-		// users.add(promotor);
+		Map<User, SeatStatus> usersAndStatus = findUsersAndStatusSeatBySeat(trip
+				.getId());
 		tdao.setInfoPasajeros(getInfoViaje(trip.getId(), usersAndStatus,
 				promotor.getId()));
 		tdao.setInfoPromotor(getRatingsPromotor(promotor));
@@ -33,31 +33,35 @@ public class DTOAssembler {
 		return tdao;
 
 	}
-	
+
 	public static ComentariosUsuarioDto generateComentariosUsuarioDto(User user) {
-		List<Rating> ratings = PersistenceFactory.newRatingDao().findByUserId(user.getId());
-		
+		List<Rating> ratings = PersistenceFactory.newRatingDao().findByUserId(
+				user.getId());
+
 		ComentariosUsuarioDto dto = new ComentariosUsuarioDto();
 		dto.setUser(user);
-		
+
 		UserDao userDao = PersistenceFactory.newUserDao();
 		TripDao tripDao = PersistenceFactory.newTripDao();
-		
+
 		User userComenta;
 		Trip trip;
-	
-		
-		for (Rating rating:ratings) {
+
+		for (Rating rating : ratings) {
 			userComenta = userDao.findById(rating.getSeatFromUserId());
 			trip = tripDao.findById(rating.getSeatAboutTripId());
-			
+
 			if (dto.getComentarios().containsKey(userComenta))
-				dto.getComentarios().put(userComenta, new ArrayList<Comentario>());
+				dto.getComentarios().put(userComenta,
+						new ArrayList<Comentario>());
 			else
-				dto.getComentarios().get(userComenta).add(new Comentario(trip, rating.getComment(), rating.getValue()));
-			
+				dto.getComentarios()
+						.get(userComenta)
+						.add(new Comentario(trip, rating.getComment(), rating
+								.getValue()));
+
 		}
-		
+
 		return dto;
 	}
 
@@ -119,23 +123,6 @@ public class DTOAssembler {
 
 	}
 
-	private static List<User> findUserBySeat(Long id) {
-
-		List<Seat> seats = PersistenceFactory.newSeatDao().findAll();
-		List<User> userstoReturn = new ArrayList<User>();
-
-		for (Seat seat : seats) {
-
-			if (seat.getTripId().equals(id)) {
-				userstoReturn.add(PersistenceFactory.newUserDao().findById(
-						seat.getUserId()));
-			}
-		}
-
-		return userstoReturn;
-
-	}
-	
 	private static Map<User, SeatStatus> findUsersAndStatusSeatBySeat(Long id) {
 
 		List<Seat> seats = PersistenceFactory.newSeatDao().findAll();
@@ -145,13 +132,12 @@ public class DTOAssembler {
 
 			if (seat.getTripId().equals(id)) {
 				map.put(PersistenceFactory.newUserDao().findById(
-						seat.getUserId()),
-						seat.getStatus());
+						seat.getUserId()), seat.getStatus());
 			}
 		}
 
 		return map;
 
 	}
-	
+
 }

@@ -6,6 +6,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import uo.sdi.model.AddressPoint;
+import uo.sdi.model.Seat;
+import uo.sdi.model.SeatStatus;
 import uo.sdi.model.Trip;
 import uo.sdi.model.TripStatus;
 import uo.sdi.model.User;
@@ -53,11 +55,9 @@ public class RegistrarViajeAction implements Accion {
 
 			fechaSalida = fechaSalida + "-" + horaYMinuto[0] + "-"
 					+ horaYMinuto[1];
-			
-			
+
 			String[] horaYMinutoLLegada = horaLlegada.split(":");
 
-			
 			fechaLlegada = fechaLlegada + "-" + horaYMinutoLLegada[0] + "-"
 					+ horaYMinutoLLegada[1];
 
@@ -86,8 +86,6 @@ public class RegistrarViajeAction implements Accion {
 
 				nuevoViaje.setPromoterId(usuario.getId());
 
-				nuevoViaje.setPromoterId(usuario.getId());
-
 				nuevoViaje.setArrivalDate(DateUtil.fromString(fechaLlegada));
 				nuevoViaje.setClosingDate(DateUtil
 						.fromString(fechaLimiteInscripcion));
@@ -103,10 +101,15 @@ public class RegistrarViajeAction implements Accion {
 				nuevoViaje.setDestination(new AddressPoint(calleDestino,
 						ciudadDestino, provinciaDestino, paisDestino,
 						codigoDestino, new Waypoint(latDest, lonDest)));
-
-				nuevoViaje.setId(getLastId(PersistenceFactory.newTripDao()
-						.findAll()));
+				Long id = getLastId(PersistenceFactory.newTripDao().findAll());
+				nuevoViaje.setId(id);
 				PersistenceFactory.newTripDao().save(nuevoViaje);
+				Seat seat = new Seat();
+				seat.setComment(comentarios);
+				seat.setStatus(SeatStatus.ACCEPTED);
+				seat.setTripId(id);
+				seat.setUserId(usuario.getId());
+				PersistenceFactory.newSeatDao().save(seat);
 				return "EXITO";
 
 			} catch (NumberFormatException e) {

@@ -7,6 +7,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import uo.sdi.model.AddressPoint;
+import uo.sdi.model.Seat;
+import uo.sdi.model.SeatStatus;
 import uo.sdi.model.Trip;
 import uo.sdi.model.TripStatus;
 import uo.sdi.model.User;
@@ -55,7 +57,7 @@ public class ModificarViajeAction implements Accion {
 
 			fechaSalida = fechaSalida + "-" + horaYMinuto[0] + "-"
 					+ horaYMinuto[1];
-			
+
 			String[] horaYMinutoLLegada = horaLlegada.split(":");
 
 			fechaLlegada = fechaLlegada + "-" + horaYMinutoLLegada[0] + "-"
@@ -77,7 +79,6 @@ public class ModificarViajeAction implements Accion {
 				lonDest = 0;
 
 			}
-
 
 			try {
 
@@ -102,6 +103,7 @@ public class ModificarViajeAction implements Accion {
 						codigoDestino, new Waypoint(latDest, lonDest)));
 
 				request.setAttribute("viaje", nuevoViaje);
+
 				PersistenceFactory.newTripDao().update(nuevoViaje);
 
 				Long id = ((User) request.getSession().getAttribute("user"))

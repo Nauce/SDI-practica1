@@ -122,7 +122,7 @@ public class Controlador extends javax.servlet.http.HttpServlet {
 				new ListarViajesOfertadosAction());
 
 		mapaRegistrado.put("borrarViaje", new BorrarViajeAction());
-		
+
 		mapaRegistrado.put("cerrarSesion", new CerrarSesionAction());
 
 		mapaRegistrado.put("listarViajesUsuario",
@@ -146,17 +146,17 @@ public class Controlador extends javax.servlet.http.HttpServlet {
 		opcionResJSP.put("login", resJSP);
 		resJSP.put("EXITO", "/login.jsp");
 		opcionResJSP.put("login", resJSP);
-		
+
 		resJSP = new HashMap<String, String>();
 		resJSP.put("FRACASO", "/registrarse.jsp");
 		opcionResJSP.put("registrarse", resJSP);
 		resJSP.put("EXITO", "/login.jsp");
 		opcionResJSP.put("registrarse", resJSP);
-		
+
 		resJSP = new HashMap<String, String>();
 		resJSP.put("EXITO", "/listaViajes.jsp");
 		opcionResJSP.put("listarViajes", resJSP);
-		
+
 		resJSP = new HashMap<String, String>();
 		resJSP.put("EXITO", "/listaViajesUsuario.jsp");
 		opcionResJSP.put("listarViajesUsuario", resJSP);
@@ -184,7 +184,7 @@ public class Controlador extends javax.servlet.http.HttpServlet {
 		resJSP = new HashMap<String, String>();
 		resJSP.put("EXITO", "/misViajesOfertados.jsp");
 		opcionResJSP.put("listarViajesOfertados", resJSP);
-		
+
 		resJSP = new HashMap<String, String>();
 		resJSP.put("EXITO", "/");
 		opcionResJSP.put("cerrarSesion", resJSP);
@@ -203,7 +203,6 @@ public class Controlador extends javax.servlet.http.HttpServlet {
 		resJSP = new HashMap<String, String>();
 		resJSP.put("FRACASO", "/registrarViaje.jsp");
 		opcionResJSP.put("registrarViaje", resJSP);
-
 
 		resJSP = new HashMap<String, String>();
 		resJSP.put("EXITO", "/misViajesOfertados.jsp");
