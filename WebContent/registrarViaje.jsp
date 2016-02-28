@@ -26,6 +26,15 @@
 				</div>
 			</div>
 		</div>
+
+		<c:if test="${fechaPrevia != null}">
+			<div class="alert alert-danger">
+				<p>Las fechas que ha insertado son incorrectas, las fecha de
+					llegada no puede ser previa a las fechas de salida y fecha de
+					limite de plazo</p>
+			</div>
+		</c:if>
+
 		<div class="section">
 			<div class="container">
 				<div class="row">
@@ -137,7 +146,7 @@
 						</label><input class="form-control" id="fechaLlegada" name="fechaLlegada"
 							type="date" required>
 					</div>
-					
+
 					<div class="form-group">
 						<label class="control-label" for="exampleInputtext1">Hora
 							de Llegada estimada<br>
@@ -145,8 +154,8 @@
 							placeholder="formato hh:mm" type="text"
 							pattern="[0-9]{2}:[0-9]{2}" required>
 					</div>
-					
-					
+
+
 					<div class="form-group">
 						<label class="control-label" for="exampleInputtext1">Fecha
 							límite de inscripción<br>

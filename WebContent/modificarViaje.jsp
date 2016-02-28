@@ -26,7 +26,16 @@
 				</div>
 			</div>
 		</div>
-		<div class="section">
+		
+		<c:if test="${fechaPrevia != null}">
+			<div class="alert alert-danger">
+				<p>Las fechas que ha insertado son incorrectas, las fecha de
+					llegada no puede ser previa a las fechas de salida y fecha de
+					limite de plazo</p>
+			</div>
+		</c:if>
+		
+	
 			<div class="section">
 				<div class="container">
 					<div class="row">

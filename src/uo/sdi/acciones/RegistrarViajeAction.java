@@ -1,5 +1,6 @@
 package uo.sdi.acciones;
 
+import java.util.Date;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
@@ -82,14 +83,26 @@ public class RegistrarViajeAction implements Accion {
 
 			try {
 
+				Date dateSalida = DateUtil.fromString(fechaSalida);
+				Date dateConfirmacion = DateUtil
+						.fromString(fechaLimiteInscripcion);
+				Date dateLlegada = DateUtil.fromString(fechaLlegada);
+
+				if (DateUtil.isAfter(dateSalida, dateLlegada)
+						|| DateUtil.isAfter(dateConfirmacion, dateSalida)) {
+
+					request.setAttribute("fechaPrevia", true);
+					return "FRACASO";
+
+				}
+
 				Trip nuevoViaje = new Trip();
 
 				nuevoViaje.setPromoterId(usuario.getId());
 
-				nuevoViaje.setArrivalDate(DateUtil.fromString(fechaLlegada));
-				nuevoViaje.setClosingDate(DateUtil
-						.fromString(fechaLimiteInscripcion));
-				nuevoViaje.setDepartureDate(DateUtil.fromString(fechaSalida));
+				nuevoViaje.setArrivalDate(dateLlegada);
+				nuevoViaje.setClosingDate(dateConfirmacion);
+				nuevoViaje.setDepartureDate(dateSalida);
 				nuevoViaje.setAvailablePax(Integer.parseInt(plazasDisponibles));
 				nuevoViaje.setComments(comentarios);
 				nuevoViaje.setMaxPax(Integer.parseInt(plazasMaximas));
