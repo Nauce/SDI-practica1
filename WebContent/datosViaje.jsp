@@ -1,6 +1,7 @@
 <%@ page contentType="text/html" pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ include file="barraNavegacion.jsp"%>
+<%@ page import="uo.sdi.model.SeatStatus" %>
 <!DOCTYPE>
 <html>
 <head>
@@ -12,7 +13,7 @@
 	<div class="container">
 		<div class="row">
 			<div class="col-md-6">
-				<h1>IdViaje = ${viaje.trip.id}</h1>
+				<h1>Viaje ID ${viaje.trip.id}</h1>
 				<h4>
 					<span class="label label-warning">${viaje.trip.availablePax}/${viaje.trip.maxPax}
 						plazas libres</span>
@@ -20,7 +21,7 @@
 
 				<br>
 
-				<h3>${viaje.trip.departure.city}-
+				<h3>${viaje.trip.departure.city} -
 					${viaje.trip.destination.city}</h3>
 				<h4>
 					<span class="label label-info">Fecha límite:
@@ -61,48 +62,36 @@
 				<div class="panel panel-default">
 					<div class="panel-body">
 						<span class="label label-default">Promotor</span> <strong>&nbsp;
-							<a href=#>${viaje.infoPromotor.usuario} (Rating :
-								${viaje.infoPromotor.rating})</a>
-							<h6>Comentarios acerca del usuario</h6>
-							<ul>
-
-								<c:forEach var="comentario"
-									items="${viaje.infoPromotor.comentarios}">
-
-									<li>${comentario }</li>
-
-								</c:forEach>
-							</ul>
-
+							<a href=# data-toggle="tooltip" data-placement="right" title="Ver comentarios sobre el usuario">
+							${viaje.infoPromotor.usuario}
+							</a>&nbsp;
+							
+							<span class="label label-warning" style="float:right;">Rating ${viaje.infoPromotor.rating}</span>
+							
 						</strong>
 					</div>
 				</div>
 
 
-
+				<c:set var="ACCEPTED" value="<%=SeatStatus.ACCEPTED%>" />
 				<c:forEach var="entry" items="${viaje.infoPasajeros}" varStatus="i">
+					<c:if test="${entry.value.seatStatus == ACCEPTED}">
 					<div class="panel panel-default">
 						<div class="panel-body">
-							<strong><a href="#"> ${entry.value.usuario}(Rating:
-									${entry.value.rating }) </a></strong>
-							<h6>Comentarios acerca del usuario</h6>
-							<ul>
-
-								<c:forEach var="comentario" items="${entry.value.comentarios}">
-
-									<li>${comentario }</li>
-
-								</c:forEach>
-							</ul>
-
+						
+							<span class="label label-success">Admitido</span> <strong>&nbsp;
+							
+							<a href=# data-toggle="tooltip" data-placement="right" title="Ver comentarios sobre el usuario">
+							${entry.value.usuario}</a></strong>&nbsp;
+							
+							<span class="label label-warning" style="float:right;">Rating ${entry.value.rating}</span>
+							
 						</div>
 					</div>
+					</c:if>
 				</c:forEach>
 
-
-
-
-
+				
 
 
 			</div>
@@ -121,14 +110,14 @@
 					<h4>País : ${viaje.trip.departure.country}</h4>
 					<h4>Código postal : ${viaje.trip.departure.zipCode}</h4>
 					<h4>Coordenadas GPS :
-						${viaje.trip.departure.waypoint.lat}:${viaje.trip.departure.waypoint.lon}</h4>
+						${viaje.trip.departure.waypoint.lat} : ${viaje.trip.departure.waypoint.lon}</h4>
 
 					<br>
 
 
 				</div>
 				<div class="col-md-6">
-					<h3>Lugar de destino: ${viaje.trip.arrival.city}</h3>
+					<h3>Lugar de destino: ${viaje.trip.destination.city}</h3>
 					<br>
 
 					<h4>Calle : ${viaje.trip.destination.address}</h4>

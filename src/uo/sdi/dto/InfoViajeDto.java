@@ -3,9 +3,12 @@ package uo.sdi.dto;
 import java.util.ArrayList;
 import java.util.List;
 
+import uo.sdi.model.SeatStatus;
+
 public class InfoViajeDto {
 
 	private String usuario;
+	private SeatStatus seatStatus;
 
 	private List<String> comentarios;
 
@@ -40,6 +43,15 @@ public class InfoViajeDto {
 
 	public void setComentarios(List<String> comentarios) {
 		this.comentarios = comentarios;
+	}
+
+	public SeatStatus getSeatStatus() {
+		return seatStatus;
+	}
+
+	public void setSeatStatus(SeatStatus seatStatus) {
+		this.seatStatus = seatStatus;
+		System.out.println(seatStatus);
 	}
 
 

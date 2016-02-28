@@ -4,8 +4,10 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+
 import uo.sdi.model.Rating;
 import uo.sdi.model.Seat;
+import uo.sdi.model.SeatStatus;
 import uo.sdi.model.Trip;
 import uo.sdi.model.User;
 import uo.sdi.persistence.PersistenceFactory;
@@ -19,9 +21,9 @@ public class DTOAssembler {
 		TripDto tdao = new TripDto(trip);
 		tdao.setPromotor(PersistenceFactory.newUserDao()
 				.findById(trip.getPromoterId()).getName());
-		List<User> users = findUserBySeat(trip.getId());
+		Map<User, SeatStatus> usersAndStatus = findUsersAndStatusSeatBySeat(trip.getId());
 		// users.add(promotor);
-		tdao.setInfoPasajeros(getInfoViaje(trip.getId(), users,
+		tdao.setInfoPasajeros(getInfoViaje(trip.getId(), usersAndStatus,
 				promotor.getId()));
 		tdao.setInfoPromotor(getRatingsPromotor(promotor));
 
@@ -55,12 +57,12 @@ public class DTOAssembler {
 	}
 
 	private static Map<String, InfoViajeDto> getInfoViaje(Long idViaje,
-			List<User> usuarios, Long idPromotor) {
+			Map<User, SeatStatus> usuarios, Long idPromotor) {
 
 		Map<String, InfoViajeDto> usuarioComentario = new HashMap<String, InfoViajeDto>();
 		List<Rating> ratings = PersistenceFactory.newRatingDao().findAll();
 
-		for (User usuario : usuarios) {
+		for (User usuario : usuarios.keySet()) {
 			int contador = 0;
 			double media = 0;
 			InfoViajeDto infodto = new InfoViajeDto();
@@ -79,6 +81,7 @@ public class DTOAssembler {
 			media = media / contador;
 			infodto.setRating(media);
 			infodto.setUsuario(usuario.getName());
+			infodto.setSeatStatus(usuarios.get(usuario));
 			usuarioComentario.put(usuario.getName(), infodto);
 
 		}
@@ -100,6 +103,24 @@ public class DTOAssembler {
 		}
 
 		return userstoReturn;
+
+	}
+	
+	private static Map<User, SeatStatus> findUsersAndStatusSeatBySeat(Long id) {
+
+		List<Seat> seats = PersistenceFactory.newSeatDao().findAll();
+		Map<User, SeatStatus> map = new HashMap<User, SeatStatus>();
+
+		for (Seat seat : seats) {
+
+			if (seat.getTripId().equals(id)) {
+				map.put(PersistenceFactory.newUserDao().findById(
+						seat.getUserId()),
+						seat.getStatus());
+			}
+		}
+
+		return map;
 
 	}
 
