@@ -42,14 +42,14 @@ public class TripDto {
 
 
 
+
 	public String getPromotor() {
 		return promotor;
-	}
-
-
-
+}
 	public void setPromotor(String promotor) {
 		this.promotor = promotor;
 	}
+
+
 
 }
