@@ -7,6 +7,7 @@ import uo.sdi.model.SeatStatus;
 
 public class InfoViajeDto {
 
+	private Long idUsuario;
 	private String usuario;
 	private SeatStatus seatStatus;
 
@@ -15,7 +16,6 @@ public class InfoViajeDto {
 	private Double rating;
 	
 	public InfoViajeDto() {
-		super();
 		this.setComentarios(new  ArrayList<String>());
 	}
 
@@ -51,6 +51,18 @@ public class InfoViajeDto {
 
 	public void setSeatStatus(SeatStatus seatStatus) {
 		this.seatStatus = seatStatus;
+	}
+
+
+
+	public Long getIdUsuario() {
+		return idUsuario;
+	}
+
+
+
+	public void setIdUsuario(Long idUsuario) {
+		this.idUsuario = idUsuario;
 	}
 
 }

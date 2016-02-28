@@ -28,6 +28,7 @@ public class DTOAssembler {
 		// users.add(promotor);
 		tdao.setInfoPasajeros(getInfoViaje(trip.getId(), usersAndStatus,
 				promotor.getId()));
+		tdao.setIdPromotor(promotor.getId());
 		tdao.setInfoPromotor(getRatingsPromotor(promotor));
 
 		return tdao;
@@ -51,10 +52,10 @@ public class DTOAssembler {
 			userComenta = userDao.findById(rating.getSeatFromUserId());
 			trip = tripDao.findById(rating.getSeatAboutTripId());
 			
-			if (dto.getComentarios().containsKey(userComenta))
+			if (!dto.getComentarios().containsKey(userComenta))
 				dto.getComentarios().put(userComenta, new ArrayList<Comentario>());
-			else
-				dto.getComentarios().get(userComenta).add(new Comentario(trip, rating.getComment(), rating.getValue()));
+			
+			dto.getComentarios().get(userComenta).add(new Comentario(trip, rating.getComment(), rating.getValue()));
 			
 		}
 		
@@ -80,6 +81,7 @@ public class DTOAssembler {
 		}
 		media = media / contador;
 		infodto.setRating(media);
+		infodto.setIdUsuario(promotor.getId());
 		infodto.setUsuario(promotor.getName());
 
 		return infodto;
@@ -110,6 +112,7 @@ public class DTOAssembler {
 			}
 			media = media / contador;
 			infodto.setRating(media);
+			infodto.setIdUsuario(usuario.getId());
 			infodto.setUsuario(usuario.getName());
 			infodto.setSeatStatus(usuarios.get(usuario));
 			usuarioComentario.put(usuario.getName(), infodto);

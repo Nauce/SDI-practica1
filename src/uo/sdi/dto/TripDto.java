@@ -9,16 +9,13 @@ public class TripDto {
 
 	private Trip trip;
 	private Map<String, InfoViajeDto> infoPasajeros;
+	private Long idPromotor;
 	private String promotor;
 	private InfoViajeDto infoPromotor;
 
 	public TripDto(Trip trip) {
-		super();
 		this.setTrip(trip);
 		this.setInfoPasajeros(new HashMap<String, InfoViajeDto>());
-	
-
-		
 	}
 
 	
@@ -64,6 +61,18 @@ public class TripDto {
 
 	public void setInfoPromotor(InfoViajeDto infoPromotor) {
 		this.infoPromotor = infoPromotor;
+	}
+
+
+
+	public Long getIdPromotor() {
+		return idPromotor;
+	}
+
+
+
+	public void setIdPromotor(Long idPromotor) {
+		this.idPromotor = idPromotor;
 	}
 
 

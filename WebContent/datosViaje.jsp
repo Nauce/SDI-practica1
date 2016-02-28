@@ -62,7 +62,7 @@
 				<div class="panel panel-default">
 					<div class="panel-body">
 						<span class="label label-default">Promotor</span> <strong>&nbsp;
-							<a href=# data-toggle="tooltip" data-placement="right" title="Ver comentarios sobre el usuario">
+							<a href="comentariosUsuario?id=${viaje.idPromotor}" data-toggle="tooltip" data-placement="right" title="Ver comentarios sobre el usuario">
 							${viaje.infoPromotor.usuario}
 							</a>&nbsp;
 							
@@ -81,7 +81,7 @@
 						
 							<span class="label label-success">Admitido</span> <strong>&nbsp;
 							
-							<a href=# data-toggle="tooltip" data-placement="right" title="Ver comentarios sobre el usuario">
+							<a href="comentariosUsuario?id=${entry.value.idUsuario}" data-toggle="tooltip" data-placement="right" title="Ver comentarios sobre el usuario">
 							${entry.value.usuario}</a></strong>&nbsp;
 							
 							<span class="label label-warning" style="float:right;">Rating ${entry.value.rating}</span>
