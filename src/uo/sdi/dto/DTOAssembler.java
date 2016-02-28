@@ -51,25 +51,11 @@ public class DTOAssembler {
 		for (Rating rating : ratings) {
 			userComenta = userDao.findById(rating.getSeatFromUserId());
 			trip = tripDao.findById(rating.getSeatAboutTripId());
-<<<<<<< HEAD
 			
 			if (!dto.getComentarios().containsKey(userComenta))
 				dto.getComentarios().put(userComenta, new ArrayList<Comentario>());
 			
 			dto.getComentarios().get(userComenta).add(new Comentario(trip, rating.getComment(), rating.getValue()));
-			
-=======
-
-			if (dto.getComentarios().containsKey(userComenta))
-				dto.getComentarios().put(userComenta,
-						new ArrayList<Comentario>());
-			else
-				dto.getComentarios()
-						.get(userComenta)
-						.add(new Comentario(trip, rating.getComment(), rating
-								.getValue()));
-
->>>>>>> 29ffe755ff08c32a08319940b12d6c65ac367232
 		}
 
 		return dto;
