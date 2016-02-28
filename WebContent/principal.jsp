@@ -5,34 +5,11 @@
 <html>
 <head>
 <title>ShareMyTrip - Página principal del usuario</title>
-<link rel stylesheet="css" href="css/bootstrap.min.css">
-<script type="text/javascript">
-	$(document)
-			.ready(
-					function() {
-						$('[data-toggle="popover"]')
-								.popover(
-										{
-											placement : 'top',
-											html : true,
-											title : 'User Info <a href="#" class="close" data-dismiss="alert">&times;</a>',
-											content : '<div class="media">		<button type="submit" class="btn btn-block btn-primary">Iniciar&nbsp;sesión</button> </br> 		<button type="submit" class="btn btn-block btn-primary">Iniciar&nbsp;sesión</button>  </div>'
-										});
-						$(document).on("click", ".popover .close", function() {
-							$(this).parents(".popover").popover('hide');
-						});
-					});
-</script>
-<style type="text/css">
-.bs-example {
-	margin: 200px 150px 0;
-}
+<script type="text/javascript"
+	src="http://cdnjs.cloudflare.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+<script type="text/javascript"
+	src="http://netdna.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
 
-.popover-title .close {
-	position: relative;
-	bottom: 3px;
-}
-</style>
 
 </head>
 <body>
@@ -51,8 +28,47 @@
 			viajes Ofertados </a>
 	</h1>
 
-	<div class="bs-example">
-		<button type="button" class="btn btn-primary" data-toggle="popover">Click
-			Me</button>
+	<br>
+
+	<div class="popover-markup">
+		<a href="#" class="trigger btn btn-default">Pepita Jimenez</a>
+		<div class="head hide">Pasar a </div>
+		<div class="content hide">
+			<div class="form-group">
+				<button type="submit" class="btn btn-default btn-block">
+					Submit</button>
+			</div>
+			<button type="submit" class="btn btn-default btn-block">
+				Submit</button>
+		</div>
+	</div>
+
+	<br>
+
+	<div class="popover-markup">
+		<a href="#" class="trigger btn btn-default">Pepito Perez</a>
+		<div class="head hide">Pasar a</div>
+		<div class="content hide">
+			<div class="form-group">
+				<button type="submit" class="btn btn-default btn-block">
+					Submit</button>
+			</div>
+			<button type="submit" class="btn btn-default btn-block">
+				Submit</button>
+		</div>
+	</div>
+
+	<script>
+		$('.popover-markup>.trigger').popover({
+			html : true,
+			title : function() {
+				return $(this).parent().find('.head').html();
+			},
+			content : function() {
+				return $(this).parent().find('.content').html();
+			}
+		});
+	</script>
+
 </body>
 </html>
