@@ -20,15 +20,42 @@ public class DTOAssembler {
 		tdao.setPromotor(PersistenceFactory.newUserDao()
 				.findById(trip.getPromoterId()).getName());
 		List<User> users = findUserBySeat(trip.getId());
-		users.add(promotor);
-		tdao.setInfoPasajeros(getInfoViaje(trip.getId(), users));
+		// users.add(promotor);
+		tdao.setInfoPasajeros(getInfoViaje(trip.getId(), users,
+				promotor.getId()));
+		tdao.setInfoPromotor(getRatingsPromotor(promotor));
 
 		return tdao;
 
 	}
 
+	private static InfoViajeDto getRatingsPromotor(User promotor) {
+
+		InfoViajeDto infodto = new InfoViajeDto();
+		List<Rating> ratings = PersistenceFactory.newRatingDao().findAll();
+		int contador = 0;
+		double media = 0;
+		for (Rating rating : ratings) {
+
+			if (rating.getSeatAboutUserId().equals(promotor.getId())) {
+
+				contador++;
+				media += rating.getValue();
+				infodto.getComentarios().add(rating.getComment());
+
+			}
+
+		}
+		media = media / contador;
+		infodto.setRating(media);
+		infodto.setUsuario(promotor.getName());
+
+		return infodto;
+
+	}
+
 	private static Map<String, InfoViajeDto> getInfoViaje(Long idViaje,
-			List<User> usuarios) {
+			List<User> usuarios, Long idPromotor) {
 
 		Map<String, InfoViajeDto> usuarioComentario = new HashMap<String, InfoViajeDto>();
 		List<Rating> ratings = PersistenceFactory.newRatingDao().findAll();
@@ -39,7 +66,8 @@ public class DTOAssembler {
 			InfoViajeDto infodto = new InfoViajeDto();
 			for (Rating rating : ratings) {
 
-				if (rating.getSeatAboutUserId().equals(usuario.getId())) {
+				if (rating.getSeatAboutUserId().equals(usuario.getId())
+						&& !rating.getSeatAboutUserId().equals(idPromotor)) {
 
 					contador++;
 					media += rating.getValue();
