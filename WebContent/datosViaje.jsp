@@ -11,7 +11,7 @@
 	<div class="container">
 		<div class="row">
 			<div class="col-md-6">
-				<h1>Viaje</h1>
+				<h1>Viaje 29</h1>
 				<h4>
 					<span class="label label-warning">4/5 plazas libres</span>
 				</h4>
@@ -47,7 +47,7 @@
 			</div>
 
 			<div class="col-md-6">
-				<h1>Participantes</h1>
+				<h1>Participantes confirmados</h1>
 
 				<br>
 
