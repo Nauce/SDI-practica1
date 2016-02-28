@@ -57,7 +57,7 @@
 									<li><a href="modificarDatosPersonales.jsp">Modificar
 											datos personales</a></li>
 									<li class="divider"></li>
-									<li><a href="#">Cerrar sesión</a></li>
+									<li><a href="cerrarSesion">Cerrar sesión</a></li>
 								</ul></li>
 						</ul>
 					</div>

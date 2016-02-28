@@ -78,7 +78,6 @@ public class ModificarViajeAction implements Accion {
 
 			}
 
-			User usuario = (User) request.getSession().getAttribute("user");
 
 			try {
 
