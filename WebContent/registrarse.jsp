@@ -2,7 +2,7 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ include file="barraNavegacion.jsp"%>
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<!DOCTYPE>
 <html>
 <head>
 <title>ShareMyTrip - Registrarse</title>
@@ -33,39 +33,39 @@
 						<div class="form-group">
 							<label class="control-label" for="nombreUsuario">Nombre
 								de usuario</label> <input class="form-control" id="nombreUsuario"
-								name="nombreUsuario" type="text" value="${nombreUsuario}">
+								name="nombreUsuario" type="text" value="${nombreUsuario}" required>
 						</div>
 
 						<div class="form-group">
 							<label class="control-label" for="nombre">Nombre <br>
 							</label> <input class="form-control" id="nombre" name="nombre"
-								type="text" value="${nombre}">
+								type="text" value="${nombre}" required>
 						</div>
 
 						<div class="form-group">
 							<label class="control-label" for="apellidos">Apellidos <br>
 							</label> <input class="form-control" id="apellidos" name="apellidos"
-								type="text" value="${apellidos}">
+								type="text" value="${apellidos}" required>
 						</div>
 
 						<div class="form-group">
 							<label class="control-label" for="email">Email <br>
 							</label> <input class="form-control" id="email" name="email" type="email"
-								value="${email}">
+								value="${email}" required>
 						</div>
 
 						<div class="form-group">
 							<label class="control-label" for="contrasenya">Contraseña
 								<br>
 							</label> <input class="form-control" id="contrasenya" name="contrasenya"
-								type="password" value="${contrasenya}">
+								type="password" value="${contrasenya}" required>
 						</div>
 						<div class="form-group">
 							<label class="control-label" for="confirmaContrasenya">Confirma
 								tu contraseña <br>
 							</label> <input class="form-control" id="confirmaContrasenya"
 								name="confirmaContrasenya" type="password"
-								value="${confirmaContrasenya}">
+								value="${confirmaContrasenya}" required>
 						</div>
 
 

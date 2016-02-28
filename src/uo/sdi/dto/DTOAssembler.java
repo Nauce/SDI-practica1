@@ -16,11 +16,9 @@ public class DTOAssembler {
 
 		User promotor = PersistenceFactory.newUserDao().findById(
 				trip.getPromoterId());
-		TripDto tdao = new TripDto(trip.getId(), trip.getDeparture().getCity(),
-				trip.getDestination().getCity(), trip.getAvailablePax(),
-				promotor.getName());
-		tdao.setPlazasMaximas(trip.getMaxPax());
-
+		TripDto tdao = new TripDto(trip);
+		tdao.setPromotor(PersistenceFactory.newUserDao()
+				.findById(trip.getPromoterId()).getName());
 		List<User> users = findUserBySeat(trip.getId());
 		users.add(promotor);
 		tdao.setInfoPasajeros(getInfoViaje(trip.getId(), users));

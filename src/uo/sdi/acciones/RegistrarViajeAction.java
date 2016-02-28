@@ -39,6 +39,7 @@ public class RegistrarViajeAction implements Accion {
 					.getParameter("coordenadasDestino");
 			String fechaSalida = request.getParameter("fechaSalida");
 			String horaSalida = request.getParameter("horaSalida");
+			String horaLlegada = request.getParameter("horaLlegada");
 			String fechaLlegada = request.getParameter("fechaLlegada");
 			String fechaLimiteInscripcion = request
 					.getParameter("fechaLimiteInscripcion");
@@ -52,6 +53,13 @@ public class RegistrarViajeAction implements Accion {
 
 			fechaSalida = fechaSalida + "-" + horaYMinuto[0] + "-"
 					+ horaYMinuto[1];
+			
+			
+			String[] horaYMinutoLLegada = horaLlegada.split(":");
+
+			
+			fechaLlegada = fechaLlegada + "-" + horaYMinutoLLegada[0] + "-"
+					+ horaYMinutoLLegada[1];
 
 			String[] coorOriString = coordenadasOrigen.split("&");
 			double latOr = Double.parseDouble(coorOriString[0]);

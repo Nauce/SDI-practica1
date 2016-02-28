@@ -51,7 +51,7 @@ public class RegistrarseAction implements Accion {
 		}
 		
 		if (resultado.equals("FRACASO")) {
-			sb.insert(0, "Errores en el formulario:<br><br>");
+			sb.insert(0, "<strong>Tu cuenta no ha sido creada</strong><b><b>");
 			sb.replace(sb.length() - 8, sb.length(), "");
 			request.setAttribute("errores", sb.toString());
 			request.setAttribute("nombreUsuario", nombreUsuario);
@@ -71,8 +71,7 @@ public class RegistrarseAction implements Accion {
 		
 		PersistenceFactory.newUserDao().save(usuario);
 		
-		request.getSession().setAttribute("user", usuario);
-		request.getSession().setAttribute("registrarseAction", usuario.getLogin());
+		request.setAttribute("registrarseAction", usuario.getLogin());
 		Log.info("El usuario [%s] ha sido dado de alta en el sistema", usuario.getLogin());
 		
 		return resultado;

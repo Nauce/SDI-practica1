@@ -49,10 +49,17 @@ public class ModificarViajeAction implements Accion {
 			String comentarios = request.getParameter("comentarios");
 
 			String horaSalida = request.getParameter("horaSalida");
+			String horaLlegada = request.getParameter("horaLlegada");
+
 			String[] horaYMinuto = horaSalida.split(":");
 
 			fechaSalida = fechaSalida + "-" + horaYMinuto[0] + "-"
 					+ horaYMinuto[1];
+			
+			String[] horaYMinutoLLegada = horaLlegada.split(":");
+
+			fechaLlegada = fechaLlegada + "-" + horaYMinutoLLegada[0] + "-"
+					+ horaYMinutoLLegada[1];
 
 			String[] coorOriString = coordenadasOrigen.split("&");
 			double latOr = Double.parseDouble(coorOriString[0]);

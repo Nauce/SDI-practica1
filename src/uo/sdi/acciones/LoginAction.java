@@ -15,9 +15,6 @@ public class LoginAction implements Accion {
 	public String execute(HttpServletRequest request,
 			HttpServletResponse response) {
 
-		if (request.getSession().getAttribute("registrarseAction") != null)
-			request.getSession().invalidate();
-		
 		String resultado = "EXITO";
 		String nombreUsuario = request.getParameter("nombreUsuario");
 		String contrasenya = request.getParameter("contrasenya");
@@ -52,7 +49,7 @@ public class LoginAction implements Accion {
 			Log.info("El usuario [%s] ha intentado acceder a la página de inicio de sesión."
 					+ " Fue redirigido a la página principal",
 					((User) session.getAttribute("user")).getLogin());
-			resultado = "EXITO";
+			resultado = "FRACASO";
 		}
 		return resultado;
 	}

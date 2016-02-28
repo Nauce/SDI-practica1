@@ -8,10 +8,7 @@
 <title>ShareMyTrip - Listado de viajes</title>
 <link rel="stylesheet" href="css/bootstrap.min.css">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-</head>
-<body>
-<html>
-<head>
+
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <script type="text/javascript"
@@ -27,7 +24,16 @@
 </head>
 <body>
 
+	<div class="container">
+		<ul class="nav nav-tabs">
+			<li class="active"><a href="datosViaje.jsp">Datos</a></li>
+			<li><a href="#">Solicitudes</a></li>
+			<li><a href="#">Comentarios</a></li>
+		</ul>
+	</div>
 
+
+	<%--
 	<div class="section">
 		<div class="container">
 			<div class="row">
@@ -82,9 +88,7 @@
 			</div>
 		</div>
 	</div>
-</body>
-</html>
-
+--%>
 
 </body>
 </html>

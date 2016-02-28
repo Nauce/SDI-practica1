@@ -1,7 +1,7 @@
 <%@ page contentType="text/html" pageEncoding="UTF-8"%>
 <%@ include file="comprobarNavegacion.jsp"%>
 <%@ include file="barraNavegacion.jsp"%>
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<!DOCTYPE>
 <html>
 <head>
 <meta charset="utf-8">
@@ -10,15 +10,6 @@
 	src="http://cdnjs.cloudflare.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
 <script type="text/javascript"
 	src="http://netdna.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
-<link
-	href="http://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.3.0/css/font-awesome.min.css"
-	rel="stylesheet" type="text/css">
-<link
-	href="http://pingendo.github.io/pingendo-bootstrap/themes/default/bootstrap.css"
-	rel="stylesheet" type="text/css">
-
-
-
 </head>
 <body>
 
@@ -146,6 +137,16 @@
 						</label><input class="form-control" id="fechaLlegada" name="fechaLlegada"
 							type="date" required>
 					</div>
+					
+					<div class="form-group">
+						<label class="control-label" for="exampleInputtext1">Hora
+							de Llegada estimada<br>
+						</label><input class="form-control" id="horaLlegada" name="horaLlegada"
+							placeholder="formato hh:mm" type="text"
+							pattern="[0-9]{2}:[0-9]{2}" required>
+					</div>
+					
+					
 					<div class="form-group">
 						<label class="control-label" for="exampleInputtext1">Fecha
 							límite de inscripción<br>
