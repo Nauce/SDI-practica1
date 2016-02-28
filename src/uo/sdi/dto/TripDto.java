@@ -72,7 +72,6 @@ public class TripDto {
 
 	public void setPromotor(String promotor) {
 		this.promotor = promotor;
-
 	}
 
 	public void setId(Long id) {

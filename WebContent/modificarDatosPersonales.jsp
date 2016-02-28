@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ include file="barraNavegacion.jsp"%>
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<!DOCTYPE>
 <html>
 <head>
 <script type="text/javascript"
@@ -31,7 +31,7 @@
 					
 					<c:if test="${EXITO != null}">
 								<div class="alert alert-success">
-									<p><strong>Tus datos han sido modificados correctamente</p>
+									<p><strong>Tus datos han sido modificados correctamente</strong></p>
 								</div>
 					</c:if>
 					
