@@ -1,5 +1,7 @@
 package uo.sdi.persistence;
 
+import java.util.List;
+
 import uo.sdi.model.Rating;
 import uo.sdi.persistence.util.GenericDao;
 
@@ -12,4 +14,5 @@ public interface RatingDao extends GenericDao<Rating, Long> {
 			Long fromTripId
 		); 
 	
+	List<Rating> findByUserId(Long userId);
 }

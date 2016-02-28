@@ -93,4 +93,13 @@ public class RatingDaoJdbcImpl implements RatingDao {
 			);
 	}
 
+	@Override
+	public List<Rating> findByUserId(Long userId) {
+		return jdbcTemplate.queryForList(
+				"RATING_FIND_BY_USER_ID", 
+				new RatingMapper(), 
+				userId
+			);
+	}
+
 }

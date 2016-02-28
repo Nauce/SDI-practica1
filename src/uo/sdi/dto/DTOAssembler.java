@@ -5,12 +5,15 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import uo.sdi.dto.ComentariosUsuarioDto.Comentario;
 import uo.sdi.model.Rating;
 import uo.sdi.model.Seat;
 import uo.sdi.model.SeatStatus;
 import uo.sdi.model.Trip;
 import uo.sdi.model.User;
 import uo.sdi.persistence.PersistenceFactory;
+import uo.sdi.persistence.TripDao;
+import uo.sdi.persistence.UserDao;
 
 public class DTOAssembler {
 
@@ -29,6 +32,33 @@ public class DTOAssembler {
 
 		return tdao;
 
+	}
+	
+	public static ComentariosUsuarioDto generateComentariosUsuarioDto(User user) {
+		List<Rating> ratings = PersistenceFactory.newRatingDao().findByUserId(user.getId());
+		
+		ComentariosUsuarioDto dto = new ComentariosUsuarioDto();
+		dto.setUser(user);
+		
+		UserDao userDao = PersistenceFactory.newUserDao();
+		TripDao tripDao = PersistenceFactory.newTripDao();
+		
+		User userComenta;
+		Trip trip;
+	
+		
+		for (Rating rating:ratings) {
+			userComenta = userDao.findById(rating.getSeatFromUserId());
+			trip = tripDao.findById(rating.getSeatAboutTripId());
+			
+			if (dto.getComentarios().containsKey(userComenta))
+				dto.getComentarios().put(userComenta, new ArrayList<Comentario>());
+			else
+				dto.getComentarios().get(userComenta).add(new Comentario(trip, rating.getComment(), rating.getValue()));
+			
+		}
+		
+		return dto;
 	}
 
 	private static InfoViajeDto getRatingsPromotor(User promotor) {
@@ -123,5 +153,5 @@ public class DTOAssembler {
 		return map;
 
 	}
-
+	
 }

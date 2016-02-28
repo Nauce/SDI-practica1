@@ -51,9 +51,6 @@ public class InfoViajeDto {
 
 	public void setSeatStatus(SeatStatus seatStatus) {
 		this.seatStatus = seatStatus;
-		System.out.println(seatStatus);
 	}
-
-
 
 }
