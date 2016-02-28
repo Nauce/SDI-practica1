@@ -18,31 +18,49 @@ public class ModificarDatosPersonalesAction implements Accion {
 		String nuevoNombre = request.getParameter("nombre");
 		String nuevoApellidos = request.getParameter("apellidos");
 		String nuevoEmail = request.getParameter("email");
-		String nuevoContrasenya = request.getParameter("contrasenya");
-		String ConfirmaContrasenya = request.getParameter("confirmaContrasenya");
+		String contrasenyaActual = request.getParameter("contrasenyaActual");
+		String nuevoContrasenya = request.getParameter("contrasenyaNueva");
+		String nuevoConfirmaContrasenya = request.getParameter("confirmaContrasenyaNueva");
+		String errores = "<strong>Tus datos personales no han sido modificados<br><br></strong>";
 		
-		if (nuevoContrasenya == null
-				|| nuevoContrasenya.isEmpty()
-				|| !nuevoContrasenya.equals(ConfirmaContrasenya))
+		User user = (User) request.getSession().getAttribute("user");
+		
+		if (contrasenyaActual == null || !user.getPassword().equals(contrasenyaActual)) {
+			Log.info("El usuario [%s] ha intentando modificar sus datos personales introduciendo mal su contraseña",
+					user.getLogin());
+			errores += "Contraseña actual errónea";
+			request.setAttribute("errores", errores);
 			return "FRACASO";
+		}
+			
+		else if (nuevoContrasenya == null
+				|| nuevoContrasenya.isEmpty()
+				|| !nuevoContrasenya.equals(nuevoConfirmaContrasenya)) {
+			Log.info("El usuario [%s] ha intentando modificar sus datos personales"
+					+ " no coincidiendo las contraseñas nuevas", user.getLogin());
+			errores += "Las contraseñas nuevas no coinciden";
+			request.setAttribute("errores", errores);
+			return "FRACASO";
+		}
 		
-		HttpSession session=request.getSession();
-		User usuario=((User)session.getAttribute("user"));
-		usuario.setName(nuevoNombre);
-		usuario.setSurname(nuevoApellidos);
-		usuario.setEmail(nuevoEmail);
-		usuario.setPassword(nuevoContrasenya);
+		user.setName(nuevoNombre);
+		user.setSurname(nuevoApellidos);
+		user.setEmail(nuevoEmail);
+		user.setPassword(nuevoContrasenya);
 		try {
 			UserDao dao = PersistenceFactory.newUserDao();
-			dao.update(usuario);
-			Log.debug("Modificado nombre de [%s] con el valor [%s]", usuario.getLogin(), nuevoNombre);
-			Log.debug("Modificado apellidos de [%s] con el valor [%s]", usuario.getLogin(), nuevoApellidos);
-			Log.debug("Modificado email de [%s] con el valor [%s]", usuario.getLogin(), nuevoEmail);
-			Log.debug("Modificado contraseña de [%s] con el valor [%s]", usuario.getLogin(), nuevoContrasenya);
+			dao.update(user);
+			Log.debug("Modificado nombre de [%s] con el valor [%s]", user.getLogin(), nuevoNombre);
+			Log.debug("Modificado apellidos de [%s] con el valor [%s]", user.getLogin(), nuevoApellidos);
+			Log.debug("Modificado email de [%s] con el valor [%s]", user.getLogin(), nuevoEmail);
+			Log.debug("Modificado contraseña de [%s] con el valor [%s]", user.getLogin(), nuevoContrasenya);
 		}
 		catch (Exception e) {
-			Log.error("Algo ha ocurrido actualizando el usuario [%s]", usuario.getLogin());
+			Log.error("Algo ha ocurrido actualizando el usuario [%s]", user.getLogin());
 		}
+		
+		request.setAttribute("EXITO", "EXITO");
+		
 		return "EXITO";
 	}
 	

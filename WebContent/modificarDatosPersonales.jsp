@@ -4,17 +4,12 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
-<meta name="viewport" content="width=device-width, initial-scale=1">
 <script type="text/javascript"
 	src="http://cdnjs.cloudflare.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
 <script type="text/javascript"
 	src="http://netdna.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
-<link
-	href="http://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.3.0/css/font-awesome.min.css"
-	rel="stylesheet" type="text/css">
-<link
-	href="http://pingendo.github.io/pingendo-bootstrap/themes/default/bootstrap.css"
-	rel="stylesheet" type="text/css">
+<link rel="stylesheet" href="css/bootstrap.min.css">
+<meta name="viewport" content="width=device-width, initial-scale=1">
 </head>
 <body>
 
@@ -28,27 +23,45 @@
 						<h1>Modificar datos personales</h1>
 					</div>
 					
+					<c:if test="${errores != null}">
+								<div class="alert alert-danger">
+									<p>${errores}</p>
+								</div>
+					</c:if>
+					
+					<c:if test="${EXITO != null}">
+								<div class="alert alert-success">
+									<p><strong>Tus datos han sido modificados correctamente</p>
+								</div>
+					</c:if>
+					
 						<div class="form-group">
 							<label class="control-label" for="nombre">Nombre</label>
-							<input class="form-control" id="nombre" name="nombre" type="text">
+							<input class="form-control" id="nombre" name="nombre" type="text" required
+							value="${sessionScope.user.name}">
 						</div>
 						<div class="form-group">
 							<label class="control-label" for="apellidos">Apellidos</label>
 							<input class="form-control" id="apellidos" name="apellidos"
-								type="text">
+								type="text" required value="${sessionScope.user.surname}">
 						</div>
 
 						<div class="form-group">
 							<label class="control-label" for="email">Email</label><input
-								class="form-control" id="email" name="email" type="email">
+								class="form-control" id="email" name="email" type="email" required
+								value="${sessionScope.user.email}">
 						</div>
 						<div class="form-group">
-							<label class="control-label" for="contrasenya">Contraseña nueva</label><input
-								class="form-control" id="contrasenya" name="contrasenya" type="password">
+							<label class="control-label" for="contrasenyaActual">Contraseña actual</label><input
+								class="form-control" id="contrasenyaActual" name="contrasenyaActual" type="password" required>
+						</div>
+						<div class="form-group">
+							<label class="control-label" for="contrasenyaNueva">Contraseña nueva</label><input
+								class="form-control" id="contrasenyaNueva" name="contrasenyaNueva" type="password" required>
 						</div>
 						<div class="form-group">
 							<label class="control-label">Confirmar contraseña nueva</label><input
-								class="form-control" id="confirmaContrasenya" name="confirmaContrasenya "type="password">
+								class="form-control" id="confirmaContrasenyaNueva" name="confirmaContrasenyaNueva" type="password" required>
 						</div>
 						<button type="submit" class="btn btn-block btn-primary">Actualizar</button>
 				</div>

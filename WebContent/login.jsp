@@ -9,9 +9,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 </head>
 
-
 <body>
-
 	<form class="form-controll" method="post" action="login">
 		<div class="section">
 			<div class="container">
@@ -20,9 +18,8 @@
 						<div class="page-header">
 							<h1>Iniciar sesión</h1>
 						</div>
-						<form role="form">
 
-							<c:if test="${sessionScope.registrarseAction != null}">
+							<c:if test="${requestScope.registrarseAction != null}">
 								<div class="alert alert-success">
 									<p>
 										<strong>Tu cuenta ha sido creada con éxito con el
@@ -42,23 +39,23 @@
 							<div class="form-group">
 								<label class="control-label" for="nombreUsuario">Usuario</label>
 								<input class="form-control" id="nombreUsuario"
-									name="nombreUsuario" type="text">
+									name="nombreUsuario" type="text" required>
 							</div>
 
 							<div class="form-group">
 								<label class="control-label" for="contrasenya">Contraseña</label>
 								<input class="form-control" id="contrasenya" name="contrasenya"
-									type="password">
+									type="password" required>
 							</div>
 
 							<button type="submit" class="btn btn-block btn-primary">Iniciar&nbsp;sesión</button>
-						</form>
+					
 					</div>
 				</div>
 				<div class="row">
 					<div class="col-md-12">
 						<div class="text-center well well-sm">
-							<p class="text-muted">
+							<p class="text-muted"><br>
 								¿Eres nuevo en ShareMyTrip?&nbsp; <a id="registrarse"
 									href="registrarse.jsp">Regístrate</a>
 							</p>
