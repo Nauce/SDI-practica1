@@ -46,8 +46,8 @@ public class LoginAction implements Accion {
 //			resultado = "FRACASO";
 //		} 
 		else {
-			Log.info("El usuario [%s] ha intentado acceder a la página de inicio de sesión."
-					+ " Fue redirigido a la página principal",
+			Log.info("El usuario [%s] ha intentado acceder a la pï¿½gina de inicio de sesiï¿½n."
+					+ " Fue redirigido a la pï¿½gina principal",
 					((User) session.getAttribute("user")).getLogin());
 			resultado = "FRACASO";
 		}
