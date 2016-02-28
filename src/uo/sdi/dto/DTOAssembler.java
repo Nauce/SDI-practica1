@@ -24,8 +24,8 @@ public class DTOAssembler {
 		TripDto tdao = new TripDto(trip);
 		tdao.setPromotor(PersistenceFactory.newUserDao()
 				.findById(trip.getPromoterId()).getName());
-		Map<User, SeatStatus> usersAndStatus = findUsersAndStatusSeatBySeat(trip
-				.getId());
+		Map<User, SeatStatus> usersAndStatus = findUsersAndStatusSeatBySeat(
+				trip.getId(), promotor.getId());
 		tdao.setInfoPasajeros(getInfoViaje(trip.getId(), usersAndStatus,
 				promotor.getId()));
 		tdao.setIdPromotor(promotor.getId());
@@ -51,11 +51,15 @@ public class DTOAssembler {
 		for (Rating rating : ratings) {
 			userComenta = userDao.findById(rating.getSeatFromUserId());
 			trip = tripDao.findById(rating.getSeatAboutTripId());
-			
+
 			if (!dto.getComentarios().containsKey(userComenta))
-				dto.getComentarios().put(userComenta, new ArrayList<Comentario>());
-			
-			dto.getComentarios().get(userComenta).add(new Comentario(trip, rating.getComment(), rating.getValue()));
+				dto.getComentarios().put(userComenta,
+						new ArrayList<Comentario>());
+
+			dto.getComentarios()
+					.get(userComenta)
+					.add(new Comentario(trip, rating.getComment(), rating
+							.getValue()));
 		}
 
 		return dto;
@@ -121,14 +125,16 @@ public class DTOAssembler {
 
 	}
 
-	private static Map<User, SeatStatus> findUsersAndStatusSeatBySeat(Long id) {
+	private static Map<User, SeatStatus> findUsersAndStatusSeatBySeat(Long id,
+			Long promoterID) {
 
 		List<Seat> seats = PersistenceFactory.newSeatDao().findAll();
 		Map<User, SeatStatus> map = new HashMap<User, SeatStatus>();
 
 		for (Seat seat : seats) {
 
-			if (seat.getTripId().equals(id)) {
+			if (seat.getTripId().equals(id)
+					&& !seat.getUserId().equals(promoterID)) {
 				map.put(PersistenceFactory.newUserDao().findById(
 						seat.getUserId()), seat.getStatus());
 			}
