@@ -15,7 +15,7 @@
 		<div class="row">
 			<div class="col-md-12">
 				<div class="page-header">
-					<h1>Comentarios sobre el usuario ${comentariosUsuario.user.name}</h1>
+					<h1>Comentarios sobre el usuario ${comentariosUsuario.user.name} ${comentariosUsuario.user.surname} (${comentariosUsuario.user.login})</h1>
 				</div>
 
 
@@ -24,25 +24,20 @@
 					<c:forEach var="comment" items="${entry.value}" varStatus="j">
 
 						<div class="panel panel-default">
-							<div class="panel-heading">
-								<h5>
-									<strong>Viaje ID ${comment.tripId} &nbsp;
-										${comment.departure} - ${comment.destination} &nbsp;
-										${comment.departureDate} </strong>
-								</h5>
-								
-							</div>
-
 							<div class="panel-body">
-							<strong>${entry.key.login} escribió :</strong>
+								<h4><span class="label label-info">
+									Viaje ID ${comment.tripId} &nbsp;
+										${comment.departure} - ${comment.destination} &nbsp;
+										${comment.departureDate}</span>&nbsp;&nbsp;
+										<span class="label label-warning">Rating ${comment.valoracion}</span>
+								</h4>
+							<br>
+							<strong>${entry.key.name} ${entry.key.surname} (${entry.key.login}) escribió :</strong>
 							<br>
 							<br>
 								${comment.comment}
-							</div>
 							
-							<div class="panel-footer">
-								<span class="label label-warning">Rating ${comment.valoracion}</span>
-							</div>
+						</div>
 						</div>
 
 					</c:forEach>
