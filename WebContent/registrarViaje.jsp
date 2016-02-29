@@ -184,7 +184,7 @@
 							oportunos<br>
 						</label>
 						<textarea class="form-control" id="comentarios" name="comentarios"
-							type="text" required> </textarea>
+							required> </textarea>
 					</div>
 				</div>
 				<div class="row">
