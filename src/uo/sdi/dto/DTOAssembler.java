@@ -35,6 +35,32 @@ public class DTOAssembler {
 
 	}
 
+	public static ViajeImplicadoDto getViajesImplicadosDto(Long userId) {
+
+		ViajeImplicadoDto vidto = new ViajeImplicadoDto();
+		Seat seat;
+
+		for (Application aplication : PersistenceFactory.newApplicationDao()
+				.findByUserId(userId)) {
+
+			seat = PersistenceFactory.newSeatDao().findByUserAndTrip(
+					userId, aplication.getTripId());
+
+			if (seat == null)
+				vidto.getTrips().put(
+						PersistenceFactory.newTripDao().findById(
+								aplication.getTripId()), null);
+			else
+				vidto.getTrips().put(
+						PersistenceFactory.newTripDao().findById(
+								aplication.getTripId()), seat.getStatus());
+
+		}
+
+		return vidto;
+
+	}
+
 	private static List<User> getPendientes(Long tripId) {
 
 		List<User> pendientes = new ArrayList<User>();

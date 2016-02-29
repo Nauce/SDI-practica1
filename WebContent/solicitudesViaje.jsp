@@ -43,7 +43,7 @@
 							<div class="head hide">Pasar a</div>
 							<div class="content hide">
 								<form class="form-group" method="post"
-									action="pendiente?idUser=${entry.id}&idViaje=${solicitudesDto.idViaje}">
+									action="pasarAPendientes?idUser=${entry.id}&idViaje=${solicitudesDto.idViaje}">
 									<button type="submit" class="btn btn-warning">
 										Pendientes</button>
 								</form>
@@ -133,7 +133,7 @@
 									Admitidos</button>
 							</form>
 							<form class="form-group" method="post"
-								action="pendiente?idUser=${entry.id}&idViaje=${solicitudesDto.idViaje}">
+								action="pasarAPendientes?idUser=${entry.id}&idViaje=${solicitudesDto.idViaje}">
 								<button type="submit" class="btn btn-warning">
 									Pendientes</button>
 							</form>

@@ -37,7 +37,7 @@
 					<td>${entry.closingDate}</td>
 					<td>${entry.estimatedCost}</td>
 					<td>
-						<form method="post" action="solicitudes?id=${entry.id}">
+						<form method="post" action="solicitudesViaje?id=${entry.id}">
 							<button id="solicitudes" name="solicitudes"
 								class="btn btn-success">Solicitudes</button>
 						</form>

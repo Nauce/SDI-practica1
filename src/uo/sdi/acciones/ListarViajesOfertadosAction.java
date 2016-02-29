@@ -6,6 +6,7 @@ import java.util.List;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import uo.sdi.dto.DTOAssembler;
 import uo.sdi.model.Trip;
 import uo.sdi.model.User;
 import uo.sdi.persistence.PersistenceFactory;
@@ -26,6 +27,9 @@ public class ListarViajesOfertadosAction implements Accion {
 
 			viajes = findTripsByUserSession(id);
 			request.setAttribute("viajesOfertados", viajes);
+			request.setAttribute("viajesImplicadoDTO",
+					DTOAssembler.getViajesImplicadosDto(id));
+
 			Log.debug("Obtenida lista de viajes conteniendo [%d] viajes",
 					viajes.size());
 

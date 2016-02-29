@@ -2,17 +2,17 @@ package uo.sdi.acciones;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-
-import alb.util.log.Log;
 import uo.sdi.dto.DTOAssembler;
 import uo.sdi.dto.SolicitudesDto;
 import uo.sdi.model.Seat;
 import uo.sdi.model.SeatStatus;
 import uo.sdi.model.Trip;
 import uo.sdi.persistence.PersistenceFactory;
+import uo.sdi.persistence.SeatDao;
 import uo.sdi.persistence.TripDao;
+import alb.util.log.Log;
 
-public class ExcluirAction implements Accion {
+public class PasarAPendientesAction implements Accion {
 
 	@Override
 	public String execute(HttpServletRequest request,
@@ -24,42 +24,32 @@ public class ExcluirAction implements Accion {
 			try {
 				Long idUser = Long.parseLong(queryString[0].split("=")[1]);
 				Long idTrip = Long.parseLong(queryString[1].split("=")[1]);
-				
-				Seat seatPrevious = PersistenceFactory.newSeatDao().findById(new Long[] {idUser, idTrip});
-				
-				if (seatPrevious != null) {
-					seatPrevious.setStatus(SeatStatus.EXCLUDED);
-					PersistenceFactory.newSeatDao().update(seatPrevious);
+
+				SeatDao sdao = PersistenceFactory.newSeatDao();
+
+				Seat seat = sdao.findByUserAndTrip(idUser, idTrip);
+
+				if (seat != null) {
+
+					sdao.delete(new Long[] { idUser, idTrip });
+					if (seat.getStatus().equals(SeatStatus.ACCEPTED)) {
+
+						updateAvailablePax(idTrip, +1);
+
+					}
 					putDtoInRequest(request, idTrip);
-					updateAvailablePax(idTrip, 1);
 
-					Log.debug("Usuario " + idUser + " excluido en el viaje" + idTrip);
-					
-					return "EXITO";
+				} else {
+
+					Log.debug("No hay ese asiento tomado");
+
 				}
-				
-				Seat seat = new Seat();
-				seat.setStatus(SeatStatus.EXCLUDED);
-				seat.setTripId(idTrip);
-				seat.setUserId(idUser);
 
-				PersistenceFactory.newSeatDao().save(seat);
-				putDtoInRequest(request, idTrip);
-
-				Log.debug("Usuario " + idUser + " excluido en el viaje" + idTrip);
-
-				return "EXITO";
 			} catch (NumberFormatException e) {
-
-				Log.error("No se ha excluido al usuario");
-
-				return "FRACASO";
 			}
 		}
-		Log.error("No se ha excluido al usuario");
 
-		return "FRACASO";
-
+		return "EXITO";
 	}
 
 	private void putDtoInRequest(HttpServletRequest request, Long idTrip) {
