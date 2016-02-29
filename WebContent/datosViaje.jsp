@@ -15,21 +15,22 @@
 			<div class="col-md-6">
 				<h1>Viaje ID ${viaje.trip.id}</h1>
 
-				<form class="form-controll" method="post"
-					action="incluirEnInteresados?id=${viaje.trip.id}">
-					<button type="submit" class="btn  btn-primary">Solicitar
-						Plaza</button>
-				</form>
-
-
 				<h4>
 					<span class="label label-warning">${viaje.trip.availablePax}/${viaje.trip.maxPax}
 						plazas libres</span>
 				</h4>
+			
+				<c:if test="${session.user.id == viaje.idPromotor}">
+				<form class="form-controll" method="post"
+					action="incluirEnInteresados?id=${viaje.trip.id}">
+					<h3><button type="submit" class="btn  btn-primary">Solicitar
+						Plaza</button></h3>
+				</form>
+				</c:if>
 
 				<br>
 
-				<h3>${viaje.trip.departure.city}-
+				<h3>${viaje.trip.departure.city} -
 					${viaje.trip.destination.city}</h3>
 				<h4>
 					<span class="label label-info">Fecha límite:

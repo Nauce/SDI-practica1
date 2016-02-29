@@ -40,8 +40,8 @@ public class RegistrarseAction implements Accion {
 		}
 		
 		if (nombreUsuario == null || nombre == null || apellidos == null || email == null || contrasenya == null
-				|| nombreUsuario.isEmpty() || nombre.isEmpty() || apellidos.isEmpty() || email.isEmpty() || contrasenya.isEmpty()) {
-			sb.append("Ninguno de los campos puede ser vacío<br><br>");
+				|| nombreUsuario.trim().isEmpty() || nombre.trim().isEmpty() || apellidos.trim().isEmpty() || email.trim().isEmpty() || contrasenya.trim().isEmpty()) {
+			sb.append("Ninguno de los campos puede ser vacío o tener espacios en blanco<br><br>");
 			resultado = "FRACASO";
 		}
 	
@@ -51,7 +51,7 @@ public class RegistrarseAction implements Accion {
 		}
 		
 		if (resultado.equals("FRACASO")) {
-			sb.insert(0, "<strong>Tu cuenta no ha sido creada</strong><b><b>");
+			sb.insert(0, "<strong>Tu cuenta no ha sido creada</strong><br><br>");
 			sb.replace(sb.length() - 8, sb.length(), "");
 			request.setAttribute("errores", sb.toString());
 			request.setAttribute("nombreUsuario", nombreUsuario);
