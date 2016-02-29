@@ -30,8 +30,8 @@ public class ExcluirAction implements Accion {
 				if (seatPrevious != null) {
 					seatPrevious.setStatus(SeatStatus.EXCLUDED);
 					PersistenceFactory.newSeatDao().update(seatPrevious);
-					putDtoInRequest(request, idTrip);
 					updateAvailablePax(idTrip, 1);
+					putDtoInRequest(request, idTrip);
 
 					Log.debug("Usuario " + idUser + " excluido en el viaje" + idTrip);
 					

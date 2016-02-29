@@ -23,6 +23,8 @@ public class SolicitudesDto {
 	private String destinationCity;
 
 	private int plazasLibres;
+	
+	private int maxPlazas;
 
 	public SolicitudesDto(Trip trip) {
 
@@ -31,7 +33,7 @@ public class SolicitudesDto {
 		this.departureCity = trip.getDeparture().getCity();
 		this.destinationCity = trip.getDestination().getCity();
 		this.setPlazasLibres(trip.getAvailablePax());
-
+		this.maxPlazas = trip.getMaxPax();
 	}
 
 	public Date getFechaSalida() {
@@ -96,6 +98,14 @@ public class SolicitudesDto {
 
 	public void setPlazasLibres(int plazasLibres) {
 		this.plazasLibres = plazasLibres;
+	}
+
+	public int getMaxPlazas() {
+		return maxPlazas;
+	}
+
+	public void setMaxPlazas(int maxPlazas) {
+		this.maxPlazas = maxPlazas;
 	}
 
 }

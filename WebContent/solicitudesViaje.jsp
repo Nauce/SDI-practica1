@@ -24,124 +24,169 @@
 					<h1>Solicitudes del viaje ID ${solicitudesDto.idViaje}</h1>
 				</div>
 
-				<c:if test="${ !solicitudesDto.admitidos.isEmpty()
-								&& !solicitudesDto.pendientes.isEmpty()
-								&& !solicitudesDto.excluidos.isEmpty() }"></c:if>
+				<h3><span class="label label-info">
+					Viaje ID ${solicitudesDto.idViaje} &nbsp;
+					${solicitudesDto.departureCity} - ${solicitudesDto.destinationCity}
+					&nbsp;&nbsp;${solicitudesDto.fechaSalida}
+				</span></h3>
+				<br>
+				
+				<h4><span class="label label-default">
+					${solicitudesDto.plazasLibres} plazas libres
+				</span></h4>
+				
+				<br>
 
-
-				<c:if test="${ !solicitudesDto.admitidos.isEmpty() }">
-
-					<div class="page-header">
+				<div class="panel panel-default">
+					<div class="panel-body">
 						<h2>Admitidos</h2>
+						<c:if test="${!solicitudesDto.admitidos.isEmpty()}">
+							<br>
+						</c:if>
+
+						<c:forEach var="entry" items="${solicitudesDto.admitidos}"
+							varStatus="i">
+
+							<div class="popover-markup">
+								<a href="#" class="trigger btn btn-default"> <span
+									class="label label-success">Admitido</span>&nbsp; <font
+									color="#228DAC"><strong>${entry.name}
+											${entry.surname} (${entry.login})</strong></font></a>
+								<div class="head hide">
+									<strong>Pasar a</strong>
+								</div>
+								<div class="content hide">
+									<form class="form-group" method="post"
+										action="pasarAPendientes?idUser=${entry.id}&idViaje=${solicitudesDto.idViaje}">
+										<button type="submit" class="btn btn-warning">
+											<c:choose>
+												<c:when test="${solicitudesDto.plazasLibres > 0}">Pendientes</c:when>
+												<c:otherwise>&nbsp;Sin plaza&nbsp;&nbsp;</c:otherwise>
+											</c:choose>
+										</button>
+									</form>
+									<form class="form-group" method="post"
+										action="excluirParticipante?idUser=${entry.id}&idViaje=${solicitudesDto.idViaje}">
+										<button type="submit" class="btn btn-danger">
+											&nbsp;Excluidos&nbsp;&nbsp;</button>
+									</form>
+								</div>
+							</div>
+							<br>
+
+						</c:forEach>
 					</div>
+				</div>
 
-					<c:forEach var="entry" items="${solicitudesDto.admitidos}" varStatus="i">
-
-						<div class="popover-markup">
-							<a href="#" class="trigger btn btn-default"><strong>${entry.name}
-							 ${entry.surname} (${entry.login})</strong></a>
-							<div class="head hide">Pasar a</div>
-							<div class="content hide">
-								<form class="form-group" method="post"
-									action="pasarAPendientes?idUser=${entry.id}&idViaje=${solicitudesDto.idViaje}">
-									<button type="submit" class="btn btn-warning">
-										Pendientes</button>
-								</form>
-								<form class="form-group" method="post"
-									action="excluirParticipante?idUser=${entry.id}&idViaje=${solicitudesDto.idViaje}">
-									<button type="submit" class="btn btn-danger">
-										Excluidos</button>
-								</form>
-							</div>
-						</div>
-
-					</c:forEach>
-
-				</c:if>
+				<div class="panel panel-default">
+					<div class="panel-body">
 
 
-
-				<c:if test="${!pendientes.isEmpty()}">
-
-					<c:if test="${solicitudesDto.plazasLibres > 0}">
-
-					<div class="page-header">
+						<c:if test="${solicitudesDto.plazasLibres > 0}">
 							<h2>Pendientes</h2>
-						</div>
+							<c:if test="${!solicitudesDto.pendientes.isEmpty()}">
+								<br>
+							</c:if>
 
-					<c:forEach var="entry" items="${solicitudesDto.pendientes}" varStatus="i">
+							<c:forEach var="entry" items="${solicitudesDto.pendientes}"
+								varStatus="i">
 
-						<div class="popover-markup">
-							<a href="#" class="trigger btn btn-default"><strong>${entry.name}
-							 ${entry.surname} (${entry.login})</strong></a>
-							<div class="head hide">Pasar a</div>
-							<div class="content hide">
-								<form class="form-group" method="post"
-									action="admitirParticipante?idUser=${entry.id}&idViaje=${solicitudesDto.idViaje}">
-									<button type="submit" class="btn btn-success">
-										Admitidos</button>
-								</form>
-								<form class="form-group" method="post"
-									action="excluirParticipante?idUser=${entry.id}&idViaje=${solicitudesDto.idViaje}">
-									<button type="submit" class="btn btn-danger">Excluidos</button>
-								</form>
+								<div class="popover-markup">
+									<a href="#" class="trigger btn btn-default"> <span
+										class="label label-warning">Pendiente</span>&nbsp; <font
+										color="#228DAC"><strong>${entry.name}
+												${entry.surname} (${entry.login})</strong></font></a>
+									<div class="head hide">
+										<strong>Pasar a</strong>
+									</div>
+									<div class="content hide">
+										<form class="form-group" method="post"
+											action="admitirParticipante?idUser=${entry.id}&idViaje=${solicitudesDto.idViaje}">
+											<button type="submit" class="btn btn-success">
+												Admitidos</button>
+										</form>
+										<form class="form-group" method="post"
+											action="excluirParticipante?idUser=${entry.id}&idViaje=${solicitudesDto.idViaje}">
+											<button type="submit" class="btn btn-danger">Excluidos</button>
+										</form>
+									</div>
+								</div>
+								<br>
+							</c:forEach>
+
+						</c:if>
+
+						<c:if test="${solicitudesDto.plazasLibres == 0}">
+							<h2>Sin plaza</h2>
+							<c:if test="${!solicitudesDto.pendientes.isEmpty()}">
+								<br>
+							</c:if>
+
+							<c:forEach var="entry" items="${solicitudesDto.pendientes}"
+								varStatus="i">
+								<div class="popover-markup">
+									<a href="#" class="trigger btn btn-default"> <span
+										class="label label-default">Sin plaza</span>&nbsp; <font
+										color="#228DAC"><strong>${entry.name}
+												${entry.surname} (${entry.login})</strong></font></a> <br>
+									<div class="head hide">
+										<strong>Pasar a</strong>
+									</div>
+									<div class="content hide">
+										<form class="form-group" method="post"
+											action="excluirParticipante?idUser=${entry.id}&idViaje=${solicitudesDto.idViaje}">
+											<button type="submit" class="btn btn-danger">Excluidos</button>
+										</form>
+									</div>
+								</div>
+								<br>
+							</c:forEach>
+						</c:if>
+
+					</div>
+				</div>
+
+				<div class="panel panel-default">
+					<div class="panel-body">
+						<h2>Excluidos</h2>
+						<c:if test="${!solicitudesDto.excluidos.isEmpty()}">
+							<br>
+						</c:if>
+
+						<c:forEach var="entry" items="${solicitudesDto.excluidos}"
+							varStatus="i">
+							<div class="popover-markup">
+								<a href="#" class="trigger btn btn-default"> <span
+									class="label label-danger">Excluido</span>&nbsp; <font
+									color="#228DAC"><strong>${entry.name}
+											${entry.surname} (${entry.login})</strong></font></a> <br>
+								<div class="head hide">
+									<strong>Pasar a</strong>
+								</div>
+								<div class="content hide">
+									<c:if test="${solicitudesDto.plazasLibres > 0}">
+										<form class="form-group" method="post"
+											action="admitirParticipante?idUser=${entry.id}&idViaje=${solicitudesDto.idViaje}">
+											<button type="submit" class="btn btn-success">
+												&nbsp;Admitidos&nbsp;&nbsp;</button>
+										</form>
+									</c:if>
+									<form class="form-group" method="post"
+										action="pasarAPendientes?idUser=${entry.id}&idViaje=${solicitudesDto.idViaje}">
+										<button type="submit" class="btn btn-warning">
+											<c:choose>
+												<c:when test="${solicitudesDto.plazasLibres > 0}">Pendientes</c:when>
+												<c:otherwise>&nbsp;Sin plaza&nbsp;&nbsp;</c:otherwise>
+											</c:choose>
+										</button>
+									</form>
+								</div>
 							</div>
-						</div>
+							<br>
 						</c:forEach>
 
-					</c:if>
-					
-					<c:if test="${solicitudesDto.plazasLibres == 0}">>
-
-					<div class="page-header">
-							<h2>Sin plaza</h2>
-						</div>
-					<c:forEach var="entry" items="${solicitudesDto.pendientes}" varStatus="i">
-						<div class="popover-markup">
-							<a href="#" class="trigger btn btn-default"><strong>${entry.name}
-							 ${entry.surname} (${entry.login})</strong></a>
-							<div class="head hide">Pasar a</div>
-							<div class="content hide">
-								<form class="form-group" method="post"
-									action="excluirParticipante?idUser=${entry.id}&idViaje=${solicitudesDto.idViaje}">
-									<button type="submit" class="btn btn-danger">Excluidos</button>
-								</form>
-							</div>
-						</div>
-					</c:forEach>
-					</c:if>
-					
-
-				</c:if>
-
-
-				<c:if test="${!excluidos.isEmpty()}">
-
-					<div class="page-header">
-						<h2>Excluidos</h2>
 					</div>
-					
-					<c:forEach var="entry" items="${solicitudesDto.excluidos}" varStatus="i">
-					<div class="popover-markup">
-						<a href="#" class="trigger btn btn-default"><strong>${entry.name}
-							 ${entry.surname} (${entry.login})</strong></a>
-						<div class="head hide">Pasar a</div>
-						<div class="content hide">
-							<form class="form-group" method="post"
-								action="admitirParticipante?idUser=${entry.id}&idViaje=${solicitudesDto.idViaje}">
-								<button type="submit" class="btn btn-success">
-									Admitidos</button>
-							</form>
-							<form class="form-group" method="post"
-								action="pasarAPendientes?idUser=${entry.id}&idViaje=${solicitudesDto.idViaje}">
-								<button type="submit" class="btn btn-warning">
-									Pendientes</button>
-							</form>
-						</div>
-					</div>
-					</c:forEach>
-
-				</c:if>
+				</div>
 
 
 			</div>
@@ -149,7 +194,7 @@
 
 	</div>
 
-<script>
+	<script>
 		$('.popover-markup>.trigger').popover({
 			html : true,
 			title : function() {
@@ -158,8 +203,8 @@
 			content : function() {
 				return $(this).parent().find('.content').html();
 			},
-			placement: 'right',
-			trigger: 'focus'
+			placement : 'right',
+			trigger : 'focus'
 		});
 	</script>
 </body>

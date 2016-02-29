@@ -35,8 +35,8 @@ public class AdmitirAction implements Accion {
 					previousSeat.setStatus(SeatStatus.ACCEPTED);
 					seatDao.update(previousSeat);
 					Log.debug("Admitido con exito");
-					putDtoInRequest(request, idTrip);
 					updateAvailablePax(idTrip);
+					putDtoInRequest(request, idTrip);
 					return "EXITO";
 
 				}
@@ -49,8 +49,8 @@ public class AdmitirAction implements Accion {
 				PersistenceFactory.newSeatDao().save(seat);
 				Log.debug("Admitido el usuario" + idUser + "en el viaje"
 						+ idTrip);
-				putDtoInRequest(request, idTrip);
 				updateAvailablePax(idTrip);
+				putDtoInRequest(request, idTrip);
 				return "EXITO";
 			} catch (NumberFormatException e) {
 
