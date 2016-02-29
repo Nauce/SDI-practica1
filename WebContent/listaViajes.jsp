@@ -11,25 +11,26 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 </head>
 <body>
-	<h1 class="text-center">Estos son nuestros viajes</h1>
-	<table class="table table-bordered">
-		<tr>
-			<th>ID viaje</th>
-			<th>Origen</th>
-			<th>Destino</th>
-			<th>Plazas libres</th>
-		</tr>
-		<c:forEach var="entry" items="${listaViajes}" varStatus="i">
-			<tr id="item_${i.index}">
-				<td><a href="listarViajesUsuario?id=${entry.id}">${entry.id}</a></td>
-				<td>${entry.departure.city}</td>
-				<td>${entry.destination.city}</td>
-				<td>${entry.availablePax}</td>
+
+	<div class="container">
+		<h1 class="text-center">Estos son nuestros viajes</h1>
+		<table class="table table-bordered">
+			<tr>
+				<th>ID viaje</th>
+				<th>Origen</th>
+				<th>Destino</th>
+				<th>Plazas libres</th>
 			</tr>
-		</c:forEach>
-	</table>
-	<h2>
-		<a id="login" class="text-right" href="listarViajes"> Atrás </a>
-	</h2>
+			<c:forEach var="entry" items="${listaViajes}" varStatus="i">
+				<tr id="item_${i.index}">
+					<td><a href="listarViajesUsuario?id=${entry.id}">${entry.id}</a></td>
+					<td>${entry.departure.city}</td>
+					<td>${entry.destination.city}</td>
+					<td>${entry.availablePax}</td>
+				</tr>
+			</c:forEach>
+		</table>
+
+	</div>
 </body>
 </html>
