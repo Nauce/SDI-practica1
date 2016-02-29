@@ -16,7 +16,7 @@ public class AdmitirAction implements Accion {
 
 		String[] queryString = request.getQueryString().split("&");
 
-		if (queryString.length > 2) {
+		if (queryString.length >= 2) {
 			try {
 				Long idUser = Long.parseLong(queryString[0].split("=")[1]);
 				Long idTrip = Long.parseLong(queryString[1].split("=")[1]);

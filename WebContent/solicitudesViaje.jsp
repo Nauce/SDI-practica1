@@ -15,18 +15,6 @@
 </head>
 <body>
 
-	<script>
-		$('.popover-markup>.trigger').popover({
-			html : true,
-			title : function() {
-				return $(this).parent().find('.head').html();
-			},
-			content : function() {
-				return $(this).parent().find('.content').html();
-			}
-		});
-	</script>
-
 	<div class="container">
 
 		<div class="row">
@@ -60,7 +48,7 @@
 										Pendientes</button>
 								</form>
 								<form class="form-group" method="post"
-									action="excluir?idUser=${entry.id}&idViaje=${solicitudesDto.idViaje}">
+									action="excluirParticipante?idUser=${entry.id}&idViaje=${solicitudesDto.idViaje}">
 									<button type="submit" class="btn btn-danger">
 										Excluidos</button>
 								</form>
@@ -81,22 +69,25 @@
 							<h2>Pendientes</h2>
 						</div>
 
+					<c:forEach var="entry" items="${solicitudesDto.pendientes}" varStatus="i">
+
 						<div class="popover-markup">
 							<a href="#" class="trigger btn btn-default"><strong>${entry.name}
 							 ${entry.surname} (${entry.login})</strong></a>
 							<div class="head hide">Pasar a</div>
 							<div class="content hide">
 								<form class="form-group" method="post"
-									action="admitir?idUser=${entry.id}&idViaje=${solicitudesDto.idViaje}">
-									<button type="submit" class="btn btn-warning">
+									action="admitirParticipante?idUser=${entry.id}&idViaje=${solicitudesDto.idViaje}">
+									<button type="submit" class="btn btn-success">
 										Admitidos</button>
 								</form>
 								<form class="form-group" method="post"
-									action="excluir?idUser=${entry.id}&idViaje=${solicitudesDto.idViaje}">
+									action="excluirParticipante?idUser=${entry.id}&idViaje=${solicitudesDto.idViaje}">
 									<button type="submit" class="btn btn-danger">Excluidos</button>
 								</form>
 							</div>
 						</div>
+						</c:forEach>
 
 					</c:if>
 					
@@ -105,19 +96,19 @@
 					<div class="page-header">
 							<h2>Sin plaza</h2>
 						</div>
-
+					<c:forEach var="entry" items="${solicitudesDto.pendientes}" varStatus="i">
 						<div class="popover-markup">
 							<a href="#" class="trigger btn btn-default"><strong>${entry.name}
 							 ${entry.surname} (${entry.login})</strong></a>
 							<div class="head hide">Pasar a</div>
 							<div class="content hide">
 								<form class="form-group" method="post"
-									action="excluir?idUser=${entry.id}&idViaje=${solicitudesDto.idViaje}">
+									action="excluirParticipante?idUser=${entry.id}&idViaje=${solicitudesDto.idViaje}">
 									<button type="submit" class="btn btn-danger">Excluidos</button>
 								</form>
 							</div>
 						</div>
-
+					</c:forEach>
 					</c:if>
 					
 
@@ -129,24 +120,26 @@
 					<div class="page-header">
 						<h2>Excluidos</h2>
 					</div>
-
+					
+					<c:forEach var="entry" items="${solicitudesDto.excluidos}" varStatus="i">
 					<div class="popover-markup">
 						<a href="#" class="trigger btn btn-default"><strong>${entry.name}
 							 ${entry.surname} (${entry.login})</strong></a>
 						<div class="head hide">Pasar a</div>
 						<div class="content hide">
 							<form class="form-group" method="post"
-								action="admitir?idUser=${entry.id}&idViaje=${solicitudesDto.idViaje}">
-								<button type="submit" class="btn btn-warning">
+								action="admitirParticipante?idUser=${entry.id}&idViaje=${solicitudesDto.idViaje}">
+								<button type="submit" class="btn btn-success">
 									Admitidos</button>
 							</form>
 							<form class="form-group" method="post"
 								action="pendiente?idUser=${entry.id}&idViaje=${solicitudesDto.idViaje}">
-								<button type="submit" class="btn btn-danger">
+								<button type="submit" class="btn btn-warning">
 									Pendientes</button>
 							</form>
 						</div>
 					</div>
+					</c:forEach>
 
 				</c:if>
 
@@ -156,6 +149,18 @@
 
 	</div>
 
-
+<script>
+		$('.popover-markup>.trigger').popover({
+			html : true,
+			title : function() {
+				return $(this).parent().find('.head').html();
+			},
+			content : function() {
+				return $(this).parent().find('.content').html();
+			},
+			placement: 'right',
+			trigger: 'focus'
+		});
+	</script>
 </body>
 </html>
