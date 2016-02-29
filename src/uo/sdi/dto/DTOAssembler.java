@@ -21,7 +21,7 @@ public class DTOAssembler {
 
 		User promotor = PersistenceFactory.newUserDao().findById(
 				trip.getPromoterId());
-		TripDto tdao = new TripDto(trip);
+		TripDto tdao = new TripDto(trip, user.getId());
 		tdao.setPromotor(PersistenceFactory.newUserDao()
 				.findById(trip.getPromoterId()).getName());
 		Map<User, SeatStatus> usersAndStatus = findUsersAndStatusSeatBySeat(

@@ -20,7 +20,7 @@
 						plazas libres</span>
 				</h4>
 			
-				<c:if test="${session.user.id == viaje.idPromotor}">
+				<c:if test="${!viaje.isInTrip}">
 				<form class="form-controll" method="post"
 					action="incluirEnInteresados?id=${viaje.trip.id}">
 					<h3><button type="submit" class="btn  btn-primary">Solicitar

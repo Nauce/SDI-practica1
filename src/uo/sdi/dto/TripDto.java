@@ -9,16 +9,30 @@ public class TripDto {
 
 	private Trip trip;
 	private Map<String, InfoViajeDto> infoPasajeros;
-	private Long idPromotor;
+	private long idPromotor;
 	private String promotor;
 	private InfoViajeDto infoPromotor;
+	private boolean isInTrip;
+	private long idUser;
 
-	public TripDto(Trip trip) {
+	public TripDto(Trip trip, long idUser) {
 		this.setTrip(trip);
 		this.setInfoPasajeros(new HashMap<String, InfoViajeDto>());
+		this.idUser = idUser;
 	}
 
-	
+	private boolean checkInTrip(long idUser) {
+		if (idPromotor == idUser)
+			return true;
+		
+		for (InfoViajeDto info:infoPasajeros.values())
+			if (info.getIdUsuario() == idUser)
+				return true;
+		
+		return false;
+	}
+
+
 
 	public Map<String, InfoViajeDto> getInfoPasajeros() {
 		return infoPasajeros;
@@ -26,7 +40,7 @@ public class TripDto {
 
 	public void setInfoPasajeros(Map<String, InfoViajeDto> infoPasajeros) {
 		this.infoPasajeros = infoPasajeros;
-
+		this.isInTrip = checkInTrip(idUser);
 	}
 
 
@@ -61,6 +75,7 @@ public class TripDto {
 
 	public void setInfoPromotor(InfoViajeDto infoPromotor) {
 		this.infoPromotor = infoPromotor;
+		this.isInTrip = checkInTrip(idUser);
 	}
 
 
@@ -75,6 +90,9 @@ public class TripDto {
 		this.idPromotor = idPromotor;
 	}
 
+	public boolean isIsInTrip() {
+		return isInTrip;
+	}
 
 
 }
