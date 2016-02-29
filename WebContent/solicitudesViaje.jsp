@@ -33,31 +33,34 @@
 			<div class="col-md-12">
 
 				<div class="page-header">
-					<h1>Solicitudes del viaje ID ${viaje.id}</h1>
+					<h1>Solicitudes del viaje ID ${solicitudesDto.idViaje}</h1>
 				</div>
 
-				<c:if test="noHaySolicitudes"></c:if>
+				<c:if test="${ !solicitudesDto.admitidos.isEmpty()
+								&& !solicitudesDto.pendientes.isEmpty()
+								&& !solicitudesDto.excluidos.isEmpty() }"></c:if>
 
 
-				<c:if test="admitidos">
+				<c:if test="${ !solicitudesDto.admitidos.isEmpty() }">
 
 					<div class="page-header">
 						<h2>Admitidos</h2>
 					</div>
 
-					<c:forEach var="entry" items="${usuarios}" varStatus="i">
+					<c:forEach var="entry" items="${solicitudesDto.admitidos}" varStatus="i">
 
 						<div class="popover-markup">
-							<a href="#" class="trigger btn btn-default"><strong>${usuario}</strong></a>
+							<a href="#" class="trigger btn btn-default"><strong>${entry.name}
+							 ${entry.surname} (${entry.login})</strong></a>
 							<div class="head hide">Pasar a</div>
 							<div class="content hide">
 								<form class="form-group" method="post"
-									action="pendiente?idUser= &idViaje= ">
+									action="pendiente?idUser=${entry.id}&idViaje=${solicitudesDto.idViaje}">
 									<button type="submit" class="btn btn-warning">
 										Pendientes</button>
 								</form>
 								<form class="form-group" method="post"
-									action="excluir?idUser= &idViaje= ">
+									action="excluir?idUser=${entry.id}&idViaje=${solicitudesDto.idViaje}">
 									<button type="submit" class="btn btn-danger">
 										Excluidos</button>
 								</form>
@@ -70,25 +73,26 @@
 
 
 
-				<c:if test="pendientes">
+				<c:if test="${!pendientes.isEmpty()}">
 
-					<c:if test="hayPlazas">>
+					<c:if test="${solicitudesDto.plazasLibres > 0}">
 
 					<div class="page-header">
 							<h2>Pendientes</h2>
 						</div>
 
 						<div class="popover-markup">
-							<a href="#" class="trigger btn btn-default"><strong>${usuario}</strong></a>
+							<a href="#" class="trigger btn btn-default"><strong>${entry.name}
+							 ${entry.surname} (${entry.login})</strong></a>
 							<div class="head hide">Pasar a</div>
 							<div class="content hide">
 								<form class="form-group" method="post"
-									action="admitir?idUser= &idViaje= ">
+									action="admitir?idUser=${entry.id}&idViaje=${solicitudesDto.idViaje}">
 									<button type="submit" class="btn btn-warning">
 										Admitidos</button>
 								</form>
 								<form class="form-group" method="post"
-									action="excluir?idUser= &idViaje= ">
+									action="excluir?idUser=${entry.id}&idViaje=${solicitudesDto.idViaje}">
 									<button type="submit" class="btn btn-danger">Excluidos</button>
 								</form>
 							</div>
@@ -96,18 +100,19 @@
 
 					</c:if>
 					
-					<c:if test="NOhayPlazas">>
+					<c:if test="${solicitudesDto.plazasLibres == 0}">>
 
 					<div class="page-header">
 							<h2>Sin plaza</h2>
 						</div>
 
 						<div class="popover-markup">
-							<a href="#" class="trigger btn btn-default"><strong>${usuario}</strong></a>
+							<a href="#" class="trigger btn btn-default"><strong>${entry.name}
+							 ${entry.surname} (${entry.login})</strong></a>
 							<div class="head hide">Pasar a</div>
 							<div class="content hide">
 								<form class="form-group" method="post"
-									action="excluir?idUser= &idViaje= ">
+									action="excluir?idUser=${entry.id}&idViaje=${solicitudesDto.idViaje}">
 									<button type="submit" class="btn btn-danger">Excluidos</button>
 								</form>
 							</div>
@@ -119,23 +124,24 @@
 				</c:if>
 
 
-				<c:if test="excluidos">
+				<c:if test="${!excluidos.isEmpty()}">
 
 					<div class="page-header">
 						<h2>Excluidos</h2>
 					</div>
 
 					<div class="popover-markup">
-						<a href="#" class="trigger btn btn-default"><strong>${usuario}</strong></a>
+						<a href="#" class="trigger btn btn-default"><strong>${entry.name}
+							 ${entry.surname} (${entry.login})</strong></a>
 						<div class="head hide">Pasar a</div>
 						<div class="content hide">
 							<form class="form-group" method="post"
-								action="admitir?idUser= &idViaje= ">
+								action="admitir?idUser=${entry.id}&idViaje=${solicitudesDto.idViaje}">
 								<button type="submit" class="btn btn-warning">
 									Admitidos</button>
 							</form>
 							<form class="form-group" method="post"
-								action="pendiente?idUser= &idViaje= ">
+								action="pendiente?idUser=${entry.id}&idViaje=${solicitudesDto.idViaje}">
 								<button type="submit" class="btn btn-danger">
 									Pendientes</button>
 							</form>
