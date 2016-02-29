@@ -18,6 +18,72 @@ import uo.sdi.persistence.UserDao;
 
 public class DTOAssembler {
 
+	public static SolicitudesDto generateSolicitudesDTO(Long idTrip) {
+
+		SolicitudesDto scdto = new SolicitudesDto(PersistenceFactory
+				.newTripDao().findById(idTrip));
+
+		List<User> admitidos = getAdmitidos(idTrip);
+		List<User> excluidos = getExcluidos(idTrip);
+		List<User> pendientes = getPendientes(idTrip);
+
+		scdto.setAdmitidos(admitidos);
+		scdto.setExcluidos(excluidos);
+		scdto.setPendientes(pendientes);
+
+		return scdto;
+
+	}
+
+	private static List<User> getPendientes(Long tripId) {
+
+		List<User> pendientes = new ArrayList<User>();
+		List<Application> applications = PersistenceFactory.newApplicationDao()
+				.appNotInSeat(tripId);
+
+		for (Application application : applications) {
+
+			pendientes.add(PersistenceFactory.newUserDao().findById(
+					application.getUserId()));
+
+		}
+
+		return pendientes;
+
+	}
+
+	private static List<User> getAdmitidos(Long idTrip) {
+
+		List<User> admitidos = new ArrayList<User>();
+		List<Seat> seats = PersistenceFactory.newSeatDao().findAll();
+		for (Seat seat : seats) {
+			if (seat.getTripId().equals(idTrip)
+					&& !seat.getTripId().equals(
+							PersistenceFactory.newTripDao().findById(idTrip))
+					&& seat.getStatus().equals(SeatStatus.ACCEPTED)) {
+				admitidos.add(PersistenceFactory.newUserDao().findById(
+						seat.getUserId()));
+			}
+		}
+		return admitidos;
+	}
+
+	private static List<User> getExcluidos(Long idTrip) {
+
+		List<User> admitidos = new ArrayList<User>();
+		List<Seat> seats = PersistenceFactory.newSeatDao().findAll();
+		for (Seat seat : seats) {
+			if (seat.getTripId().equals(idTrip)
+					&& !seat.getTripId().equals(
+							PersistenceFactory.newTripDao().findById(idTrip))
+					&& seat.getStatus().equals(SeatStatus.EXCLUDED)) {
+				admitidos.add(PersistenceFactory.newUserDao().findById(
+						seat.getUserId()));
+			}
+		}
+		return admitidos;
+	}
+
 	public static TripDto generateTripDto(Trip trip, User user) {
 
 		User promotor = PersistenceFactory.newUserDao().findById(
