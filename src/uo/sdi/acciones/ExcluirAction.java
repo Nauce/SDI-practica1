@@ -2,6 +2,8 @@ package uo.sdi.acciones;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+
+import alb.util.log.Log;
 import uo.sdi.model.Seat;
 import uo.sdi.model.SeatStatus;
 import uo.sdi.persistence.PersistenceFactory;
@@ -25,12 +27,18 @@ public class ExcluirAction implements Accion {
 				seat.setUserId(idUser);
 
 				PersistenceFactory.newSeatDao().save(seat);
+				Log.error("Usuario " + idUser + "excluido en el viaje" + idTrip);
+
 				return "EXITO";
 			} catch (NumberFormatException e) {
+
+				Log.error("No se ha excluido al usuario");
 
 				return "FRACASO";
 			}
 		}
+		Log.error("No se ha excluido al usuario");
+
 		return "FRACASO";
 
 	}

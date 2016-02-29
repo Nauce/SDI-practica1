@@ -4,6 +4,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import alb.util.log.Log;
+
 public class CerrarSesionAction implements Accion {
 
 	@Override
@@ -13,12 +15,15 @@ public class CerrarSesionAction implements Accion {
 		HttpSession session = request.getSession();
 
 		if (session == null) {
+			Log.debug("No se ha podido finalizar la sesión");
+
 			return "FRACASO";
 		}
 		session.invalidate();
 		
 		request.setAttribute("logout", true);
 
+		Log.debug("Sesion finalizada con éxito");
 		return "EXITO";
 	}
 

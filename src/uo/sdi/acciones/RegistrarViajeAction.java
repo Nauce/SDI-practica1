@@ -6,6 +6,7 @@ import java.util.List;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import alb.util.log.Log;
 import uo.sdi.model.AddressPoint;
 import uo.sdi.model.Seat;
 import uo.sdi.model.SeatStatus;
@@ -123,10 +124,12 @@ public class RegistrarViajeAction implements Accion {
 				seat.setTripId(id);
 				seat.setUserId(usuario.getId());
 				PersistenceFactory.newSeatDao().save(seat);
+				Log.debug("Creado con éxtio el viaje a [%s]",ciudadDestino);
 				return "EXITO";
 
 			} catch (NumberFormatException e) {
 
+				Log.error("No se ha podido registrar con éxito");
 				return "FRACASO";
 			}
 
