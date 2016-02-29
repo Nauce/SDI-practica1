@@ -30,6 +30,7 @@
 						plazas libres</span>
 				</h4>
 
+
 				<c:if test="${!viaje.isInTrip}">
 					<form class="form-controll" method="post"
 						action="incluirEnInteresados?id=${viaje.trip.id}">
@@ -38,6 +39,7 @@
 								Plaza</button>
 						</h3>
 					</form>
+
 				</c:if>
 
 				<br>
