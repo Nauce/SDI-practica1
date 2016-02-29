@@ -32,7 +32,7 @@
 
 	<div class="popover-markup">
 		<a href="#" class="trigger btn btn-default">Pepita Jimenez</a>
-		<div class="head hide">Pasar a </div>
+		<div class="head hide">Pasar a</div>
 		<div class="content hide">
 			<div class="form-group">
 				<button type="submit" class="btn btn-default btn-block">
