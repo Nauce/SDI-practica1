@@ -19,8 +19,6 @@ public class ListarViajesUsuarioRegistradoAction implements Accion {
 			String queryString = request.getQueryString();
 			User user = (User) request.getSession().getAttribute("user");
 
-
-			
 			Long id = Long.parseLong(queryString.split("=")[1]);
 			Trip trip = PersistenceFactory.newTripDao().findById(id);
 			request.setAttribute("viaje",
@@ -30,6 +28,7 @@ public class ListarViajesUsuarioRegistradoAction implements Accion {
 			Log.error("Algo ha ocurrido obteniendo lista de viajes");
 			return "ERROR";
 		}
+		Log.debug("Viaje por usuario listados con éxito");
 		return "EXITO";
 	}
 

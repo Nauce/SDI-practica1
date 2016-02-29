@@ -7,6 +7,7 @@ import java.util.List;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import alb.util.log.Log;
 import uo.sdi.model.AddressPoint;
 import uo.sdi.model.Trip;
 import uo.sdi.model.TripStatus;
@@ -123,9 +124,12 @@ public class ModificarViajeAction implements Accion {
 				List<Trip> viajes = findTripsByUserSession(id);
 				request.setAttribute("viajesOfertados", viajes);
 
+				Log.debug("Viaje modificado con éxito");
 				return "EXITO";
 
 			} catch (NumberFormatException e) {
+
+				Log.error("No se ha  modificado con éxito");
 
 				return "FRACASO";
 			}

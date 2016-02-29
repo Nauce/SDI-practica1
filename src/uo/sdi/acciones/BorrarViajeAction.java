@@ -37,6 +37,7 @@ public class BorrarViajeAction implements Accion {
 		} catch (Exception e) {
 			Log.error("Error borrando el viaje");
 		}
+		Log.debug("Viaje Creado con exito");
 		return "EXITO";
 	}
 
@@ -51,7 +52,8 @@ public class BorrarViajeAction implements Accion {
 
 		for (Trip trip : PersistenceFactory.newTripDao().findAll()) {
 
-			if (trip.getPromoterId().equals(userId) && !trip.getStatus().equals(TripStatus.CANCELLED)) {
+			if (trip.getPromoterId().equals(userId)
+					&& !trip.getStatus().equals(TripStatus.CANCELLED)) {
 				trips.add(trip);
 			}
 

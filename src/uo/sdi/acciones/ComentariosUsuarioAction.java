@@ -25,6 +25,7 @@ public class ComentariosUsuarioAction implements Accion {
 			Log.error("Algo ha ocurrido obteniendo la lista de comentarios del usuario");
 			return "ERROR";
 		}
+		Log.debug("Comentarios buscados con exito");
 		return "EXITO";
 	}
 
