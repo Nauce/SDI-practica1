@@ -15,9 +15,10 @@
 <body>
 
 	<br /> Es Vd el usuario número: ${contador}
-	<a id="listarViajes" class="text-center" href="listarViajes">
-		<h1>Ver viaje User</h1>
-	</a>
+	<h1>
+		<a id="listarViajes" class="text-center" href="listarViajes"> Ver
+			viaje User </a>
+	</h1>
 
 	<h1 class="text-center">
 		<a id="registrarViaje" href="registrarViaje"> Registrar </a>
@@ -57,21 +58,21 @@
 				Submit</button>
 		</div>
 	</div>
-	
+
 	<div class="popover-markup">
-							<a href="#" class="trigger btn btn-default">${usuario}</a>
-							<div class="head hide">Pasar a</div>
-							<div class="content hide">
-								<form class="form-group" method="post" action="comentariosUsuario?id=306">
-									<button type="submit" class="btn btn-warning">
-										Pendientes</button>
-								</form>
-								<form class="form-group" method="post" action="comentariosUsuario?id=306">
-								<button type="submit" class="btn btn-danger">
-									Excluidos</button>
-								</form>
-							</div>
-						</div>
+		<a href="#" class="trigger btn btn-default">${usuario}</a>
+		<div class="head hide">Pasar a</div>
+		<div class="content hide">
+			<form class="form-group" method="post"
+				action="comentariosUsuario?id=306">
+				<button type="submit" class="btn btn-warning">Pendientes</button>
+			</form>
+			<form class="form-group" method="post"
+				action="comentariosUsuario?id=306">
+				<button type="submit" class="btn btn-danger">Excluidos</button>
+			</form>
+		</div>
+	</div>
 
 	<script>
 		$('.popover-markup>.trigger').popover({

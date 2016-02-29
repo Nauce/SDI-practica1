@@ -124,7 +124,7 @@ public class RegistrarViajeAction implements Accion {
 				seat.setTripId(id);
 				seat.setUserId(usuario.getId());
 				PersistenceFactory.newSeatDao().save(seat);
-				Log.debug("Creado con éxtio el viaje a [%s]",ciudadDestino);
+				Log.debug("Creado con éxtio el viaje a [%s]", ciudadDestino);
 				return "EXITO";
 
 			} catch (NumberFormatException e) {
