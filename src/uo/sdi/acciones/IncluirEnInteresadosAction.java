@@ -4,7 +4,9 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import alb.util.log.Log;
+import uo.sdi.dto.DTOAssembler;
 import uo.sdi.model.Application;
+import uo.sdi.model.Trip;
 import uo.sdi.model.User;
 import uo.sdi.persistence.PersistenceFactory;
 
@@ -16,7 +18,7 @@ public class IncluirEnInteresadosAction implements Accion {
 
 		String[] queryString = request.getQueryString().split("=");
 
-		if (queryString.length > 2) {
+		if (queryString.length == 2) {
 			try {
 
 				Long idTrip = Long.parseLong(queryString[1]);
@@ -25,9 +27,15 @@ public class IncluirEnInteresadosAction implements Accion {
 				application.setTripId(idTrip);
 				User user = (User) request.getSession().getAttribute("user");
 				application.setUserId(user.getId());
-
 				PersistenceFactory.newApplicationDao().save(application);
+
+				Trip trip = PersistenceFactory.newTripDao().findById(idTrip);
+				request.setAttribute("viaje",
+						DTOAssembler.generateTripDto(trip, user));
+
+				request.setAttribute("incluirEnInteresadosAction", "j");
 				Log.debug("Incluido en interesados " + user.getName());
+
 				return "EXITO";
 			} catch (NumberFormatException e) {
 

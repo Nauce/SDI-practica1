@@ -6,6 +6,7 @@ import java.util.List;
 import java.util.Map;
 
 import uo.sdi.dto.ComentariosUsuarioDto.Comentario;
+import uo.sdi.model.Application;
 import uo.sdi.model.Rating;
 import uo.sdi.model.Seat;
 import uo.sdi.model.SeatStatus;
@@ -21,7 +22,7 @@ public class DTOAssembler {
 
 		User promotor = PersistenceFactory.newUserDao().findById(
 				trip.getPromoterId());
-		TripDto tdao = new TripDto(trip);
+		TripDto tdao = new TripDto(trip, user.getId());
 		tdao.setPromotor(PersistenceFactory.newUserDao()
 				.findById(trip.getPromoterId()).getName());
 		Map<User, SeatStatus> usersAndStatus = findUsersAndStatusSeatBySeat(
@@ -72,23 +73,19 @@ public class DTOAssembler {
 		int contador = 0;
 		double media = 0;
 		for (Rating rating : ratings) {
-
 			if (rating.getSeatAboutUserId().equals(promotor.getId())) {
-
 				contador++;
 				media += rating.getValue();
 				infodto.getComentarios().add(rating.getComment());
-
 			}
-
 		}
 		media = media / contador;
 		infodto.setRating(media);
 		infodto.setIdUsuario(promotor.getId());
-		infodto.setUsuario(promotor.getName());
+		infodto.setUsuario(promotor.getName() + " " + promotor.getSurname()
+				+ " (" + promotor.getLogin() + ")");
 
 		return infodto;
-
 	}
 
 	private static Map<String, InfoViajeDto> getInfoViaje(Long idViaje,
@@ -105,7 +102,6 @@ public class DTOAssembler {
 
 				if (rating.getSeatAboutUserId().equals(usuario.getId())
 						&& !rating.getSeatAboutUserId().equals(idPromotor)) {
-
 					contador++;
 					media += rating.getValue();
 					infodto.getComentarios().add(rating.getComment());
@@ -116,7 +112,8 @@ public class DTOAssembler {
 			media = media / contador;
 			infodto.setRating(media);
 			infodto.setIdUsuario(usuario.getId());
-			infodto.setUsuario(usuario.getName());
+			infodto.setUsuario((usuario.getName() + " " + usuario.getSurname()
+					+ " (" + usuario.getLogin() + ")"));
 			infodto.setSeatStatus(usuarios.get(usuario));
 			usuarioComentario.put(usuario.getName(), infodto);
 
@@ -134,10 +131,25 @@ public class DTOAssembler {
 		for (Seat seat : seats) {
 
 			if (seat.getTripId().equals(id)
-					&& !seat.getUserId().equals(promoterID)) {
+					&& !seat.getUserId().equals(promoterID)
+					&& seat.getStatus().equals((SeatStatus.ACCEPTED))) {
 				map.put(PersistenceFactory.newUserDao().findById(
 						seat.getUserId()), seat.getStatus());
 			}
+		}
+
+		List<Application> applications = PersistenceFactory.newApplicationDao()
+				.findAll();
+
+		for (Application application : applications) {
+
+			if (application.getTripId().equals(id)
+					&& !application.getUserId().equals(promoterID)) {
+				map.put(PersistenceFactory.newUserDao().findById(
+						application.getUserId()), null);
+
+			}
+
 		}
 
 		return map;
