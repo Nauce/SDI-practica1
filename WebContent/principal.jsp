@@ -57,6 +57,21 @@
 				Submit</button>
 		</div>
 	</div>
+	
+	<div class="popover-markup">
+							<a href="#" class="trigger btn btn-default">${usuario}</a>
+							<div class="head hide">Pasar a</div>
+							<div class="content hide">
+								<form class="form-group" method="post" action="comentariosUsuario?id=306">
+									<button type="submit" class="btn btn-warning">
+										Pendientes</button>
+								</form>
+								<form class="form-group" method="post" action="comentariosUsuario?id=306">
+								<button type="submit" class="btn btn-danger">
+									Excluidos</button>
+								</form>
+							</div>
+						</div>
 
 	<script>
 		$('.popover-markup>.trigger').popover({
