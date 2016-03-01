@@ -21,7 +21,7 @@
 							<a class="navbar-brand" href="principal.jsp">ShareMyTrip</a>
 						</div>
 						<ul class="nav navbar-nav">
-							<li><a href="listarViajes">Viajes ofertados</a></li>
+							<li><a href="listarViajes">Viajes activos</a></li>
 						</ul>
 
 						<ul class="nav navbar-nav navbar-right">
@@ -43,8 +43,8 @@
 							<a class="navbar-brand" href="principal.jsp">ShareMyTrip</a>
 						</div>
 						<ul class="nav navbar-nav">
-							<li><a href="listarViajes">Viajes ofertados</a></li>
-							<li><a href="listarViajesOfertados">Mis viajes</a></li>
+							<li><a href="listarViajes">Viajes activos</a></li>
+							<li><a href="listarViajesOfertados">Mis viajes ofertados</a></li>
 							<li><a href="misViajesImplicados">Mis viajes implicados</a></li>
 							<li><a href="registrarViaje">Crear viaje</a></li>
 						</ul>

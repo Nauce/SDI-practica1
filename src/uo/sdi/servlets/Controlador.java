@@ -57,7 +57,7 @@ public class Controlador extends javax.servlet.http.HttpServlet {
 
 			Log.error("Se ha producido alguna excepción no manejada [%s]", e);
 
-			jspSiguiente = "/login.jsp";
+			jspSiguiente = "/principal.jsp";
 		}
 
 		RequestDispatcher dispatcher = getServletContext()
@@ -119,44 +119,32 @@ public class Controlador extends javax.servlet.http.HttpServlet {
 		mapaRegistrado.put("listarViajes", new ListarViajesAction());
 		mapaRegistrado.put("listarViajesUsuario",
 				new ListarViajesUsuarioRegistradoAction());
-
 		mapaRegistrado.put("listarViajesOfertados",
 				new ListarViajesOfertadosAction());
-
 		mapaRegistrado.put("incluirEnInteresados",
 				new IncluirEnInteresadosAction());
-
 		mapaRegistrado.put("borrarViaje", new BorrarViajeAction());
-
 		mapaRegistrado.put("cerrarSesion", new CerrarSesionAction());
-
 		mapaRegistrado.put("listarViajesUsuario",
 				new ListarViajesUsuarioRegistradoAction());
-
 		mapaRegistrado.put("modificarViaje", new ModificarViajeAction());
 		mapaRegistrado
 				.put("comentariosUsuario", new ComentariosUsuarioAction());
 		mapaRegistrado.put("excluirParticipante", new ExcluirAction());
 		mapaRegistrado.put("admitirParticipante", new AdmitirAction());
-
 		mapaRegistrado.put("solicitudesViaje", new SolicitudesViajeAction());
-
 		mapaRegistrado.put("pasarAPendientes", new PasarAPendientesAction());
-
 		mapaRegistrado.put("misViajesImplicados",
 				new MisViajesImplicadosAction());
 		mapaRegistrado.put("comentarEnViaje", new ComentarEnViajeAction());
-
 		mapaRegistrado.put("misViajesImplicados",
 				new MisViajesImplicadosAction());
-
 		mapaRegistrado.put("ordenarViajesPublico",
 				new OrdenarViajesPublicosAction());
-
 		mapaRegistrado.put("ordenarViajesPromotor",
 				new OrdenarViajesOfertados());
-		
-		mapaRegistrado.put("comentarEnViajeAUsuario", new ComentarEnViajeAUsuarioAction());
+		mapaRegistrado.put("comentarEnViajeAUsuario",
+				new ComentarEnViajeAUsuarioAction());
 		mapaRegistrado.put("cancelarPlaza", new CancelarPlazaAction());
 
 		mapaDeAcciones.put("REGISTRADO", mapaRegistrado);
@@ -172,8 +160,6 @@ public class Controlador extends javax.servlet.http.HttpServlet {
 
 		// Mapa de navegación del público
 		resJSP.put("FRACASO", "/login.jsp");
-		opcionResJSP.put("login", resJSP);
-		resJSP.put("EXITO", "/login.jsp");
 		opcionResJSP.put("login", resJSP);
 
 		resJSP = new HashMap<String, String>();
@@ -201,7 +187,7 @@ public class Controlador extends javax.servlet.http.HttpServlet {
 		resJSP = new HashMap<String, String>();
 
 		// Mapa de navegación de usuarios registrados
-		resJSP.put("EXITO", "/principal.jsp");
+		resJSP.put("EXITO", "/listarViajes");
 		opcionResJSP.put("login", resJSP);
 
 		resJSP = new HashMap<String, String>();
@@ -294,20 +280,17 @@ public class Controlador extends javax.servlet.http.HttpServlet {
 		resJSP = new HashMap<String, String>();
 		resJSP.put("EXITO", "/comentarEnViaje.jsp");
 		opcionResJSP.put("comentarEnViaje", resJSP);
-		
+
 		resJSP = new HashMap<String, String>();
 		resJSP.put("EXITO", "/misViajesImplicados.jsp");
 		opcionResJSP.put("comentarEnViajeAUsuario", resJSP);
-		
+
 		resJSP = new HashMap<String, String>();
 		resJSP.put("EXITO", "/misViajesImplicados.jsp");
 		opcionResJSP.put("cancelarPlaza", resJSP);
 
 		mapaDeNavegacion.put("REGISTRADO", opcionResJSP);
 	}
-	
-	
-	
 
 	public void doPost(HttpServletRequest req, HttpServletResponse res)
 			throws IOException, ServletException {
