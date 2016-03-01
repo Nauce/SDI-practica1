@@ -1,5 +1,6 @@
 <%@ page contentType="text/html" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <%@ include file="barraNavegacion.jsp"%>
 <!DOCTYPE html>
 <html>
@@ -31,8 +32,7 @@
 </head>
 <body>
 
-	<form class="form-controll" method="post"
-		action="comentarEnViaje">
+	<form class="form-controll" method="post" action="comentarEnViaje">
 		<div class="container">
 			<div class="page-header">
 				<h1>Comentar en viaje ID ${ dto.trip.id }</h1>
@@ -43,15 +43,17 @@
 					<h4>
 						<span class="label label-info"> Viaje ID ${dto.trip.id}
 							&nbsp; ${dto.trip.departure.city} - ${dto.trip.destination.city}
-							&nbsp; ${dto.trip.departureDate}</span>
+							&nbsp;<fmt:formatDate type="both" dateStyle="short"
+								timeStyle="short" value="${dto.trip.departureDate}"/>
+						</span>
 					</h4>
 					<br>
 
 					<p>
-						<strong>Participante</strong>&nbsp;&nbsp;
-						<select class="selectpicker">
+						<strong>Participante</strong>&nbsp;&nbsp; <select
+							class="selectpicker">
 							<c:forEach var="entry" items="${dto.participantes}" varStatus="i">
-								<option>${entry.name} ${entry.surname} (${entry.login})</option>
+								<option>${entry.name}${entry.surname} (${entry.login})</option>
 							</c:forEach>
 						</select>
 					</p>
@@ -70,9 +72,9 @@
 						<label for="comment">Comentar</label>
 						<textarea class="form-control" rows="5" id="comment"></textarea>
 					</div>
-					
+
 					<button type="submit" class="btn btn-primary">Enviar</button>
-					
+
 				</div>
 			</div>
 

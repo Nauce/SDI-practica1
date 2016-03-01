@@ -1,6 +1,7 @@
 <%@ page contentType="text/html" pageEncoding="UTF-8"
 	import="uo.sdi.model.SeatStatus"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <%@ include file="comprobarNavegacion.jsp"%>
 <%@ include file="barraNavegacion.jsp"%>
 <!DOCTYPE html>
@@ -66,8 +67,10 @@
 					<td>${entry.key.departure.city}</td>
 					<td>${entry.key.destination.city}</td>
 					<td>${entry.key.availablePax}</td>
-					<td>${entry.key.departureDate}</td>
-					<td>${entry.key.closingDate}</td>
+					<td><fmt:formatDate type="both" dateStyle="short"
+								timeStyle="short" value="${entry.key.departureDate}"/></td>
+					<td><fmt:formatDate type="both" dateStyle="short"
+								timeStyle="short" value="${entry.key.closingDate}"/></td>
 					<td>${entry.key.estimatedCost}</td>
 					<td>
 						<form method="post" action="comentarEnViaje?id=${entry.key.id}">

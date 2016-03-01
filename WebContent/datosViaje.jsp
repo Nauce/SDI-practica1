@@ -1,5 +1,6 @@
 <%@ page contentType="text/html" pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <%@ include file="barraNavegacion.jsp"%>
 <%@ page import="uo.sdi.model.SeatStatus"%>
 <!DOCTYPE>
@@ -44,22 +45,28 @@
 
 				<br>
 
-				<h3>${viaje.trip.departure.city}-
+				<h3>${viaje.trip.departure.city}&nbsp;-
 					${viaje.trip.destination.city}</h3>
 				<h4>
-					<span class="label label-info">Fecha límite:
-						${viaje.trip.closingDate}</span>
+					<span class="label label-info">Fecha límite: <fmt:formatDate
+							type="both" dateStyle="short" timeStyle="short"
+							value="${viaje.trip.closingDate}" /></span>
 				</h4>
 
 				<br>
 
 				<h4>
 					Salida&nbsp;&nbsp;&nbsp;&nbsp;: &nbsp; ${viaje.trip.departure.city}
-					&nbsp; ${viaje.trip.departureDate}
+					&nbsp; <fmt:formatDate
+							type="both" dateStyle="short" timeStyle="short"
+							value="${viaje.trip.departureDate}" />
 					<!--28/02/2016 &nbsp; 15:00  -->
 				</h4>
 				<h4>Llegada&nbsp;: &nbsp; ${viaje.trip.destination.city} &nbsp;
-					${viaje.trip.arrivalDate}</h4>
+					<fmt:formatDate
+							type="both" dateStyle="short" timeStyle="short"
+							value="${viaje.trip.arrivalDate}" />
+					</h4>
 
 				<br>
 
@@ -98,7 +105,7 @@
 
 
 				<c:set var="ACCEPTED" value="<%=SeatStatus.ACCEPTED%>" />
-				
+
 				<c:forEach var="entry" items="${viaje.infoPasajeros}" varStatus="i">
 					<c:if test="${entry.value.seatStatus == ACCEPTED}">
 						<div class="panel panel-default">
