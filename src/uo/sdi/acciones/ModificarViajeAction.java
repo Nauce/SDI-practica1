@@ -122,12 +122,15 @@ public class ModificarViajeAction implements Accion {
 				List<Trip> viajes = findTripsByUserSession(id);
 				request.setAttribute("viajesOfertados", viajes);
 
-				Log.debug("Viaje modificado con éxito");
+				Log.debug("Viaje [%s] modificado con éxito", nuevoViaje.getId());
+				
+				request.setAttribute("modificarViajeAction", "");
+				
 				return "EXITO";
 
 			} catch (NumberFormatException e) {
 
-				Log.error("No se ha  modificado con éxito");
+				Log.error("No se ha podido modificar el viaje");
 
 				return "FRACASO";
 			}

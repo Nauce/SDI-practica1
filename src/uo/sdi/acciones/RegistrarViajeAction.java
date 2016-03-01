@@ -1,12 +1,10 @@
 package uo.sdi.acciones;
 
 import java.util.Date;
-import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import alb.util.log.Log;
 import uo.sdi.model.AddressPoint;
 import uo.sdi.model.Seat;
 import uo.sdi.model.SeatStatus;
@@ -16,6 +14,7 @@ import uo.sdi.model.User;
 import uo.sdi.model.Waypoint;
 import uo.sdi.persistence.PersistenceFactory;
 import uo.sdi.persistence.util.DateUtil;
+import alb.util.log.Log;
 
 public class RegistrarViajeAction implements Accion {
 
@@ -116,8 +115,6 @@ public class RegistrarViajeAction implements Accion {
 				
 				
 				Long tripID = PersistenceFactory.newTripDao().save(nuevoViaje);
-				
-				System.err.println("GODDAMNFAIL");
 
 				Seat seat = new Seat();
 				seat.setComment(comentarios);
@@ -127,6 +124,8 @@ public class RegistrarViajeAction implements Accion {
 				PersistenceFactory.newSeatDao().save(seat);
 
 				Log.debug("Creado con éxtio el viaje a [%s]", ciudadDestino);
+				
+				request.setAttribute("registrarViajeAction", "");
 				return "EXITO";
 
 			} catch (NumberFormatException e) {

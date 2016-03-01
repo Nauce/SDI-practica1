@@ -49,6 +49,7 @@ public class PasarAPendientesAction implements Accion {
 			}
 		}
 
+		Log.debug("Asiento desasignado correctamente");
 		return "EXITO";
 	}
 

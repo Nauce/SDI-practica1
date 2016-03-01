@@ -2,18 +2,15 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ include file="barraNavegacion.jsp"%>
-<!DOCTYPE>
+<!DOCTYPE html>
 <html>
 <head>
 <title>ShareMyTrip - Registrarse</title>
-<link rel="stylesheet" href="css/bootstrap.min.css">
-<meta name="viewport" content="width=device-width, initial-scale=1">
 </head>
 <body>
 
 	<form class="form-controll" method="post" action="registrarse">
 
-		<div class="section">
 			<div class="container">
 				<div class="row">
 					<div class="col-md-12">
@@ -74,7 +71,6 @@
 					</div>
 				</div>
 			</div>
-		</div>
 
 	</form>
 

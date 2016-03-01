@@ -33,7 +33,7 @@ public class ExcluirAction implements Accion {
 					updateAvailablePax(idTrip, 1);
 					putDtoInRequest(request, idTrip);
 
-					Log.debug("Usuario " + idUser + " excluido en el viaje" + idTrip);
+					Log.debug("Usuario [%s] excluido del viaje [%s]", idUser, idTrip);
 					
 					return "EXITO";
 				}
@@ -46,17 +46,17 @@ public class ExcluirAction implements Accion {
 				PersistenceFactory.newSeatDao().save(seat);
 				putDtoInRequest(request, idTrip);
 
-				Log.debug("Usuario " + idUser + " excluido en el viaje" + idTrip);
+				Log.debug("Usuario [%s] excluido del viaje [%s]", idUser, idTrip);
 
 				return "EXITO";
 			} catch (NumberFormatException e) {
 
-				Log.error("No se ha excluido al usuario");
+				Log.error("No se ha poder excluir al usuario");
 
 				return "FRACASO";
 			}
 		}
-		Log.error("No se ha excluido al usuario");
+		Log.error("No se ha podido excluir al usuario");
 
 		return "FRACASO";
 

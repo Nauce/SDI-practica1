@@ -25,7 +25,7 @@ public class SolicitudesViajeAction implements Accion {
 				request.setAttribute("solicitudesDto", solicitudes);
 			} catch (NumberFormatException e) {
 
-				Log.debug("No se ha podido incluir en interesados el usuario");
+				Log.debug("No se ha podido obtener las solicitudes del viaje");
 				return "FRACASO";
 			}
 		}

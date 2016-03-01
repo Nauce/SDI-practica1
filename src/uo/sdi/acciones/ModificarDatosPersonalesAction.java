@@ -25,9 +25,9 @@ public class ModificarDatosPersonalesAction implements Accion {
 		User user = (User) request.getSession().getAttribute("user");
 		
 		if (contrasenyaActual == null || !user.getPassword().equals(contrasenyaActual)) {
-			Log.info("El usuario [%s] ha intentando modificar sus datos personales introduciendo mal su contraseña",
+			Log.info("El usuario [%s] ha intentando modificar sus datos personales introduciendo mal su contraseï¿½a",
 					user.getLogin());
-			errores += "Contraseña actual errónea";
+			errores += "ContraseÃ±a actual errÃ³nea";
 			request.setAttribute("errores", errores);
 			return "FRACASO";
 		}
@@ -36,8 +36,8 @@ public class ModificarDatosPersonalesAction implements Accion {
 				|| nuevoContrasenya.isEmpty()
 				|| !nuevoContrasenya.equals(nuevoConfirmaContrasenya)) {
 			Log.info("El usuario [%s] ha intentando modificar sus datos personales"
-					+ " no coincidiendo las contraseñas nuevas", user.getLogin());
-			errores += "Las contraseñas nuevas no coinciden";
+					+ " no coincidiendo las contraseï¿½as nuevas", user.getLogin());
+			errores += "Las contraseÃ±as nuevas no coinciden";
 			request.setAttribute("errores", errores);
 			return "FRACASO";
 		}
@@ -52,7 +52,7 @@ public class ModificarDatosPersonalesAction implements Accion {
 			Log.debug("Modificado nombre de [%s] con el valor [%s]", user.getLogin(), nuevoNombre);
 			Log.debug("Modificado apellidos de [%s] con el valor [%s]", user.getLogin(), nuevoApellidos);
 			Log.debug("Modificado email de [%s] con el valor [%s]", user.getLogin(), nuevoEmail);
-			Log.debug("Modificado contraseña de [%s] con el valor [%s]", user.getLogin(), nuevoContrasenya);
+			Log.debug("Modificado contraseÃ±a de [%s] con el valor [%s]", user.getLogin(), nuevoContrasenya);
 		}
 		catch (Exception e) {
 			Log.error("Algo ha ocurrido actualizando el usuario [%s]", user.getLogin());

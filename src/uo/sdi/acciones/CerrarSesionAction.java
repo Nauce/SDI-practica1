@@ -15,7 +15,7 @@ public class CerrarSesionAction implements Accion {
 		HttpSession session = request.getSession();
 
 		if (session == null) {
-			Log.debug("No se ha podido finalizar la sesión");
+			Log.error("No se ha podido finalizar la sesión");
 
 			return "FRACASO";
 		}
@@ -23,7 +23,7 @@ public class CerrarSesionAction implements Accion {
 		
 		request.setAttribute("logout", true);
 
-		Log.debug("Sesion finalizada con éxito");
+		Log.debug("Sesión finalizada con éxito");
 		return "EXITO";
 	}
 

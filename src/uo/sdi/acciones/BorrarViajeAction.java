@@ -19,10 +19,7 @@ public class BorrarViajeAction implements Accion {
 	public String execute(HttpServletRequest request,
 			HttpServletResponse response) {
 
-		List<Trip> viajes;
-
 		try {
-
 			Long id = Long.parseLong(request.getQueryString().split("=")[1]);
 			TripDao tdao = PersistenceFactory.newTripDao();
 			Trip trip = PersistenceFactory.newTripDao().findById(id);
@@ -31,13 +28,15 @@ public class BorrarViajeAction implements Accion {
 			Long idUser = ((User) request.getSession().getAttribute("user"))
 					.getId();
 
-			viajes = findTripsByUserSession(idUser);
+			List<Trip> viajes = findTripsByUserSession(idUser);
 			request.setAttribute("viajesOfertados", viajes);
 
 		} catch (Exception e) {
-			Log.error("Error borrando el viaje");
+			Log.error("Error borrando un viaje");
+			return "FRACASO";
 		}
-		Log.debug("Viaje Creado con exito");
+		
+		Log.debug("Viaje borrado con éxito");
 		return "EXITO";
 	}
 

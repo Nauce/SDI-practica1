@@ -34,12 +34,13 @@ public class IncluirEnInteresadosAction implements Accion {
 						DTOAssembler.generateTripDto(trip, user));
 
 				request.setAttribute("incluirEnInteresadosAction", "j");
-				Log.debug("Incluido en interesados " + user.getName());
+				Log.debug("Incluido en interesados el usuario [%s]",
+						user.getName());
 
 				return "EXITO";
 			} catch (NumberFormatException e) {
 
-				Log.debug("No se ha podido incluir en interesados el usuario");
+				Log.debug("No se ha podido incluir en interesados al usuario");
 				return "FRACASO";
 			}
 		}

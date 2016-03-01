@@ -37,7 +37,7 @@ public class ListarViajesOfertadosAction implements Accion {
 					viajes.size());
 
 		} catch (Exception e) {
-			Log.error("Algo ha ocurrido obteniendo lista de viajes");
+			Log.error("Algo ha ocurrido obteniendo la lista de viajes");
 		}
 		return "EXITO";
 	}

@@ -17,8 +17,8 @@ public class RegistrarseAction implements Accion {
 		String resultado = "EXITO";
 		
 		if (request.getSession().getAttribute("user") != null) {
-			Log.info("El usuario [%s] ha intentado acceder a la página de registrarse como usuario."
-					+ " Fue redirigido a la página principal",
+			Log.info("El usuario [%s] ha intentado acceder a la pï¿½gina de registrarse como usuario."
+					+ " Fue redirigido a la pï¿½gina principal",
 					((User) request.getSession().getAttribute("user")).getLogin());
 			return resultado;
 		}
@@ -41,12 +41,12 @@ public class RegistrarseAction implements Accion {
 		
 		if (nombreUsuario == null || nombre == null || apellidos == null || email == null || contrasenya == null
 				|| nombreUsuario.trim().isEmpty() || nombre.trim().isEmpty() || apellidos.trim().isEmpty() || email.trim().isEmpty() || contrasenya.trim().isEmpty()) {
-			sb.append("Ninguno de los campos puede ser vacío o tener espacios en blanco<br><br>");
+			sb.append("Ninguno de los campos puede ser vacÃ­o o tener espacios en blanco<br><br>");
 			resultado = "FRACASO";
 		}
 	
 		else if (confirmaContrasenya != null && !contrasenya.isEmpty() && !contrasenya.equals(confirmaContrasenya)) {
-			sb.append("Las contraseñas introducidas no coinciden<br><br>");
+			sb.append("Las contraseÃ±as introducidas no coinciden<br><br>");
 			resultado = "FRACASO";
 		}
 		

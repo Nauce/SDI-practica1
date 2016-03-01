@@ -13,22 +13,25 @@ public class ComentarEnViajeAction implements Accion {
 	public String execute(HttpServletRequest request,
 			HttpServletResponse response) {
 
-	
-			try {
-				String queryString = request.getQueryString();
-				
-				Long idTrip = Long.parseLong(queryString.split("=")[1]);
-				Long idUser = ((User) request.getSession().getAttribute("user")).getId();
+		try {
+			String queryString = request.getQueryString();
 
-				request.setAttribute("dto", DTOAssembler.generateComentarEnViajeDto(idTrip, idUser));
-				
-				return "EXITO";
-			} catch (NumberFormatException e) {
+			Long idTrip = Long.parseLong(queryString.split("=")[1]);
+			Long idUser = ((User) request.getSession().getAttribute("user"))
+					.getId();
 
-				Log.error("No se han le�do los usuarios del viaje");
-				return "FRACASO";
+			request.setAttribute("dto",
+					DTOAssembler.generateComentarEnViajeDto(idTrip, idUser));
 
-			}
+			Log.debug("Usuarios leídos del viaje [%s]", idTrip);
+			
+			return "EXITO";
+		} catch (NumberFormatException e) {
+
+			Log.error("No se han leído los usuarios del viaje");
+			return "FRACASO";
+
+		}
 
 	}
 

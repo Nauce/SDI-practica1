@@ -8,15 +8,29 @@
 <!DOCTYPE>
 <html>
 <head>
-<title>ShareMyTrip - Listado de viajes</title>
+<title>ShareMyTrip - Mis viajes ofertados</title>
 <link rel="stylesheet" href="css/bootstrap.min.css">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 </head>
 <body>
 	<div class="container">
 
-		<h1 class="text-center">Estos son sus viajes ofertados</h1>
-		<p>Puede borrar uno si lo necesita, asi como modificarlo</p>
+		<c:if test="${ resquestScope.modificarViajeAction != null}">
+			<div class="alert alert-success">
+				<p>Viaje modificado con éxito</p>
+			</div>
+		</c:if>
+
+		<c:if test="${ resquestScope.registrarViajeAction != null}">
+			<div class="alert alert-success">
+				<p>Viaje registrado con éxito</p>
+			</div>
+		</c:if>
+
+		<div class="page-header">
+			<h1>Mis viajes ofertados</h1>
+		</div>
+
 		<section class="col-md-4">
 			<form action="ordenarViajesPromotor" method="post">
 				<select name="filtrados" onchange="this.form.submit()"
@@ -52,9 +66,9 @@
 					<td>${entry.destination.city}</td>
 					<td>${entry.availablePax}</td>
 					<td><fmt:formatDate type="both" dateStyle="short"
-								timeStyle="short" value="${entry.departureDate}"/></td>
+							timeStyle="short" value="${entry.departureDate}" /></td>
 					<td><fmt:formatDate type="both" dateStyle="short"
-								timeStyle="short" value="${entry.closingDate}"/></td>
+							timeStyle="short" value="${entry.closingDate}" /></td>
 					<td>${entry.estimatedCost}</td>
 
 					<c:choose>

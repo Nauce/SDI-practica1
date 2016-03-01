@@ -37,6 +37,9 @@ public class AdmitirAction implements Accion {
 					Log.debug("Admitido con exito");
 					updateAvailablePax(idTrip);
 					putDtoInRequest(request, idTrip);
+					
+					Log.debug("Admitido el usuario [%s] en el viaje [%s]", idUser, idTrip);
+					
 					return "EXITO";
 
 				}
@@ -47,22 +50,21 @@ public class AdmitirAction implements Accion {
 				seat.setUserId(idUser);
 
 				PersistenceFactory.newSeatDao().save(seat);
-				Log.debug("Admitido el usuario" + idUser + "en el viaje"
-						+ idTrip);
 				updateAvailablePax(idTrip);
 				putDtoInRequest(request, idTrip);
+				
+				Log.debug("Admitido el usuario [%s] en el viaje [%s]", idUser, idTrip);
+				
 				return "EXITO";
 			} catch (NumberFormatException e) {
-
-				Log.error("No se ha admitido el usuario");
+				Log.error("Se ha intentado admitir en un viaje a un usuario desconocido");
 				return "FRACASO";
-
 			}
 		}
 
-		Log.error("No se ha admitido el usuario");
+		Log.error("Se ha intentado admitir en un viaje a un usuario desconocido");
+		
 		return "FRACASO";
-
 	}
 
 	private void updateAvailablePax(Long idTrip) {

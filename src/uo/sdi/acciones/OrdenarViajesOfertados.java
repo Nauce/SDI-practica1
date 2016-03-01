@@ -4,17 +4,16 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
-import javax.jms.Session;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import alb.util.log.Log;
 import uo.sdi.model.Trip;
 import uo.sdi.model.TripStatus;
 import uo.sdi.model.User;
 import uo.sdi.persistence.PersistenceFactory;
 import uo.sdi.persistence.TripDao;
 import uo.sdi.persistence.util.DateUtil;
+import alb.util.log.Log;
 
 public class OrdenarViajesOfertados implements Accion {
 
@@ -25,7 +24,6 @@ public class OrdenarViajesOfertados implements Accion {
 		String respuesta = request.getParameter("filtrados");
 		User user = (User) request.getSession().getAttribute("user");
 		TripDao tdao = PersistenceFactory.newTripDao();
-		Date date = new Date();
 		switch (respuesta) {
 		case "Fecha Ascendente":
 

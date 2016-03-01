@@ -58,8 +58,7 @@ public class CancelarPlazaAction implements Accion {
 				return "EXITO";
 			} catch (NumberFormatException e) {
 
-				Log.error("No se ha excluido al usuario");
-
+				Log.error("El usuario no ha podido cancelar su plaza en el viaje");
 				return "FRACASO";
 			}
 

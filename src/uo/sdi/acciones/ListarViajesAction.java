@@ -15,20 +15,17 @@ public class ListarViajesAction implements Accion {
 	@Override
 	public String execute(HttpServletRequest request,
 			HttpServletResponse response) {
-
-		List<Trip> viajes;
-
+		
 		try {
 
-			viajes = PersistenceFactory.newTripDao().findTravelsBefore(new Date());
+			List<Trip> viajes = PersistenceFactory.newTripDao().findTravelsBefore(new Date());
 			request.setAttribute("listaViajes", viajes);
 			
-			
-
 		} catch (Exception e) {
-			Log.error("Algo ha ocurrido obteniendo lista de viajes");
+			Log.error("Algo ha ocurrido obteniendo la lista de viajes");
 		}
-		Log.debug("Lista de viajes creada con éxito");
+		
+		Log.debug("Lista de viajes obtenida con éxito");
 		return "EXITO";
 	}
 

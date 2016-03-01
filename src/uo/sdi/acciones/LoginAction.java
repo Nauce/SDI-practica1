@@ -37,16 +37,8 @@ public class LoginAction implements Accion {
 				request.setAttribute("error", "error");
 			}
 		} 
-//		else if (!nombreUsuario.equals(session.getAttribute("user"))) {
-//			Log.info(
-//					"Se ha intentado iniciar sesión como [%s] teniendo la sesión iniciada como [%s]",
-//					nombreUsuario,
-//					((User) session.getAttribute("user")).getLogin());
-//			session.invalidate();
-//			resultado = "FRACASO";
-//		} 
 		else {
-			Log.info("El usuario [%s] ha intentado acceder a la p�gina de inicio de sesi�n."
+			Log.info("El usuario [%s] ha intentado acceder a la página de inicio de sesión."
 					+ " Fue redirigido a la p�gina principal",
 					((User) session.getAttribute("user")).getLogin());
 			resultado = "FRACASO";

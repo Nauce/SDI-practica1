@@ -33,19 +33,19 @@ public class ComentarEnViajeAUsuarioAction implements Accion {
 				
 				PersistenceFactory.newRatingDao().save(rating);
 				
-				Log.info("El usuario [%s] ha comentado sobre el usuario [%s] en el viaje [%s]",
-						((User)request.getSession().getAttribute("user")).getId(),
-						idUserTo,
-						idTrip);
-				
 				request.setAttribute("comentarAUsuarioAction", "");
 				request.setAttribute("viajesImplicadosDto",
 						DTOAssembler.getViajesImplicadosDto(((User)request.getSession().getAttribute("user")).getId()));
 				
+				Log.debug("El usuario [%s] ha comentado sobre el usuario [%s] en el viaje [%s]",
+						((User)request.getSession().getAttribute("user")).getId(),
+						idUserTo,
+						idTrip);
+				
 				return "EXITO";
 			} catch (NumberFormatException e) {
 
-				Log.error("No se han leído los usuarios del viaje");
+				Log.error("El usuario no ha podido realizar un comentario");
 				return "FRACASO";
 
 			}

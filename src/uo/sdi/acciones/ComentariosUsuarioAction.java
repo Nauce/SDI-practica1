@@ -20,12 +20,13 @@ public class ComentariosUsuarioAction implements Accion {
 			User user = PersistenceFactory.newUserDao().findById(id);
 			request.setAttribute("comentariosUsuario",
 					DTOAssembler.generateComentariosUsuarioDto(user));
-
+			
+			Log.debug("Comentarios del usuario [%s] leídos", id);
 		} catch (Exception e) {
 			Log.error("Algo ha ocurrido obteniendo la lista de comentarios del usuario");
 			return "ERROR";
 		}
-		Log.debug("Comentarios buscados con exito");
+	
 		return "EXITO";
 	}
 
