@@ -32,7 +32,7 @@
 </head>
 <body>
 
-	<form class="form-controll" method="post" action="comentarEnViaje">
+	<form class="form-controll" method="post" action="comentarEnViajeAUsuario?idViaje=${dto.trip.id}">
 		<div class="container">
 			<div class="page-header">
 				<h1>Comentar en viaje ID ${ dto.trip.id }</h1>
@@ -48,30 +48,31 @@
 						</span>
 					</h4>
 					<br>
-
 					<p>
-						<strong>Participante</strong>&nbsp;&nbsp; <select
-							class="selectpicker">
+						<strong>Participante</strong>&nbsp;&nbsp;
+						<select
+							class="selectpicker" name="participante">
 							<c:forEach var="entry" items="${dto.participantes}" varStatus="i">
-								<option>${entry.name}${entry.surname} (${entry.login})</option>
+								<option>${entry.id} ${entry.name} ${entry.surname} (${entry.login})</option>
 							</c:forEach>
-						</select>
+							</select>
 					</p>
-
+					
 					<br>
+
 
 					<p>
 						<strong>Puntuación</strong> &nbsp;&nbsp;<input id="input-id"
 							name="ratingValue" type="number" class="rating" min=0 max=5
-							step=1 data-size="lg" value=3>
+							step=1 data-size="lg" value=3 required>
 					</p>
 
 					<br>
 
-					<div class="form-group">
+					
 						<label for="comment">Comentar</label>
-						<textarea class="form-control" rows="5" id="comment"></textarea>
-					</div>
+						<textarea class="form-control" rows="5" id="comment" name="comment" required></textarea>
+					<br>
 
 					<button type="submit" class="btn btn-primary">Enviar</button>
 

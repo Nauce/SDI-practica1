@@ -20,7 +20,7 @@
 				<div class="row">
 					<div class="col-md-12">
 						<h1>
-							Inserte los datos de su proximo viaje ofertado<br>
+							Inserte de nuevo los datos del viaje ofertado<br>
 						</h1>
 					</div>
 				</div>
@@ -28,19 +28,6 @@
 		</div>
 
 
-
-
-		<div class="section">
-			<div class="container">
-				<div class="row">
-					<div class="col-md-12">
-						<h1>
-							Inserte los datos de su proximo viaje ofertado<br>
-						</h1>
-					</div>
-				</div>
-			</div>
-		</div>
 		<div class="section">
 			<div class="container">
 				<c:if test="${fechaPrevia != null}">
