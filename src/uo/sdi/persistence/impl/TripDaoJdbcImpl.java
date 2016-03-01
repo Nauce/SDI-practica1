@@ -139,22 +139,54 @@ public class TripDaoJdbcImpl implements TripDao {
 
 	@Override
 	public List<Trip> dateAscending(Date date) {
-		return jdbcTemplate.queryForList("TRIP_DATE_ASC", new TripMapper(),date);
+		return jdbcTemplate.queryForList("TRIP_DATE_ASC", new TripMapper(),
+				date);
 	}
 
 	@Override
 	public List<Trip> dateDescending(Date date) {
-		return jdbcTemplate.queryForList("TRIP_DATE_DESC", new TripMapper(),date);
+		return jdbcTemplate.queryForList("TRIP_DATE_DESC", new TripMapper(),
+				date);
 	}
 
 	@Override
 	public List<Trip> destinoDescending(Date date) {
-		return jdbcTemplate.queryForList("TRIP_DEST_DESC", new TripMapper(),date);
+		return jdbcTemplate.queryForList("TRIP_DEST_DESC", new TripMapper(),
+				date);
 	}
 
 	@Override
 	public List<Trip> destinoAscending(Date date) {
-		return jdbcTemplate.queryForList("TRIP_DEST_ASC", new TripMapper(),date);
+		return jdbcTemplate.queryForList("TRIP_DEST_ASC", new TripMapper(),
+				date);
+	}
+
+	@Override
+	public List<Trip> dateAscendingPromoter(Long idProm) {
+		// TODO Auto-generated method stub
+		return jdbcTemplate.queryForList("TRIP_DATE_ASC_PROM",
+				new TripMapper(), idProm);
+	}
+
+	@Override
+	public List<Trip> dateDescendingPromoter(Long idProm) {
+		// TODO Auto-generated method stub
+		return jdbcTemplate.queryForList("TRIP_DATE_DESC_PROM",
+				new TripMapper(), idProm);
+	}
+
+	@Override
+	public List<Trip> destinoDescendingPromoter(Long idProm) {
+		// TODO Auto-generated method stub
+		return jdbcTemplate.queryForList("TRIP_DEST_DESC_PROM",
+				new TripMapper(), idProm);
+	}
+
+	@Override
+	public List<Trip> destinoAscendingPromoter(Long idProm) {
+		// TODO Auto-generated method stub
+		return jdbcTemplate.queryForList("TRIP_DEST_ASC_PROM",
+				new TripMapper(), idProm);
 	}
 
 }

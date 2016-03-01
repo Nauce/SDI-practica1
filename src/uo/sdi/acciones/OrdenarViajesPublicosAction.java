@@ -35,7 +35,7 @@ public class OrdenarViajesPublicosAction implements Accion {
 			break;
 
 		case "Destino Ascendente":
-			request.setAttribute("listaViajes", tdao.dateAscending(date));
+			request.setAttribute("listaViajes", tdao.destinoAscending(date));
 			break;
 		default:
 			request.setAttribute("listaViajes", tdao.dateDescending(date));

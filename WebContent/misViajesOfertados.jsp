@@ -13,10 +13,24 @@
 </head>
 <body>
 	<div class="container">
+
 		<h1 class="text-center">Estos son sus viajes ofertados</h1>
 		<p>Puede borrar uno si lo necesita, asi como modificarlo</p>
+		<section class="col-md-4">
+			<form action="ordenarViajesPromotor" method="post">
+				<select name="filtrados" onchange="this.form.submit()"
+					class="form-control">
+					<option>Selecciona una opcion</option>
+					<option>Fecha Descendente</option>
+					<option>Fecha Ascendente</option>
+					<option>Destino Descendente</option>
+					<option>Destino Ascendente</option>
+				</select>
+
+			</form>
+		</section>
 		<c:set var="DONE" value="<%=TripStatus.DONE%>" />
-		
+
 		<table class="table table-bordered">
 			<tr>
 				<th>ID viaje</th>

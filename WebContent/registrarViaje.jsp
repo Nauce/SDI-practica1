@@ -195,9 +195,5 @@
 			</div>
 		</div>
 	</form>
-
-	<h2>
-		<a id="login" class="text-right" href="principal"> Atrás </a>
-	</h2>
 </body>
 </html>
