@@ -238,6 +238,9 @@ public class Controlador extends javax.servlet.http.HttpServlet {
 		resJSP.put("FRACASO", "/registrarViaje.jsp");
 		opcionResJSP.put("registrarViaje", resJSP);
 
+		resJSP.put("EXITO", "/principal.jsp");
+		opcionResJSP.put("registrarViaje", resJSP);
+
 		resJSP = new HashMap<String, String>();
 		resJSP.put("EXITO", "/misViajesOfertados.jsp");
 		opcionResJSP.put("borrarViaje", resJSP);
@@ -291,6 +294,9 @@ public class Controlador extends javax.servlet.http.HttpServlet {
 
 		mapaDeNavegacion.put("REGISTRADO", opcionResJSP);
 	}
+	
+	
+	
 
 	public void doPost(HttpServletRequest req, HttpServletResponse res)
 			throws IOException, ServletException {

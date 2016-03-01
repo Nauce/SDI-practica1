@@ -87,8 +87,8 @@ public class RegistrarViajeAction implements Accion {
 						.fromString(fechaLimiteInscripcion);
 				Date dateLlegada = DateUtil.fromString(fechaLlegada);
 
-				if (DateUtil.isAfter(dateSalida, dateLlegada)
-						|| DateUtil.isAfter(dateConfirmacion, dateSalida)) {
+				if (DateUtil.isAfter(dateConfirmacion, dateSalida)
+						|| DateUtil.isAfter(dateSalida, dateLlegada)) {
 
 					request.setAttribute("fechaPrevia", true);
 					return "FRACASO";
@@ -113,15 +113,19 @@ public class RegistrarViajeAction implements Accion {
 				nuevoViaje.setDestination(new AddressPoint(calleDestino,
 						ciudadDestino, provinciaDestino, paisDestino,
 						codigoDestino, new Waypoint(latDest, lonDest)));
-				Long id = getLastId(PersistenceFactory.newTripDao().findAll());
-				nuevoViaje.setId(id);
-				PersistenceFactory.newTripDao().save(nuevoViaje);
+				
+				
+				Long tripID = PersistenceFactory.newTripDao().save(nuevoViaje);
+				
+				System.err.println("GODDAMNFAIL");
+
 				Seat seat = new Seat();
 				seat.setComment(comentarios);
 				seat.setStatus(SeatStatus.ACCEPTED);
-				seat.setTripId(id);
-				seat.setUserId(usuario.getId());
+				seat.setTripId(tripID);
+				seat.setUserId(usuario.getId());			
 				PersistenceFactory.newSeatDao().save(seat);
+
 				Log.debug("Creado con éxtio el viaje a [%s]", ciudadDestino);
 				return "EXITO";
 
@@ -136,24 +140,11 @@ public class RegistrarViajeAction implements Accion {
 		return resultado;
 	}
 
+	
 	@Override
 	public String toString() {
 		return getClass().getName();
 	}
 
-	private long getLastId(List<Trip> viajes) {
-
-		long last = 0;
-
-		for (Trip trip : viajes) {
-
-			if (trip.getId() > last) {
-				last = trip.getId();
-			}
-
-		}
-
-		return last + 1;
-
-	}
+	
 }

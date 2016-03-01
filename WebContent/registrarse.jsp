@@ -69,7 +69,7 @@
 						</div>
 
 
-						<button type="submit" class="btn btn-block btn-primary">Crear&nbsp;cuenta</button>
+						<button type="submit" id="enviarBoton" name="enviarBoton" class="btn btn-block btn-primary">Crear&nbsp;cuenta</button>
 
 					</div>
 				</div>

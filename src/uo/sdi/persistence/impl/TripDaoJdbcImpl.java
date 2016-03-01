@@ -178,6 +178,7 @@ public class TripDaoJdbcImpl implements TripDao {
 	@Override
 	public List<Trip> destinoDescendingPromoter(Long idProm) {
 		// TODO Auto-generated method stub
+		
 		return jdbcTemplate.queryForList("TRIP_DEST_DESC_PROM",
 				new TripMapper(), idProm);
 	}
