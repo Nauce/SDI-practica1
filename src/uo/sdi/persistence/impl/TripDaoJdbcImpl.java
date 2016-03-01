@@ -133,8 +133,28 @@ public class TripDaoJdbcImpl implements TripDao {
 
 	@Override
 	public List<Trip> findTravelsBefore(Date date) {
-		return jdbcTemplate.queryForList("TRIP_FIND_BEFORE_DATE", new TripMapper(),
-				date);
+		return jdbcTemplate.queryForList("TRIP_FIND_BEFORE_DATE",
+				new TripMapper(), date);
+	}
+
+	@Override
+	public List<Trip> dateAscending(Date date) {
+		return jdbcTemplate.queryForList("TRIP_DATE_ASC", new TripMapper(),date);
+	}
+
+	@Override
+	public List<Trip> dateDescending(Date date) {
+		return jdbcTemplate.queryForList("TRIP_DATE_DESC", new TripMapper(),date);
+	}
+
+	@Override
+	public List<Trip> destinoDescending(Date date) {
+		return jdbcTemplate.queryForList("TRIP_DEST_DESC", new TripMapper(),date);
+	}
+
+	@Override
+	public List<Trip> destinoAscending(Date date) {
+		return jdbcTemplate.queryForList("TRIP_DEST_ASC", new TripMapper(),date);
 	}
 
 }

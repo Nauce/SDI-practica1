@@ -20,11 +20,13 @@
 
 		<section class="col-md-4">
 			<form action="ordenarViajesPublico" method="post">
-				<select class="form-control">
-					<option>Fecha descendente</option>
-					<option>Fecha ascendente</option>
-					<option>Destino descendente</option>
-					<option>Destino ascendente</option>
+				<select name="filtrados" onchange="this.form.submit()"
+					class="form-control">
+					<option>Selecciona una opcion</option>
+					<option>Fecha Descendente</option>
+					<option>Fecha Ascendente</option>
+					<option>Destino Descendente</option>
+					<option>Destino Ascendente</option>
 				</select>
 
 			</form>
@@ -35,6 +37,7 @@
 				<th>Origen</th>
 				<th>Destino</th>
 				<th>Plazas libres</th>
+				<th>Fecha Salida</th>
 			</tr>
 			<c:forEach var="entry" items="${listaViajes}" varStatus="i">
 				<tr id="item_${i.index}">
@@ -42,6 +45,7 @@
 					<td>${entry.departure.city}</td>
 					<td>${entry.destination.city}</td>
 					<td>${entry.availablePax}</td>
+					<td>${entry.departureDate}</td>
 				</tr>
 			</c:forEach>
 		</table>
