@@ -3,6 +3,7 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ include file="comprobarNavegacion.jsp"%>
 <%@ include file="barraNavegacion.jsp"%>
+<%@ page import="uo.sdi.model.TripStatus"%>
 <!DOCTYPE>
 <html>
 <head>
@@ -14,6 +15,8 @@
 	<div class="container">
 		<h1 class="text-center">Estos son sus viajes ofertados</h1>
 		<p>Puede borrar uno si lo necesita, asi como modificarlo</p>
+		<c:set var="DONE" value="<%=TripStatus.DONE%>" />
+		
 		<table class="table table-bordered">
 			<tr>
 				<th>ID viaje</th>
@@ -36,22 +39,52 @@
 					<td>${entry.departureDate}</td>
 					<td>${entry.closingDate}</td>
 					<td>${entry.estimatedCost}</td>
-					<td>
-						<form method="post" action="solicitudesViaje?id=${entry.id}">
-							<button id="solicitudes" name="solicitudes"
-								class="btn btn-success">Solicitudes</button>
-						</form>
-					</td>
-					<td>
-						<form method="post" action="modificarViaje?id=${entry.id}">
-							<button id="borrar" name="borrar" class="btn btn-warning">Modificar</button>
-						</form>
-					</td>
-					<td>
-						<form method="post" action="borrarViaje?id=${entry.id}">
-							<button id="borrar" name="borrar" class="btn btn-danger">Borrar</button>
-						</form>
-					</td>
+
+					<c:choose>
+						<c:when test="${entry.status==DONE }">
+							<td>
+								<form method="post" action="solicitudesViaje?id=${entry.id}">
+									<button id="solicitudes" name="solicitudes" disabled="disabled"
+										class="btn btn-success">Solicitudes</button>
+								</form>
+							</td>
+							<td>
+								<form method="post" action="modificarViaje?id=${entry.id}">
+									<button id="borrar" name="borrar" disabled="disabled"
+										class="btn btn-warning">Modificar</button>
+								</form>
+							</td>
+							<td>
+								<form method="post" action="borrarViaje?id=${entry.id}">
+									<button id="borrar" name="borrar" disabled="disabled"
+										class="btn btn-danger">Borrar</button>
+								</form>
+							</td>
+
+						</c:when>
+						<c:when test="${entry.status!=DONE}">
+							<td>
+								<form method="post" action="solicitudesViaje?id=${entry.id}">
+									<button id="solicitudes" name="solicitudes"
+										class="btn btn-success">Solicitudes</button>
+								</form>
+							</td>
+							<td>
+								<form method="post" action="modificarViaje?id=${entry.id}">
+									<button id="borrar" name="borrar" class="btn btn-warning">Modificar</button>
+								</form>
+							</td>
+							<td>
+								<form method="post" action="borrarViaje?id=${entry.id}">
+									<button id="borrar" name="borrar" class="btn btn-danger">Borrar</button>
+								</form>
+							</td>
+
+						</c:when>
+
+
+					</c:choose>
+
 
 				</tr>
 			</c:forEach>

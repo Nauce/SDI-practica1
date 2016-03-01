@@ -1,5 +1,6 @@
 package uo.sdi.acciones;
 
+import java.util.Date;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
@@ -19,7 +20,7 @@ public class ListarViajesAction implements Accion {
 
 		try {
 
-			viajes = PersistenceFactory.newTripDao().findAll();
+			viajes = PersistenceFactory.newTripDao().findTravelsBefore(new Date());
 			request.setAttribute("listaViajes", viajes);
 			
 			
