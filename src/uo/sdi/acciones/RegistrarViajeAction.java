@@ -52,37 +52,35 @@ public class RegistrarViajeAction implements Accion {
 			String plazasDisponibles = request
 					.getParameter("plazasDisponibles");
 			String comentarios = request.getParameter("comentarios");
-
-			String[] horaYMinuto = horaSalida.split(":");
-
-			fechaSalida = fechaSalida + "-" + horaYMinuto[0] + "-"
-					+ horaYMinuto[1];
-
-			String[] horaYMinutoLLegada = horaLlegada.split(":");
-
-			fechaLlegada = fechaLlegada + "-" + horaYMinutoLLegada[0] + "-"
-					+ horaYMinutoLLegada[1];
-
-			String[] coorOriString = coordenadasOrigen.split("&");
-			double latOr = Double.parseDouble(coorOriString[0]);
-			double lonOr = Double.parseDouble(coorOriString[1]);
-
-			String[] coorDestString = coordenadasDestino.split("&");
-			double latDest = Double.parseDouble(coorDestString[0]);
-			double lonDest = Double.parseDouble(coorDestString[1]);
-
-			if (coorDestString.length != 2 || coorOriString.length != 2) {
-
-				latOr = 0;
-				lonOr = 0;
-				latDest = 0;
-				lonDest = 0;
-
-			}
-
-			User usuario = (User) request.getSession().getAttribute("user");
-
 			try {
+				String[] horaYMinuto = horaSalida.split(":");
+
+				fechaSalida = fechaSalida + "-" + horaYMinuto[0] + "-"
+						+ horaYMinuto[1];
+
+				String[] horaYMinutoLLegada = horaLlegada.split(":");
+
+				fechaLlegada = fechaLlegada + "-" + horaYMinutoLLegada[0] + "-"
+						+ horaYMinutoLLegada[1];
+
+				String[] coorOriString = coordenadasOrigen.split("&");
+				double latOr = Double.parseDouble(coorOriString[0]);
+				double lonOr = Double.parseDouble(coorOriString[1]);
+
+				String[] coorDestString = coordenadasDestino.split("&");
+				double latDest = Double.parseDouble(coorDestString[0]);
+				double lonDest = Double.parseDouble(coorDestString[1]);
+
+				if (coorDestString.length != 2 || coorOriString.length != 2) {
+
+					latOr = 0;
+					lonOr = 0;
+					latDest = 0;
+					lonDest = 0;
+
+				}
+
+				User usuario = (User) request.getSession().getAttribute("user");
 
 				Date dateSalida = DateUtil.fromString(fechaSalida);
 				Date dateConfirmacion = DateUtil

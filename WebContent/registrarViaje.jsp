@@ -170,14 +170,14 @@
 						<label class="control-label" for="exampleInputtext1">Plazas
 							máximas<br>
 						</label><input class="form-control" id="plazasMaximas"
-							name="plazasMaximas" type="number" min="1" max="5" required>
+							name="plazasMaximas" type="number" min="1" max="4" required>
 					</div>
 
 					<div class="form-group">
 						<label class="control-label" for="exampleInputtext1">Plazas
 							disponibles<br>
 						</label><input class="form-control" id="plazasDisponibles"
-							name="plazasDisponibles" type="number" min="1" max="5" required>
+							name="plazasDisponibles" type="number" min="1" max="4" required>
 					</div>
 					<div class="form-group">
 						<label class="control-label" for="exampleInputtext1">Comentarios
