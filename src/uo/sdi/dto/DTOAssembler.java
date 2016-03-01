@@ -173,12 +173,13 @@ public class DTOAssembler {
 		RatingDao ratingDao = PersistenceFactory.newRatingDao();
 
 		List<Seat> seats = PersistenceFactory.newSeatDao().findByTripId(idTrip);
-
-		for (Seat seat : seats)
-			if (seat.getStatus().equals(SeatStatus.ACCEPTED)
+		
+		for (Seat seat : seats) {
+			if (!seat.getUserId().equals(idUser) && seat.getStatus().equals(SeatStatus.ACCEPTED)
 					&& ratingDao.findByAboutFrom(seat.getUserId(), idTrip,
 							idUser, idTrip) == null)
 				dto.getParticipantes().add(userDao.findById(seat.getUserId()));
+		}
 
 		return dto;
 

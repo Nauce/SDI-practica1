@@ -12,9 +12,22 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 </head>
 <body>
-
+<jsp:useBean id="now" class="java.util.Date"/>
 
 	<div class="container">
+	
+	<c:if test="${requestScope.comentarAUsuarioAction != null}">
+		<div class="alert alert-success">
+			 <p>Comentario guardado con éxito</p>
+		</div>
+	</c:if>
+	
+	<c:if test="${requestScope.cancelarPlazaAction != null}">
+		<div class="alert alert-success">
+			 <p>Plaza cancelada correctamente</p>
+		</div>
+	</c:if>
+	
 		<div class="page-header">
 			<h1>Mis viajes implicados</h1>
 		</div>
@@ -28,7 +41,7 @@
 				<th>Plazas libres</th>
 				<th>Fecha Salida</th>
 				<th>Fecha Límite</th>
-				<th>Coste</th>
+				<th>Coste (€)</th>
 				<th>Comentar</th>
 				<th>Cancelar</th>
 			</tr>
@@ -75,12 +88,15 @@
 					<td>
 						<form method="post" action="comentarEnViaje?id=${entry.key.id}">
 							<button id="comentar" name="comentar"
+								<c:if test="${entry.key.departureDate > now}">disabled="disabled"</c:if>
 								class="btn btn-primary">Comentar</button>
 						</form>
 					</td>
 					<td>
 						<form method="post" action="cancelarPlaza?id=${entry.key.id}">
-							<button id="cancelar" name="cancelar" class="btn btn-danger">Cancelar</button>
+							<button id="cancelar" name="cancelar" 
+							<c:if test="${entry.key.closingDate < now || entry.value == EXCLUDED}">disabled="disabled"</c:if>
+							class="btn btn-danger">Cancelar</button>
 						</form>
 					</td>
 

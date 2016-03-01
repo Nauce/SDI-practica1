@@ -1,6 +1,7 @@
 <%@ page contentType="text/html" pageEncoding="UTF-8"
 	import="uo.sdi.dto.TripDto"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <%@ include file="comprobarNavegacion.jsp"%>
 <%@ include file="barraNavegacion.jsp"%>
 <!DOCTYPE>
@@ -38,6 +39,8 @@
 				<th>Destino</th>
 				<th>Plazas libres</th>
 				<th>Fecha Salida</th>
+				<th>Fecha límite</th>
+				<th>Coste (€)</th>
 			</tr>
 			<c:forEach var="entry" items="${listaViajes}" varStatus="i">
 				<tr id="item_${i.index}">
@@ -45,7 +48,11 @@
 					<td>${entry.departure.city}</td>
 					<td>${entry.destination.city}</td>
 					<td>${entry.availablePax}</td>
-					<td>${entry.departureDate}</td>
+					<td><fmt:formatDate type="both" dateStyle="short"
+								timeStyle="short" value="${entry.departureDate}"/></td>
+					<td><fmt:formatDate type="both" dateStyle="short"
+								timeStyle="short" value="${entry.closingDate}"/></td>
+					<td>${entry.estimatedCost}</td>
 				</tr>
 			</c:forEach>
 		</table>

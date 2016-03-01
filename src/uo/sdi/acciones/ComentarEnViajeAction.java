@@ -4,6 +4,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import uo.sdi.dto.DTOAssembler;
+import uo.sdi.model.User;
 import alb.util.log.Log;
 
 public class ComentarEnViajeAction implements Accion {
@@ -12,12 +13,12 @@ public class ComentarEnViajeAction implements Accion {
 	public String execute(HttpServletRequest request,
 			HttpServletResponse response) {
 
-		String[] queryString = request.getQueryString().split("&");
-
-		if (queryString.length >= 2) {
+	
 			try {
-				Long idTrip = Long.parseLong(queryString[0].split("=")[1]);
-				Long idUser = Long.parseLong(queryString[1].split("=")[1]);
+				String queryString = request.getQueryString();
+				
+				Long idTrip = Long.parseLong(queryString.split("=")[1]);
+				Long idUser = ((User) request.getSession().getAttribute("user")).getId();
 
 				request.setAttribute("dto", DTOAssembler.generateComentarEnViajeDto(idTrip, idUser));
 				
@@ -28,8 +29,6 @@ public class ComentarEnViajeAction implements Accion {
 				return "FRACASO";
 
 			}
-		}
-		return "FRACASO";
 
 	}
 

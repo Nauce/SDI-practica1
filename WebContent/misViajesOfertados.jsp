@@ -1,6 +1,7 @@
 <%@ page contentType="text/html" pageEncoding="UTF-8"
 	import="uo.sdi.dto.ViajeImplicadoDto"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <%@ include file="comprobarNavegacion.jsp"%>
 <%@ include file="barraNavegacion.jsp"%>
 <%@ page import="uo.sdi.model.TripStatus"%>
@@ -39,7 +40,7 @@
 				<th>Plazas libres</th>
 				<th>Fecha Salida</th>
 				<th>Fecha Límite</th>
-				<th>Coste</th>
+				<th>Coste (€)</th>
 				<th>Solicitudes</th>
 				<th>Modificar</th>
 				<th>Borrar</th>
@@ -50,8 +51,10 @@
 					<td>${entry.departure.city}</td>
 					<td>${entry.destination.city}</td>
 					<td>${entry.availablePax}</td>
-					<td>${entry.departureDate}</td>
-					<td>${entry.closingDate}</td>
+					<td><fmt:formatDate type="both" dateStyle="short"
+								timeStyle="short" value="${entry.departureDate}"/></td>
+					<td><fmt:formatDate type="both" dateStyle="short"
+								timeStyle="short" value="${entry.closingDate}"/></td>
 					<td>${entry.estimatedCost}</td>
 
 					<c:choose>
