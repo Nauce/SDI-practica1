@@ -13,6 +13,7 @@ import uo.sdi.model.SeatStatus;
 import uo.sdi.model.Trip;
 import uo.sdi.model.User;
 import uo.sdi.persistence.PersistenceFactory;
+import uo.sdi.persistence.RatingDao;
 import uo.sdi.persistence.TripDao;
 import uo.sdi.persistence.UserDao;
 
@@ -156,6 +157,23 @@ public class DTOAssembler {
 		}
 
 		return dto;
+	}
+	
+	public static ComentarEnViajeDto generateComentarEnViajeDto(Long idTrip, Long idUser) {
+		ComentarEnViajeDto dto = new ComentarEnViajeDto(PersistenceFactory.newTripDao().findById(idTrip));
+		
+		UserDao userDao = PersistenceFactory.newUserDao();
+		RatingDao ratingDao = PersistenceFactory.newRatingDao();
+		
+		List<Seat> seats = PersistenceFactory.newSeatDao().findByTripId(idTrip);
+		
+		for (Seat seat:seats)
+			if (seat.getStatus().equals(SeatStatus.ACCEPTED)
+					&& ratingDao.findByAboutFrom(seat.getUserId(), idTrip, idUser, idTrip) == null)
+				dto.getParticipantes().add(userDao.findById(seat.getUserId()));
+		
+		return dto;
+		
 	}
 
 	private static InfoViajeDto getRatingsPromotor(User promotor) {
