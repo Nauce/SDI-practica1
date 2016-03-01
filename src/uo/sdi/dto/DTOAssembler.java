@@ -24,9 +24,11 @@ public class DTOAssembler {
 		SolicitudesDto scdto = new SolicitudesDto(PersistenceFactory
 				.newTripDao().findById(idTrip));
 
-		List<User> admitidos = getAdmitidos(idTrip);
-		List<User> excluidos = getExcluidos(idTrip);
-		List<User> pendientes = getPendientes(idTrip);
+		Trip trip = PersistenceFactory.newTripDao().findById(idTrip);
+
+		List<User> admitidos = getAdmitidos(idTrip, trip.getPromoterId());
+		List<User> excluidos = getExcluidos(idTrip, trip.getPromoterId());
+		List<User> pendientes = getPendientes(idTrip, trip.getPromoterId());
 
 		scdto.setAdmitidos(admitidos);
 		scdto.setExcluidos(excluidos);
@@ -44,8 +46,8 @@ public class DTOAssembler {
 		for (Application aplication : PersistenceFactory.newApplicationDao()
 				.findByUserId(userId)) {
 
-			seat = PersistenceFactory.newSeatDao().findByUserAndTrip(
-					userId, aplication.getTripId());
+			seat = PersistenceFactory.newSeatDao().findByUserAndTrip(userId,
+					aplication.getTripId());
 
 			if (seat == null)
 				vidto.getTrips().put(
@@ -62,7 +64,7 @@ public class DTOAssembler {
 
 	}
 
-	private static List<User> getPendientes(Long tripId) {
+	private static List<User> getPendientes(Long tripId, Long long1) {
 
 		List<User> pendientes = new ArrayList<User>();
 		List<Application> applications = PersistenceFactory.newApplicationDao()
@@ -70,8 +72,9 @@ public class DTOAssembler {
 
 		for (Application application : applications) {
 
-			pendientes.add(PersistenceFactory.newUserDao().findById(
-					application.getUserId()));
+			if (!application.getUserId().equals(long1))
+				pendientes.add(PersistenceFactory.newUserDao().findById(
+						application.getUserId()));
 
 		}
 
@@ -79,7 +82,7 @@ public class DTOAssembler {
 
 	}
 
-	private static List<User> getAdmitidos(Long idTrip) {
+	private static List<User> getAdmitidos(Long idTrip, Long long1) {
 
 		List<User> admitidos = new ArrayList<User>();
 		List<Seat> seats = PersistenceFactory.newSeatDao().findAll();
@@ -87,7 +90,8 @@ public class DTOAssembler {
 			if (seat.getTripId().equals(idTrip)
 					&& !seat.getTripId().equals(
 							PersistenceFactory.newTripDao().findById(idTrip))
-					&& seat.getStatus().equals(SeatStatus.ACCEPTED)) {
+					&& seat.getStatus().equals(SeatStatus.ACCEPTED)
+					&& !seat.getUserId().equals(long1)) {
 				admitidos.add(PersistenceFactory.newUserDao().findById(
 						seat.getUserId()));
 			}
@@ -95,7 +99,7 @@ public class DTOAssembler {
 		return admitidos;
 	}
 
-	private static List<User> getExcluidos(Long idTrip) {
+	private static List<User> getExcluidos(Long idTrip, Long long1) {
 
 		List<User> admitidos = new ArrayList<User>();
 		List<Seat> seats = PersistenceFactory.newSeatDao().findAll();
@@ -103,7 +107,8 @@ public class DTOAssembler {
 			if (seat.getTripId().equals(idTrip)
 					&& !seat.getTripId().equals(
 							PersistenceFactory.newTripDao().findById(idTrip))
-					&& seat.getStatus().equals(SeatStatus.EXCLUDED)) {
+					&& seat.getStatus().equals(SeatStatus.EXCLUDED)
+					&& !seat.getUserId().equals(long1)) {
 				admitidos.add(PersistenceFactory.newUserDao().findById(
 						seat.getUserId()));
 			}
@@ -158,22 +163,25 @@ public class DTOAssembler {
 
 		return dto;
 	}
-	
-	public static ComentarEnViajeDto generateComentarEnViajeDto(Long idTrip, Long idUser) {
-		ComentarEnViajeDto dto = new ComentarEnViajeDto(PersistenceFactory.newTripDao().findById(idTrip));
-		
+
+	public static ComentarEnViajeDto generateComentarEnViajeDto(Long idTrip,
+			Long idUser) {
+		ComentarEnViajeDto dto = new ComentarEnViajeDto(PersistenceFactory
+				.newTripDao().findById(idTrip));
+
 		UserDao userDao = PersistenceFactory.newUserDao();
 		RatingDao ratingDao = PersistenceFactory.newRatingDao();
-		
+
 		List<Seat> seats = PersistenceFactory.newSeatDao().findByTripId(idTrip);
-		
-		for (Seat seat:seats)
+
+		for (Seat seat : seats)
 			if (seat.getStatus().equals(SeatStatus.ACCEPTED)
-					&& ratingDao.findByAboutFrom(seat.getUserId(), idTrip, idUser, idTrip) == null)
+					&& ratingDao.findByAboutFrom(seat.getUserId(), idTrip,
+							idUser, idTrip) == null)
 				dto.getParticipantes().add(userDao.findById(seat.getUserId()));
-		
+
 		return dto;
-		
+
 	}
 
 	private static InfoViajeDto getRatingsPromotor(User promotor) {
