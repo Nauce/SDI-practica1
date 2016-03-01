@@ -12,8 +12,23 @@
 </head>
 <body>
 
+
+
+
 	<div class="container">
 		<h1 class="text-center">Estos son nuestros viajes</h1>
+
+		<section class="col-md-4">
+			<form action="ordenarViajesPublico" method="post">
+				<select class="form-control">
+					<option>Fecha descendente</option>
+					<option>Fecha ascendente</option>
+					<option>Destino descendente</option>
+					<option>Destino ascendente</option>
+				</select>
+
+			</form>
+		</section>
 		<table class="table table-bordered">
 			<tr>
 				<th>ID viaje</th>
@@ -32,5 +47,7 @@
 		</table>
 
 	</div>
+
+
 </body>
 </html>
