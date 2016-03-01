@@ -88,7 +88,7 @@
 					<td>
 						<form method="post" action="comentarEnViaje?id=${entry.key.id}">
 							<button id="comentar" name="comentar"
-								<c:if test="${entry.key.departureDate > now}">disabled="disabled"</c:if>
+								<c:if test="${entry.key.arrivalDate < now || entry.value != ACCEPTED}">disabled="disabled"</c:if>
 								class="btn btn-primary">Comentar</button>
 						</form>
 					</td>

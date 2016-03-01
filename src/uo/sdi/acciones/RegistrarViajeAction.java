@@ -1,6 +1,8 @@
 package uo.sdi.acciones;
 
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -112,20 +114,23 @@ public class RegistrarViajeAction implements Accion {
 				nuevoViaje.setDestination(new AddressPoint(calleDestino,
 						ciudadDestino, provinciaDestino, paisDestino,
 						codigoDestino, new Waypoint(latDest, lonDest)));
-				
-				
+
 				Long tripID = PersistenceFactory.newTripDao().save(nuevoViaje);
 
 				Seat seat = new Seat();
 				seat.setComment(comentarios);
 				seat.setStatus(SeatStatus.ACCEPTED);
 				seat.setTripId(tripID);
-				seat.setUserId(usuario.getId());			
+				seat.setUserId(usuario.getId());
 				PersistenceFactory.newSeatDao().save(seat);
 
 				Log.debug("Creado con éxtio el viaje a [%s]", ciudadDestino);
-				
+
 				request.setAttribute("registrarViajeAction", "");
+				List<Trip> viajes = findTripsByUserSession(((User) request
+						.getSession().getAttribute("user")).getId());
+				request.setAttribute("viajesOfertados", viajes);
+
 				return "EXITO";
 
 			} catch (NumberFormatException e) {
@@ -139,11 +144,28 @@ public class RegistrarViajeAction implements Accion {
 		return resultado;
 	}
 
-	
 	@Override
 	public String toString() {
 		return getClass().getName();
 	}
 
-	
+	private List<Trip> findTripsByUserSession(Long userId) {
+
+		List<Trip> trips = new ArrayList<Trip>();
+
+		for (Trip trip : PersistenceFactory.newTripDao().findAll()) {
+
+			if (trip.getPromoterId().equals(userId)
+					&& !trip.getStatus().equals(TripStatus.CANCELLED)) {
+				if (DateUtil.isBefore(trip.getArrivalDate(), new Date())) {
+					trip.setStatus(TripStatus.DONE);
+				}
+				trips.add(trip);
+			}
+
+		}
+		return trips;
+
+	}
+
 }

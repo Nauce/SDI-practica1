@@ -13,15 +13,17 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 </head>
 <body>
+
+	<jsp:useBean id="now" class="java.util.Date" />
 	<div class="container">
 
-		<c:if test="${ resquestScope.modificarViajeAction != null}">
+		<c:if test="${ modificarViajeAction != null}">
 			<div class="alert alert-success">
 				<p>Viaje modificado con éxito</p>
 			</div>
 		</c:if>
 
-		<c:if test="${ resquestScope.registrarViajeAction != null}">
+		<c:if test="${ registrarViajeAction != null}">
 			<div class="alert alert-success">
 				<p>Viaje registrado con éxito</p>
 			</div>
@@ -32,6 +34,7 @@
 		</div>
 
 		<section class="col-md-4">
+			<strong>Ordenar</strong>
 			<form action="ordenarViajesPromotor" method="post">
 				<select name="filtrados" onchange="this.form.submit()"
 					class="form-control">
@@ -58,6 +61,7 @@
 				<th>Solicitudes</th>
 				<th>Modificar</th>
 				<th>Borrar</th>
+				<th>Comentar</th>
 			</tr>
 			<c:forEach var="entry" items="${viajesOfertados}" varStatus="i">
 				<tr id="item_${i.index}">
@@ -71,51 +75,35 @@
 							timeStyle="short" value="${entry.closingDate}" /></td>
 					<td>${entry.estimatedCost}</td>
 
-					<c:choose>
-						<c:when test="${entry.status==DONE }">
-							<td>
-								<form method="post" action="solicitudesViaje?id=${entry.id}">
-									<button id="solicitudes" name="solicitudes" disabled="disabled"
-										class="btn btn-success">Solicitudes</button>
-								</form>
-							</td>
-							<td>
-								<form method="post" action="modificarViaje?id=${entry.id}">
-									<button id="borrar" name="borrar" disabled="disabled"
-										class="btn btn-warning">Modificar</button>
-								</form>
-							</td>
-							<td>
-								<form method="post" action="borrarViaje?id=${entry.id}">
-									<button id="borrar" name="borrar" disabled="disabled"
-										class="btn btn-danger">Borrar</button>
-								</form>
-							</td>
 
-						</c:when>
-						<c:when test="${entry.status!=DONE}">
-							<td>
-								<form method="post" action="solicitudesViaje?id=${entry.id}">
-									<button id="solicitudes" name="solicitudes"
-										class="btn btn-success">Solicitudes</button>
-								</form>
-							</td>
-							<td>
-								<form method="post" action="modificarViaje?id=${entry.id}">
-									<button id="borrar" name="borrar" class="btn btn-warning">Modificar</button>
-								</form>
-							</td>
-							<td>
-								<form method="post" action="borrarViaje?id=${entry.id}">
-									<button id="borrar" name="borrar" class="btn btn-danger">Borrar</button>
-								</form>
-							</td>
-
-						</c:when>
-
-
-					</c:choose>
-
+					<td>
+						<form method="post" action="solicitudesViaje?id=${entry.id}">
+							<button id="solicitudes" name="solicitudes"
+								<c:if test="${entry.closingDate < now}">disabled="disabled"</c:if>
+								class="btn btn-success">Solicitudes</button>
+						</form>
+					</td>
+					<td>
+						<form method="post" action="modificarViaje?id=${entry.id}">
+							<button id="borrar" name="borrar"
+								<c:if test="${entry.closingDate < now}">disabled="disabled"</c:if>
+								class="btn btn-warning">Modificar</button>
+						</form>
+					</td>
+					<td>
+						<form method="post" action="borrarViaje?id=${entry.id}">
+							<button id="borrar" name="borrar"
+								<c:if test="${entry.closingDate < now}">disabled="disabled"</c:if>
+								class="btn btn-danger">Borrar</button>
+						</form>
+					</td>
+					<td>
+						<form method="post" action="comentarEnViaje?id=${entry.id}">
+							<button id="comentar" name="comentar"
+								<c:if test="${entry.arrivalDate < now}">disabled="disabled"</c:if>
+								class="btn btn-primary">Comentar</button>
+						</form>
+					</td>
 
 				</tr>
 			</c:forEach>

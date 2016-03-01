@@ -7,7 +7,7 @@
 <!DOCTYPE>
 <html>
 <head>
-<title>ShareMyTrip - Listado de viajes</title>
+<title>ShareMyTrip - Viajes activos</title>
 <link rel="stylesheet" href="css/bootstrap.min.css">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 </head>
@@ -17,9 +17,12 @@
 
 
 	<div class="container">
-		<h1 class="text-center">Estos son nuestros viajes</h1>
+		<div class="page-header">
+			<h1>Viajes activos</h1>
+		</div>
 
 		<section class="col-md-4">
+			<strong>Ordenar </strong>
 			<form action="ordenarViajesPublico" method="post">
 				<select name="filtrados" onchange="this.form.submit()"
 					class="form-control">
@@ -49,9 +52,9 @@
 					<td>${entry.destination.city}</td>
 					<td>${entry.availablePax}</td>
 					<td><fmt:formatDate type="both" dateStyle="short"
-								timeStyle="short" value="${entry.departureDate}"/></td>
+							timeStyle="short" value="${entry.departureDate}" /></td>
 					<td><fmt:formatDate type="both" dateStyle="short"
-								timeStyle="short" value="${entry.closingDate}"/></td>
+							timeStyle="short" value="${entry.closingDate}" /></td>
 					<td>${entry.estimatedCost}</td>
 				</tr>
 			</c:forEach>

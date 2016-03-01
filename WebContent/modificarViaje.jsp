@@ -13,7 +13,6 @@
 </head>
 <body>
 
-
 	<form method="post" action="modificarViaje?id=${viaje.id}">
 		<div class="section">
 			<div class="container">
@@ -199,9 +198,5 @@
 		</div>
 	</form>
 
-	<h2>
-		<a id="login" class="text-right" href="listarViajesOfertados">
-			Atrás </a>
-	</h2>
 </body>
 </html>
