@@ -98,6 +98,7 @@
 
 
 				<c:set var="ACCEPTED" value="<%=SeatStatus.ACCEPTED%>" />
+				
 				<c:forEach var="entry" items="${viaje.infoPasajeros}" varStatus="i">
 					<c:if test="${entry.value.seatStatus == ACCEPTED}">
 						<div class="panel panel-default">

@@ -1,15 +1,19 @@
 package uo.sdi.acciones;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import uo.sdi.dto.DTOAssembler;
+import uo.sdi.model.SeatStatus;
 import uo.sdi.model.Trip;
+import uo.sdi.model.TripStatus;
 import uo.sdi.model.User;
 import uo.sdi.persistence.PersistenceFactory;
+import uo.sdi.persistence.util.DateUtil;
 import alb.util.log.Log;
 
 public class ListarViajesOfertadosAction implements Accion {
@@ -50,7 +54,11 @@ public class ListarViajesOfertadosAction implements Accion {
 
 		for (Trip trip : PersistenceFactory.newTripDao().findAll()) {
 
-			if (trip.getPromoterId().equals(userId)) {
+			if (trip.getPromoterId().equals(userId)
+					&& !trip.getStatus().equals(TripStatus.CANCELLED)) {
+				if (DateUtil.isBefore(trip.getArrivalDate(), new Date())) {
+					trip.setStatus(TripStatus.DONE);
+				}
 				trips.add(trip);
 			}
 
