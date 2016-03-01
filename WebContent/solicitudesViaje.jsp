@@ -1,5 +1,6 @@
 <%@ page contentType="text/html" pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <%@ include file="barraNavegacion.jsp"%>
 <!DOCTYPE html>
 <html>
@@ -27,7 +28,8 @@
 				<h3><span class="label label-info">
 					Viaje ID ${solicitudesDto.idViaje} &nbsp;
 					${solicitudesDto.departureCity} - ${solicitudesDto.destinationCity}
-					&nbsp;&nbsp;${solicitudesDto.fechaSalida}
+					&nbsp;&nbsp;<fmt:formatDate type="both" dateStyle="short"
+								timeStyle="short" value="${solicitudesDto.fechaSalida}"/>
 				</span></h3>
 				<br>
 				
